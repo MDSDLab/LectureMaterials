@@ -77,9 +77,10 @@ Ekkor a **capture** kulcsszó úgy gördíti az oldalt, hogy a hivatkozott HTML 
 A kiemeléshez és görgetéshez az alábbi JavaScript kód használható, ahol `arguments[0]` a kiemelendő elemet jelenti:
 
 ```javascript
-arguments[0].style.outline = 'red solid 4px'; arguments[0].style.outlineOffset = '-4px';
-arguments[0].scrollIntoView(true);
+arguments[0].style.outline = 'red solid 4px'; arguments[0].style.outlineOffset = '-4px'; arguments[0].scrollIntoView({ block: 'center', inline: 'center' });
 ```
+
+A fenti kód lefuttatása után célszerű kb. 1 másodpercet várni, hogy biztosan végrehajtódjon a parancs, majd ezután célszerű elkészíteni a képernyőképet.
 
 A kiemelés megszüntetéséhez az alábbi JavaScript kód használható, ahol `arguments[0]` a kiemelendő elemet jelenti:
 

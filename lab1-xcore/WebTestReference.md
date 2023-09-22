@@ -562,6 +562,7 @@ HTML elem esetén tag (`<tag>`) és címke (`<label>`) segít az elem egyértelm
 * css selector: `#<label> tag`
 * xpath: `.//<tag>[@placeholder='<label>']`
 * xpath: `.//<tag>[@value='<label>']`
+* xpath: `.//<tag>[text()='<label>']`
 * xpath: `.//<tag>[contains(text(),'<label>')]`
 
 Ha egyik stratégia sem ad egyértelmű találatot, akkor úgy tekintjük, hogy az elem nem létezik az oldalon.
