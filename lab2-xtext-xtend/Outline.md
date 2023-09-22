@@ -60,4 +60,5 @@ Az outline és a címkék helyes működését a **webtest.dsl.ui.tests** projek
 
 Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
 
+* Az **OutlineTests** összes tesztjének sikeres lefutása
 * A **Runtime Eclipse**-ben megnyitott legalább 20 soros **.wt** kiterjesztésű fájl és annak outline nézete teljesen kibontva, amely minden releváns elemet tartalmaz az outline nézetből.
