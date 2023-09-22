@@ -1,9 +1,9 @@
-# 1. labor - Xcore metamodell
+# 2. labor - Xtext fordító és Xtend kódgenerátor
 
 ## A laborfeladat elvégzésének lépései
 
-1. Csináljátok végig az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) és [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorialt!
-2. Az [mdsd-2023-lab1-xcore](https://github.com/MDSDLab/mdsd-2023-lab2-xtext-xtend) repóból másoljátok át a **webtest** névvel kezdődő projekteket közvetlenül a saját repótok gyökerébe a már meglévő **webtest.model** és **webtest.model.tests** projektek mellé!
+1. Csináljátok végig az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) és [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorialokat!
+2. Az [mdsd-2023-lab2-xtext-xtend](https://github.com/MDSDLab/mdsd-2023-lab2-xtext-xtend) repóból másoljátok át a **webtest** névvel kezdődő projekteket közvetlenül a saját repótok gyökerébe a már meglévő **webtest.model** és **webtest.model.tests** projektek mellé!
 3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott bővítményeket!
 4. Készítsetek egy **hw2** nevű **tag**-et az utolsó commitra!
 
