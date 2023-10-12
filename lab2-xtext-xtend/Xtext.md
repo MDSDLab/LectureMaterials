@@ -2,7 +2,9 @@
 
 A WebTest nyelv szöveges reprezentációjának feldolgozásához szükség van egy fordítóra. A fordító előállításához meg kell adni a szöveges reprezentáció formális leírását. Erre szolgál az Xtext nyelvtan. Az Xtext szintaxisról részletes leírás [itt található](https://eclipse.dev/Xtext/documentation/301_grammarlanguage.html).
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl** csomagból nyissátok meg a **WebTest.xtext** fájlt, és készítsétek el a WebTest nyelv nyelvtanát.
+A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl** csomagból nyissátok meg a **WebTestDsl.xtext** fájlt, és készítsétek el a WebTest nyelv nyelvtanát!
+
+Fontos, hogy nem az Xcore metamodellt kell mechanikusan leképezni nyelvtani szabályokra, hanem fordítva: a nyelvtani szabályokat kell leképezni Xcore elemekre. Többféle Xtext nyelvtani szabály is visszaadhat ugyanolyan Xcore objektumot, nincs egy-az-egyes megfeleltetés a két reprezentáció között. A nyelvtant a WebTest nyelvi specifikációban szereplő kódrészletek alapján kell kialakítani. A nyelvtannak alkalmasnak kell lennie a **webtest.example** projektben szereplő **.wt** kiterjesztésű fájlok feldolgozására is.
 
 Segítségképpen megadunk néhány nyelvtani szabályt:
 
@@ -45,6 +47,8 @@ A szabályok kialakításánál az alábbiakra célszerű ügyelni:
 * Ahhoz, hogy valamire lehessen kereszthivatkozással mutatni, az adott objektumnak kell hogy legyen `name` property-je, amin keresztül a hivatkozás megtörténik. Az Xcore metamodell már eleve így lett kialakítva, hogy ennek a feltételnek megfeleljen.
 
 Miután elkészültetek a nyelvtani szabályokkal, illetve ha bármikor a későbbiekben változtattok rajtuk, le kell futtatnotok a **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl** csomagban található **GenerateWebTestDsl.mwe2** generátort. Ehhez kattintsatok jobb gombbal a generátoron és válasszátok a **Run as > MWE2 Workflow** menüpontot!
+
+Elképzelhető, hogy a workflow lefutása során hibákat jelez (pl. balrekurzió vagy több alternatíva is illeszkedik ugyanolyan mintára). Ha hiba van a nyelvtanban, akkor hibásak lesznek a generált fájlok. Éppen ezért, a nyelvtanban lévő hibákat mindenképpen ki kell javítani! Hibás nyelvtannal a labor összes további részfeladatának megoldása elromolhat!
 
 A generálás után kattintsatok jobb gombbal a **webtest.dsl** projekten, és válasszátok a **Run as > Eclipse application** menüpontot! Ekkor egy másik, ún. **Runtime Eclipse** nyílik meg, amelyben a **.wt** kiterjesztésű fájlokban szerkeszthetők a WebTest nyelvnek megfelelő programok. Ezekben kipróbálhatjátok az Xtext fordítótok aktuális működését.
 

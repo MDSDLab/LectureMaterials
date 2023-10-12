@@ -140,10 +140,10 @@ A laborfeladat során fejlesszétek tovább a **NameValidator** osztályt:
 * Jelezzétek, ha az operációk nevei duplikálva vannak: `Operation '<name>' is already defined.`
 * Jelezzétek, ha egy operáció paraméterei duplikálva vannak: `Parameter '<name>' is already defined.`
 * Jelezzétek, ha egy operáció lokális változója elfedi az operáció valamelyik paraméterét: `Variable '<name>' is already defined.`
+* Jelezzétek, ha egy operáció meghívásakor az argumentumok száma különbözik a paraméterek számától: `Operation '<name>' has <parameter count> parameters but <argument count> arguments were specified.`
 * Jelezzétek, ha egy operáció meghívásakor a névvel rendelkező argumentumok duplikálva vannak: `Argument '<name>' is already defined.`
 * Jelezzétek, ha egy operáció meghívásakor egy névvel rendelkező argumentum neve nem egyezik meg egyetlen paraméter nevével sem: `Operation '<operation name>' does not have a parameter named '<parameter name>'.`
 * Jelezzétek, ha egy operáció névvel rendelkező argumentumokkal történő meghívásakor valamelyik paraméter nem kap értéket: `Argument for parameter '<name>' missing.`
-* Jelezzétek, ha egy operáció indexelt argumentumokkal történő meghívásakor az argumentumok száma különbözik a paraméterek számától: `Operation '<name>' has <parameter count> parameters but <argument count> arguments were specified.`
 * Ha a **BasePages** bővítményt meg kell valósítanotok:
   * Jelezzétek, ha körkörös öröklődés van: `Page '<name>' is in a circular inheritance.`
   * Jelezzétek, ha az ősökben definiált változók ütköznek, és ezért a leszármazottnak explicit felül kell definiálnia a változót: `Variable '<variable name>' is inherited ambiguously, it must be overriden in page '<page name>'.`

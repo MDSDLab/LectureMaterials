@@ -43,7 +43,7 @@ A bővítményeket tesztelő osztályokból csak azokat kell megtartani, amelyek
 
 A **MetaModelTests** osztályt és belsejét mindenképpen meg kell tartani.
 
-A WebTest metamodell leképzése és így a laborfeladat megoldása akkor tekinthető sikeresnek, ha az összes releváns teszt sikeresen le tud futni. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülnek leadás után!
+A WebTest metamodell leképzése és így a laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülnek leadás után!
 
 A következő fázisokról készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw1** mappába:
 
