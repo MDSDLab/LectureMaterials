@@ -24,4 +24,4 @@ Határidő: Október 9. hétfő 23:59.
 
 A [3. laborfeladat](lab3-viatra/README.md) célja Viatra lekérdezések és modelltranszformációk készítése a [WebTest nyelvhez](lab1-xcore/WebTestLanguageSpecification.md) validáció és mutációs tesztelés céljából.
 
-Határidő: Október 30. hétfő 23:59.
+Határidő: ~Október 30.~ November 6. hétfő 23:59.
