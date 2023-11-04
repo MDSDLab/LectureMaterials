@@ -1,0 +1,5 @@
+# A mögöttes adatstruktúra felépítése
+
+A [nyelvtan](Grammar.md) elkészítése után a következő lépés egy olyan adatstruktúra felépítése, amely később a szemantikai elemzés és kódgenerálás során is felhasználható. Ez hasonló egy klasszikus szimbólumtábla felépítéséhez, de esetünkben egyszerűbb annál. A felépítéshez célszerű a **main.WebtestInputTableBuilder** osztályt használni (a visitor mintát alkalmazva), a táblához pedig a **data.WebtestInputTable** osztályt kiegészíteni. A klasszikus szimbólumtábla építéshez hasonlóan már itt érdemes a hibakezeléssel foglalkozni, mivel ez megkönnyíti a dolgunkat a szemantikai elemzésnél.
+
+Az input mezők adatainak tárolására a **data.WebtestInput** osztály használható, de létre lehet hozni egyéb segédosztályokat is. Érdemes elgondolkodni a csoportok struktúrájának tárolásán is.
