@@ -6,7 +6,7 @@ A *File -> Settings -> Plugins* menüpont alatt telepítsük fel az ANTLR és - 
 ## Függőségek hozzáadása
 A projekt *lib* mappájába már le vannak töltve az ANTLR és StringTemplate dependenciák .jar formátumban. Ezeket a *File -> Project Structure... -> Modules -> Dependencies* alatt fel kell venni a projekt függőségei közé ("+" gomb). Győződjünk meg róla, hogy fel vannak véve!
 
-<img src="images/dependencies.png" width="50%" height="50%">
+<img src="images/dependencies.PNG" width="50%" height="50%">
 
 ---
 **Megjegyzés**
