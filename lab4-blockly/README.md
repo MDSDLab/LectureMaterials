@@ -1,5 +1,3 @@
-# MDSDLAb_Blockly
-
 # 4. labor (2. rész) - HTML weboldal szerkesztő Blockly alapon
 
 ## A laborfeladat elvégzésének lépései
