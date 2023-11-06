@@ -47,7 +47,7 @@ A megoldást akár a szintén az **examples** package-ben található, WebTest n
 
 ### Pontozás
 
-A 4. labor két különálló feladatból áll; az **ANTLR feladatra 15 pontot**, a **Blockly feladatra 10 pontot** lehet maximum szerezni. Az ANTLR feladat pontozása a következőképpen oszlik el:
+A 4. labor két különálló feladatból áll; az **ANTLR feladatra 15 pontot**, a **[Blockly](https://github.com/MDSDLab/LectureMaterials/blob/main/lab4-blockly/README.md) feladatra 10 pontot** lehet maximum szerezni. Az ANTLR feladat pontozása a következőképpen oszlik el:
 
 | Nyelvtan | Szemantikai elemzés | Kódgenerálás |
 | :-: | :-: | :-: |

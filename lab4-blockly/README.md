@@ -21,6 +21,14 @@ A laborfeladat elvégzéséhez nyissátok meg a kiadott kezdőprojektet (az *ind
 
 A laborfeladat megoldása akkor tekinthető késznek, ha az összes felsorolt HTML elem ([alap elemek](controls.md) és a kijelölt [bővítmény](extensions.md)) lemodellezhető (tartalmazza a nyelv és az editorban fel lehet használni) és helyes (működő, szemantikailag megfelelő) HTML kód generálódik belőlük. A Blockly természete miatt automatikus teszteseteket ennél a feladatnál nem adunk közre, de manuálisan ellenőrizhető, hogy a megoldás kielégíti-e a követelményeket. 
 
+### Pontozás
+
+A 4. labor két különálló feladatból áll; az **[ANTLR](https://github.com/MDSDLab/LectureMaterials/blob/main/lab4-antlr/README.md) feladatra 15 pontot**, a **Blockly feladatra 10 pontot** lehet maximum szerezni. A Blockly feladat pontozása a következőképpen oszlik el:
+
+| Közös részek | Kódgenerálás | Bővítmény |
+| :-: | :-: | :-: |
+| 3 pont | 4 pont | 3 pont |
+
 ## Referenciák
 
 Hasznos linkek a feladat megoldásához:
