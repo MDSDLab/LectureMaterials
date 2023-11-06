@@ -30,4 +30,4 @@ Határidő: ~Október 30.~ November 6. hétfő 23:59.
 
 A 4. laborfeladat két részből áll: [ANTLR](lab4-antlr/README.md) és [Blockly](lab4-blockly/README.md), amelyek során egy-egy új nyelvet kell létrehozni és feldolgozni részben a [WebTest nyelvhez](lab1-xcore/WebTestLanguageSpecification.md) nyelvhez kapcsolódóan. A két feladatot együtt értékeljük majd. 
 
-Határidő: Október 20. hétfő 23:59
+Határidő: November 20. hétfő 23:59
