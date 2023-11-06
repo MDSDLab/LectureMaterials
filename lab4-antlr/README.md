@@ -1,4 +1,4 @@
-# 4. labor - ANTLR fordító és kódgenerátor
+# 4. labor (1. rész) - ANTLR fordító és kódgenerátor
 
 ## A laborfeladat elvégzésének lépései
 
