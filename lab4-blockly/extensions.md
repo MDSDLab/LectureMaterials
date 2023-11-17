@@ -27,10 +27,12 @@ Hozzon létre egy új elemet CssStyle néven és alakítsa át a CSS elemet, hog
 A CssStyle elem speciális: legördülő listából (TYPE) választhassuk ki, hogy mit szeretnénk testreszabni, majd a választástól függően legyen lehetőség megadni az adott tulajdonság értékét (VALUE)! 
 Tehát egy olyan elemre van szükség, ahol a legördülő menüből történő érték választástól függően más és más beviteli mező jelenik meg az adott elemen. 
 
- * Font: szöveges formába megadható a font
+ * Font: szöveges formába megadható a font neve (pl. Times)
  * Background-color: színként megadható a háttér szín
  * Padding: megadható a margó mérete egyetlen szám formájában
  * Font-Size: számként megadható a betűméret
+ 
+A CssStyle elemben megadott definíciók lokálisan írják felül a CSS osztályban definiált értékeket, tehát pl. ha megadjuk a font-ot CssStyle-ban, akkor az adott elemnél az érvényesüljön függetlenül attól, hogy a CSS osztályban mi volt megadva. Nem kell figyelni rá, hogy ne legyenek egymásnak ellentmondó stílusok (pl. két különböző font megadva) és a fontot sem kell ellenőrizni, hogy létezik-e.
 
 ## Safe input
 
@@ -39,3 +41,5 @@ Bár egy ilyen környezet kialakításakor a biztonsági aspektusok ritkán ker�
  * A szerkesztési térben alapesetben jelenjen meg egy WebPage, amit ne lehessen se mozgati se letörölni!
  * A Text elem szöveg mezőjében csak alfanumerikus karaktereket engedélyezzük, a többit automatikusan vegyük ki a mezőből a szerkesztés végén (pl. &lt;br&gt; --> br)!
  * A Link esetén ellenőrizze a JavaScriptes URL osztály segítségével, hogy tényleg weboldalt adtak-e meg (és törölje a megadott értéket, ha az nem weboldal)!
+
+Ha a mozgatás letiltása nem működik, érdemes megnézni a [linket](https://groups.google.com/g/blockly/c/K97NfUNLx-A).

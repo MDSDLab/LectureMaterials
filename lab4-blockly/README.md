@@ -42,3 +42,10 @@ Hasznos linkek a feladat megoldásához:
 * Blockly field demo [link](https://google.github.io/blockly-samples/)
 * Input validation [link](http://bekawestberg.me/blog/types-1/)
 * Custom validation [link](https://blocklycodelabs.dev/codelabs/validation-and-warnings/index.html#0)
+
+## Változások, kiegészítések
+
+* 2023. Nov. 16.
+	* Szövegblokk: a Type attribútum értékei közé bekerült a Normal + kódgenerálási [tipp](hints.md) 
+	* CSS Style bővítmény: magyarázat kiegészítve
+	* Safe Input bővítmény: tipp hozzáadva a leíráshoz 

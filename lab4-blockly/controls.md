@@ -25,9 +25,9 @@ A nyelv célja, hogy működő weboldalakat lehessen előállítani programozói
   *  Gyermekelemek:
       * Children: a tartalmazott HTML elemek
  * **TextBlock**
-   * Egy szövegblokk (&lt;p&gt;) megadására szolgáló elem.
+   * Egy szövegblokk (alapból &lt;p&gt;)megadására szolgáló elem.
    * Attribútumok:
-      * Type (legördülő): h1/h2/bold/deleted (&lt;del&gt;) stílust lehet megadni a tartalmazott elemeknek
+      * Type (legördülő): normal/h1/h2/bold/deleted (&lt;del&gt;) stílust lehet megadni a tartalmazott elemeknek
    * Gyermekelemek:
      * Children: a blokk tartalmát képző HTML elemek, amikre a megadott formázás érvényesül
   * **Link**
