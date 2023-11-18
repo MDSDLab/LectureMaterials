@@ -51,7 +51,7 @@ A nyelv lehetőséget biztosít egyszerű összehasonlításra is más input mez
 ```
 
 ### Láthatóság szabályozása
-Validációs szabályok megadásán kívül, **checkbox** típusú input mezőnél lehetőségünk van egy másik input mező vagy csoport megjelenítésére (**show**) vagy elrejtésére (**hide**). Ezt az **on?** és **off?** szintaxissal tehetjük meg, ami a checkbox bepipált (checked) vagy nem bepipált állapotváltozására utal. Támogatnunk kell az inverz működést is, tehát ha például egy checkbox bepipálására egy másik mező megjelenik, akkor a checkbox kipipálására ennek a mezőnek el kell tűnnie.
+Validációs szabályok megadásán kívül, **checkbox** típusú input mezőnél lehetőségünk van egy másik input mező vagy csoport megjelenítésére (**show**) vagy elrejtésére (**hide**). Ezt az **on?** és **off?** szintaxissal tehetjük meg, ami a checkbox bepipált (checked) vagy nem bepipált állapotváltozására utal. Támogatnunk kell az inverz működést is, tehát ha például egy checkbox bepipálására egy másik mező megjelenik, akkor a checkbox kipipálására ennek a mezőnek el kell tűnnie. Egy **checkbox** input mezőnek akárhány láthatósági szabálya lehet.
 
 ```
 <on | off>? <show | hide> <id>
