@@ -26,7 +26,7 @@
 | modellbu | Konkatenáció |
 | Modellify | Hibaüzenet |
 | ModelMasters | Hibaüzenet |
-| Omicron | BasePages |
+| Omicron | Konkatenáció |
 | PÁLfordítók | JavaScript |
 | sadge | JavaScript |
 | SillyGoofy | Konkatenáció |
