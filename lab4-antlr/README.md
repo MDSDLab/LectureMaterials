@@ -37,7 +37,7 @@ Kódgenerálás:
 Bővítmények:
 
 6. [Bővítmények leírása](Extensions.md)
-7. [Bővítmények kiosztása](ExtensionsTable)
+7. [Bővítmények kiosztása](ExtensionsTable.md)
 
 ## Értékelés
 
