@@ -12,7 +12,7 @@ webtest <package>.<class>
 <statement>...
 ```
 
-A fájl elején a **webtest** kulcsszó definiálja azt a Java osztályt (&lt;class>) teljes Java package előtaggal (&lt;package>), amely JUnit tesztként a WebTest fájlban leírt teszteket és utasításokat fogja futtatni. Ezt követően tetszőlegesen sok weboldal modell (&lt;page>), teszteset (&lt;test>) és művelet (&lt;operation>) következhet, végül pedig tetszőlegesen sok utasítás (&lt;statement>).
+A fájl elején a **webtest** kulcsszó definiálja azt a Java osztályt (&lt;class>) teljes Java package előtaggal (&lt;package>), amely JUnit tesztként a WebTest fájlban leírt teszteket és utasításokat fogja futtatni. Ezt követően tetszőlegesen sok weboldal modell (&lt;page>), teszteset (&lt;test>) és művelet (&lt;operation>) következhet tetszőleges sorrendben, végül pedig tetszőlegesen sok utasítás (&lt;statement>).
 
 Példa egy ilyen fájlszerkezetre:
 
@@ -37,7 +37,7 @@ Másik példa egy ilyen fájlszerkezetre:
 ```
 webtest example.Google
 
-operation search using text
+operation search(string text)
   fill textarea "q" with text
   click button "Search"
 end
@@ -59,43 +59,43 @@ page <name>
 end
 ```
 
-A modellnek nevet kell adni (&lt;name>), a modellen belül pedig definiálhatunk változókat (&lt;variable>), amelyek valamilyen HTML taget reprezentálnak, de egyéb (karakterlánc, egész szám, stb.) értékeket reprezentáló változók is megadhatók. Ezen kívül definiálhatunk még műveleteket (&lt;operation>), amelyek valamilyen utasítássorozatot hajtanak végre az elemek segítségével.
+A modellnek nevet kell adni (&lt;name>), a modellen belül pedig definiálhatunk változókat (&lt;variable>), amelyek például valamilyen HTML taget reprezentálnak, de egyéb (karakterlánc, egész szám, stb.) értékeket reprezentáló változók is megadhatók. Ezen kívül definiálhatunk még műveleteket (&lt;operation>), amelyek valamilyen utasítássorozatot hajtanak végre az elemek segítségével.
 
 ### HTML elemet reprezentáló változók
 
 Egy HTML elemet reprezentáló változó definíciójának szerkezete az alábbi:
 
 ```
-set <name> to <tag> <label>
+element <name> = <tag> <label>
 ```
 
-Az elemnek nevet kell adni (&lt;name>), és meg kell határozni, hogy az elem milyen HTML tag-re (&lt;tag>) hivatkozik és milyen címkével (&lt;label>). A tag és címke segít az elem egyértelmű beazonosításában. Az elemek beazonosításnak részleteit a kifejezések szakasz ismerteti.
+A változónak nevet kell adni (&lt;name>), és meg kell határozni, hogy az elem milyen HTML tag-re (&lt;tag>) hivatkozik és milyen címkével (&lt;label>). A tag és címke segít az elem egyértelmű beazonosításában. Az elemek beazonosításnak részleteit a kifejezések szakasz ismerteti.
 
-### operation ... using ... end
+### operation ... end
 
 Egy művelet szerkezete az alábbi:
 
 ```
-operation <name> using <parameter>...
+operation <name>(<parameter>...)
   <statement>...
 end
 ```
 
-A műveletnek nevet kell adni (&lt;name>), és opcionálisan lehet tetszőlegesen sok vesszővel elválasztott paramétere (&lt;parameter>). A művelet törzse utasítások sorozata, amelyek felhasználhatják mind az elemeket, mind pedig a művelet paramétereit, illetve hívhatnak más műveleteket.
+A műveletnek nevet kell adni (&lt;name>), utána pedig zárójelek között kell felsorolni a paramétereket (&lt;parameter>) vesszőkkel elválasztva. A művelet törzse utasítások sorozata, amelyek felhasználhatnak változókat és paramétereket, illetve hívhatnak más műveleteket.
 
 Példa egy weboldal modellre:
 
 ```
 page Calculator
-  set display to input "number display"
-  set clear to button "AC"
-  set add to button "+"
-  set subtract to button "-"
-  set multiply to button "×"
-  set divide to button "/"
-  set compute to button "="
+  element display = input "number display"
+  element clear = button "AC"
+  element add = button "+"
+  element subtract = button "-"
+  element multiply = button "×"
+  element divide = button "/"
+  element compute = button "="
   
-  operation binaryOperation using left,op,right
+  operation binaryOperation(text left, element op, text right)
     click clear
     fill display with left
     click op
@@ -103,8 +103,8 @@ page Calculator
     click compute
   end
   
-  operation multiply using left,right
-    binaryOperation using left,multiply,right
+  operation multiply(text left, text right)
+    binaryOperation using left, multiply, right
   end
 end
 ```
@@ -135,15 +135,15 @@ end
 
 ## Utasítások
 
-### set ... to ...
+### Változó definíció
 
-A **set** utasítás egy változót definiál:
+Egy változót az alábbi szintaxis definiál:
 
 ```
-set <name> to <value>
+<type> <name> = <value>
 ```
 
-A változó csak egyszer, a definíciója helyén kaphat értéket, ez az érték nem módosítható. A változók típusát nem kell kiírni, a típust a nyelv fordítója automatikusan kikövetkezteti. Egy változó lehetséges típusai:
+Egy változónak meg kell adni a típusát (&lt;type>), a nevét (&lt;name>) és az értékét (&lt;value>). Az érték nem módosítható, a változók csak a definíció helyén kaphatnak értéket. A lehetséges típusok a következők:
 
 * **string**: karakterláncot reprezentál
 * **integer**: egész számot reprezentál
@@ -153,18 +153,11 @@ A változó csak egyszer, a definíciója helyén kaphat értéket, ez az érté
 Példák:
 
 ```
-set url to "https://www.google.com"
-set timeout to 10
-set logout to button "Sign out"
-set loggedIn to logout exists
+string url = "https://www.google.com"
+integer timeout = 10
+element logout = button "Sign out"
+boolean loggedIn = logout exists
 ```
-
-A fenti példában az egyes változók típusai:
-
-* url: **string**
-* timeout: **integer**
-* logout: **element**
-* loggedIn: **boolean**
 
 ### if ... then ... else ... end
 
@@ -211,8 +204,8 @@ A **while** kulcsszó után meg kell adni egy feltételt (**boolean** típusú k
 Példa:
 
 ```
-set nextButton to button "next"
-set finishButton to button "finish"
+element nextButton = button "next"
+element finishButton = button "finish"
 
 while nextButton exists do
   click nextButton
@@ -222,37 +215,25 @@ click finishButton
 
 ### operáció meghívása
 
-Egy operáció meghívásához hivatkozni kell az operáció nevére, majd a **using** kulcsszó után meg kell adni az operációnak átadandó argumentumokat. A hívás két módon történhet: indexelt vagy nevesített paraméterekkel.
-
-Indexelt esetben a paraméterek nevét nem kell kiírni, hanem az argumentumként beadott vesszővel elválasztott értékek a paraméterek definiálási sorrendjében kerülnek átadásra:
+Egy operáció meghívásához hivatkozni kell az operáció nevére, majd a **using** kulcsszó után meg kell adni az operációnak átadandó argumentumokat. Az argumentumként beadott vesszővel elválasztott értékek a paraméterek definiálási sorrendjében kerülnek átadásra:
 
 ```
 <operation name> using <value>...
 ```
 
-Nevesített esetben a vesszővel elválasztott argumentumok név szerint hivatkoznak a paraméterekre, és minden érték az argumentum nevének megfelelő paraméter számára kerül átadásra:
-
-```
-<operation name> using <name>:<value> ...
-```
-
 Példák:
 
 ```
-operation login using username,password
+operation login(string username, string password)
   fill input "username" with username
   fill input "password" with password
   click button "Sign in"
 end
 
-login using "alice","secret"
-
-login using username:"alice", password:"secret"
-
-login using password:"secret", username:"alice"
+login using "alice", "secret"
 ```
 
-A fenti három *login* hívás ugyanazt a működést eredményezi.
+A fenti példában az "alice" érték a username, a "secret" érték a password paraméternek kerül átadásra.
 
 ### open
 
@@ -267,7 +248,7 @@ Példák:
 ```
 open "https://www.google.com"
 
-set github to "https://github.com"
+string github = "https://github.com"
 open github
 ```
 
@@ -286,8 +267,8 @@ Példák:
 ```
 fill input "username" with "alice"
 
-set password to input "password"
-set secret to "secret"
+element password = input "password"
+string secret = "secret"
 fill password with secret
 ```
 
@@ -303,7 +284,7 @@ Példák:
 ```
 click button "Sign in"
 
-set logout to button "Sign out"
+element logout = button "Sign out"
 click logout
 ```
 
@@ -327,15 +308,15 @@ Példa a teljes oldal modellezésére:
 
 ```
 page Calculator
-  set display to input "number display"
-  set clear to button "AC"
-  set add to button "+"
-  set subtract to button "-"
-  set multiply to button "×"
-  set divide to button "/"
-  set compute to button "="
+  element display = input "number display"
+  element clear = button "AC"
+  element add = button "+"
+  element subtract = button "-"
+  element multiply = button "×"
+  element divide = button "/"
+  element compute = button "="
   
-  operation binaryOperation using left,op,right
+  operation binaryOperation(string left, element op, string right)
     click clear
     fill display with left
     click op
@@ -343,8 +324,8 @@ page Calculator
     click compute
   end
   
-  operation multiply using left,right
-    binaryOperation using left,multiply,right
+  operation multiply(string left, string right)
+    binaryOperation using left, multiply, right
   end
 end
 
@@ -362,8 +343,8 @@ Példa egy HTML elem modellezésére, ahol a törlés hatására egy megerősít
 
 ```
 page MessageBox
-  set yes as button "Yes"
-  set no as button "No"
+  element yes = button "Yes"
+  element no = button "No"
 end
 
 click button "Delete"
@@ -389,7 +370,7 @@ A **print** utasítás a paramétereinek értékét kiírja az alkalmazás logj�
 print <value>...
 ```
 
-A bemeneti értékeket vesszővel elválasztva kell megadni.
+Az értékeket vesszővel elválasztva kell megadni.
 
 A **print** utasítás segíthet a teszt folyamatának követésében, de segítséget adhat akár felhasználói útmutató automatikus előállításában is.
 
@@ -398,8 +379,8 @@ Példák:
 ```
 print "Page opened"
 
-set alice to "alice"
-set alicePass to "secret"
+string alice = "alice"
+string alicePass = "secret"
 login using alice, alicePass
 print "Logged in as ", alice
 ```
@@ -457,8 +438,8 @@ wait 10 seconds
 A következő példában a login művelet meghívása után megvárjuk, míg a "Sign out" feliratú gomb megjelenik az oldalon, de maximum 5 másodpercig várunk:
 
 ```
-set timeout to 5
-set signout to button "Sign out"
+integer timeout = 5
+element signout = button "Sign out"
 login using "alice","secret"
 wait timeout seconds until signout exists
 ```
@@ -480,8 +461,8 @@ Az **is** kifejezés eredményének típusa **boolean**.
 Az alábbi példa azt ellenőrzi, hogy a bejelentkezés után a weboldal kiírja-e a bejelentkezett felhasználó nevét a megfelelő &lt;div> HTML elembe:
 
 ```
-login using "alice","secret"
-set loggedIn as div "loggedIn"
+login using "alice", "secret"
+element loggedIn = div "loggedIn"
 assert loggedIn is "Logged in as: alice"
 ```
 
@@ -499,7 +480,7 @@ Az alábbi példa azt ellenőrzi, hogy a bejelentkezés után a weboldal kiírja
 
 ```
 login using "alice","secret"
-set loggedIn as div "loggedIn"
+element loggedIn = div "loggedIn"
 assert loggedIn contains "alice"
 ```
 
@@ -517,7 +498,7 @@ Az alábbi példa azt ellenőrzi, hogy a bejelentkezés után a weboldal megjele
 
 ```
 login using "alice","secret"
-set logout as button "Sign out"
+element logout = button "Sign out"
 assert logout exists
 ```
 
@@ -535,7 +516,7 @@ Példa:
 
 ```
 login using "alice","secret"
-set logout as button "Sign out"
+element logout = button "Sign out"
 
 if not logout exists then
   print "Sign out is not displayed after signing in."
@@ -546,7 +527,7 @@ end
 
 Konstans kifejezésként az alábbiak használhatók:
 
-* karakterlánc (típusa **string**): idézőjelek között a szokásos Java szintaxissal (pl. "Hello World!")
+* karakterlánc (típusa **string**): idézőjelek között a szokásos Java szintaxissal (pl. "Hello World!"), de idéző jelek helyett aposztrófok is használhatók (pl. 'Hello World!')
 * egész szám (típusa **integer**): a szokásos Java szintaxissal (pl. 10)
 * logikai érték (típusa **boolean**): **true** vagy **false**
 * HTML elem (típusa **element**): `<tag> <label>`
@@ -570,10 +551,10 @@ Ha egyik stratégia sem ad egyértelmű találatot, akkor úgy tekintjük, hogy 
 Példák konstans kifejezésekre:
 
 ```
-set hello to "Hello World!"
-while true do
+string hello = "Hello World!"
+if true then
   wait 10 seconds
-  click button "Hello"
+  click button 'Hello'
 end
 ```
 

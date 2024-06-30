@@ -46,17 +46,17 @@ Vegyük az alábbi HTML kódot:
 Példák az indexelés használatára a fenti HTML kódhoz:
 
 ```
-set greetings to ul "Greetings"
-set first to greetings[1]
-set second to greetings[2]
+element greetings = ul "Greetings"
+element first = greetings[1]
+element second = greetings[2]
 assert first contains "Alice"
 assert second contains "Bob"
 
-set beverages to ol "Beverages"
+element beverages = ol "Beverages"
 assert beverages[1] is "Coffee"
 assert beverages[3] is "Milk"
 
-set companies to table "Companies"
+element companies = table "Companies"
 assert companies[1,1] is "Company"
 assert companies[3,2] is "CEO B"
 ```
@@ -65,8 +65,8 @@ Egy kicsit összetettebb példa:
 
 ```
 page CompanyOperations
-  set edit to button "Edit"
-  set delete to button "Delete"
+  element edit = button "Edit"
+  element delete = button "Delete"
 end
 
 context companies[3,3] as CompanyOperations
@@ -78,14 +78,14 @@ Indexelésként nem csak számokat, de **string** típusú értékeket is haszn�
 
 ```
 page CompanyOperations
-  set edit to button "Edit"
-  set delete to button "Delete"
+  element edit = button "Edit"
+  element delete = button "Delete"
 end
 
-set companies to table "Companies"
+element companies = table "Companies"
 assert companies["Company A","Contact"] is "CEO A"
 
-set bops to companies["Company B","Operations"]
+element bops = companies["Company B","Operations"]
 page bops as CompanyOperations
   click edit
 end

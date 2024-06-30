@@ -10,15 +10,15 @@ A WebTest nyelven az alábbi modellt készíthetjük hozzá:
 
 ```
 page Calculator
-  set display to input "number display"
-  set clear to button "AC"
-  set add to button "+"
-  set subtract to button "-"
-  set multiply to button "×"
-  set divide to button "/"
-  set compute to button "="
+  element display = input "number display"
+  element clear = button "AC"
+  element add = button "+"
+  element subtract = button "-"
+  element multiply = button "×"
+  element divide = button "/"
+  element compute = button "="
   
-  operation binaryOperation using left,op,right
+  operation binaryOperation(string left, element op, string right)
     click clear
     fill display with left
     click op
@@ -26,13 +26,13 @@ page Calculator
     click compute
   end
   
-  operation multiply using left,right
-    binaryOperation using left,multiply,right
+  operation multiply(string left, string right)
+    binaryOperation using left, multiply, right
   end
 end
 ```
 
-A fenti példában a **page** kulcsszóval egy *Calculator* nevű oldalt írunk le, amelybe felvesszük a számunkra szükséges elemeket reprezentáló változókat a **set** kulcsszóval:
+A fenti példában a **page** kulcsszóval egy *Calculator* nevű oldalt írunk le, amelybe felvesszük a számunkra szükséges elemeket reprezentáló változókat:
 
 * display: a számológép kijelzője, ebbe lehet begépelni egy számot
 * clear: a kijelzőt törlő gomb

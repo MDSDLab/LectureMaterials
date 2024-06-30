@@ -91,11 +91,7 @@ abstract class Declaration extends NamedElement
 class Variable extends NamedElement
 {
   contains Expression value
-
-  op Type getType() {
-    if (value !== null) return value.^type
-    else return Type.UNDEFINED
-  }
+  Type type
 }
 
 class Page extends Declaration
@@ -126,12 +122,9 @@ class BlockStatement extends Statement
 
 abstract class Expression
 {
-  op Type getType() {
-    return Type.UNDEFINED
-  }
 }
 ```
 
 A laborfeladat megoldásához ezt a kódrészletet kell kibővíteni a többi nézetben szereplő elemekkel.
 
-Fontos, hogy az Xcore fájlban a package neve **webtest.model** legyen, továbbá az osztályok, attribútumok és metódusok neve pontosan megegyezzen az UML osztálydiagramokon szereplő elnevezésekkel!
+Fontos, hogy az Xcore fájlban a package neve **webtest.model** legyen, és a fölötte lévő annotáció is maradjon a fenti formában. Továbbá az osztályok, attribútumok és metódusok neve pontosan egyezzen meg az UML osztálydiagramokon szereplő elnevezésekkel!

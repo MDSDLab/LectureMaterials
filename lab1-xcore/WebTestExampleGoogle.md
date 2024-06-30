@@ -19,7 +19,7 @@ A **fill** kulcsszó a *q* azonosítójú szövegdobozba begépeli a *jwst* szö
 
 A **click** kulcsszó megnyomja *Search* feliratú gombot.
 
-A fenti példa az alábbi módon fordítató le Java alapú Selenium kódra, amely a Chrome böngészőn keresztül hajtja végre az utasításokat:
+A fenti példa az alábbi módon fordítható le Java alapú Selenium kódra, amely a Chrome böngészőn keresztül hajtja végre az utasításokat:
 
 ```Java
 var driver = new ChromeDriver();
@@ -35,7 +35,7 @@ driver.navigate().to("https://www.google.com");
 var textareaBy = By.xpath("//textarea[@name='q']");
 wait.until(ExpectedConditions.presenceOfElementLocated(textareaBy));
 
-// set input "q" to "jwst"
+// fill textarea "q" with "jwst"
 driver.findElement(textareaBy).sendKeys("jwst");
 
 // click button "Search"
@@ -46,9 +46,9 @@ Thread.wait(5000);
 driver.quit();
 ```
 
-A Selenium kód megnyitja a Chrome böngészőt és kiteszi teljes képernyőre. Mivel egy weboldal betöltése sok időt vehet igénybe, nem lehet azonnal elkezdeni kiadni az utasításokat. Meg kell várni, amíg megjelennek a weboldal egyes elemei. Ehhez a FluentWait osztály ad segítséget: beállítjuk, hogy maximum 10 másodpercig várjon, és másodpercenként ellenőrizze a feltételek teljesülését. Ezután megnyitjuk a *https://www.google.com* weboldalt, majd megvátjuk, amíg a keresési szövegdoboz megjelenik. Ezután begépeljük a szövegdobozba a *jwst* szöveget, majd megnyomjuk a *Search* feliratú gombot. Végül 5 másodpercet várunk, hogy a keresési találatokat megnézhessük, majd bezárjuk a böngészőt.
+A Selenium kód megnyitja a Chrome böngészőt és kiteszi teljes képernyőre. Mivel egy weboldal betöltése sok időt vehet igénybe, nem lehet azonnal elkezdeni kiadni az utasításokat. Meg kell várni, amíg megjelennek a weboldal egyes elemei. Ehhez a *FluentWait* osztály ad segítséget: beállítjuk, hogy maximum 10 másodpercig várjon, és másodpercenként ellenőrizze a feltételek teljesülését. Ezután megnyitjuk a *https://www.google.com* weboldalt, majd megvátjuk, amíg a keresési szövegdoboz megjelenik. Ezután begépeljük a szövegdobozba a *jwst* szöveget, majd megnyomjuk a *Search* feliratú gombot. Végül 5 másodpercet várunk, hogy a keresési találatokat megnézhessük, majd bezárjuk a böngészőt.
 
 Egy weboldal elemeit (gombok, szövegdobozok, stb.) a *WebDriver* segítségével érhetjük el a *findElement* függvényen keresztül. A függvénynek meg kell adni egy keresési feltételt, amelyet a *By* osztály ír le. A keresési feltétel sokfajta lehet. A részleteket a [Selenium](https://www.selenium.dev/documentation/webdriver/elements/locators/) dokumentációjában megtalálhatjuk.
 
-Megjegyzés: sajnos a fenti kód nem működik a tényleges Google keresőoldalon, mert a Google mindenféle varázslattal összekuszálja az oldalt. Mindenesetre a lényeg kiolvasható a példából: jól látható, hogy a WebTest nyelv egy kényelmes absztrakciót biztosít a Selenium API felett.
+Megjegyzés: sajnos a fenti kód nem teljesen működik a tényleges Google keresőoldalon, mert a keresés előtt még a cookie-k használtatát is jóvá kellene hagyni, ami a könnyebb érthetőség kedvéért kimaradt a fenti példából. Mindenesetre a lényeg kiolvasható: jól látható, hogy a WebTest nyelv egy kényelmes absztrakciót biztosít a Selenium API felett.
 

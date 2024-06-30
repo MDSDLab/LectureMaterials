@@ -6,7 +6,7 @@ Az alábbi példa dialógus ablakok használatát mutatja be:
 webtest example.DialogTest
 
 page ModalDialog
-  set close to button "Close"
+  element close = button "Close"
 end
 
 test largeModalTest

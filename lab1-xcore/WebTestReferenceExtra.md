@@ -13,16 +13,16 @@ page <name>
 end
 ```
 
-Ebben a kiterjesztésben megengedjük az öröklést is a weboldal modellek között. Az oldal neve után kettőspontot téve vesszőkkel elválasztva lehet megadni az ős modellek neveit:
+Ebben a kiterjesztésben megengedjük az öröklést is a weboldal modellek között, és csak egy darab őst lehet megadni. Az oldal neve után kettőspontot téve lehet megadni az ős modell nevét:
 
 ```
-page <name> : <parent:page>...
+page <name> : <parent:page>
   <variable>...
   <operation>...
 end
 ```
 
-Ha az oldal olyan változót vagy műveletet definiál, amely valamely ősben már szerepelt, akkor az oldal által definiált változó illetve művelet elfedi az ősben definiáltakat. Ha különböző ősökben szereplő változók illetve műveletek ütköznek egymással, akkor a fordítónak hibát kell jeleznie, és a hiba feloldható úgy, hogy a leszármazott a saját definíciójával elfedi az ősökben előforduló ütközéseket.
+Ha az oldal olyan változót vagy műveletet definiál, amely valamely ősben már szerepelt, akkor az oldal által definiált változó illetve művelet elfedi az ősökben definiáltakat.
 
 Példa:
 
@@ -30,37 +30,37 @@ Példa:
 webtest example.WizardTest
 
 page WizardPage
-  set next to button "Next"
-  set previous to button "Previous"
+  element next = button "Next"
+  element previous = button "Previous"
 end
 
 page Name : WizardPage
-  set firstName to input "First name..."
-  set lastName to input "Last name..."
+  element firstName = input "First name..."
+  element lastName = input "Last name..."
 end
 
 page ContactInfo : WizardPage
-  set email to input "E-mail..."
-  set phone to input "Phone..."
-  set next to button "Next"
+  element email = input "E-mail..."
+  element phone = input "Phone..."
+  element next = button "Next"
 end
 
 page Birthday : WizardPage
-  set day to input "dd"
-  set month to input "mm"
-  set year to input "yyyy"
+  element day = input "dd"
+  element month = input "mm"
+  element year = input "yyyy"
 end
 
 page LoginInfo : WizardPage
-  set username to input "Username..."
-  set password to input "Password..."
-  set next to button "Submit" // hides WizardPage.next
+  element username = input "Username..."
+  element password = input "Password..."
+  element next = button "Submit" // hides WizardPage.next
 end
 ```
 
 ## Capture bővítmény
 
-A **capture** kulcsszó képernyőképet készít a böngészőben látható HTML oldalról:
+A **capture page** kulcsszó képernyőképet készít a böngészőben látható HTML oldalról:
 
 ```
 capture page
@@ -147,7 +147,7 @@ Példák a **foreach** használatára a fenti HTML kódhoz:
 
 ```
 context ul "Greetings"
-  set greetings to li ""
+  element greetings = li ""
   foreach message in greetings
     assert message contains "Hello"
   end
@@ -170,8 +170,8 @@ Egy kicsit összetettebb példa, ahol a táblázat egy sorát egy modellel repre
 
 ```
 page CompanyOperations
-  set edit to button "Edit"
-  set delete to button "Delete"
+  element edit = button "Edit"
+  element delete = button "Delete"
 end
 
 context table "Companies"
@@ -208,7 +208,7 @@ javascript 'alert("Hello World!");'
 Példa, amely beállítja a keresőmező értékét a keresendő szövegre:
 
 ```
-set searchField to input "q"
+element searchField = input "q"
 javascript 'arguments[0].value=arguments[1];' using searchField, "jwst"
 ```
 
@@ -280,7 +280,7 @@ webtest <package>.<class>
 <statement>...
 ```
 
-A fájl elején a **webtest** kulcsszó definiálja azt a Java osztályt (&lt;class>) teljes Java package előtaggal (&lt;package>), amely JUnit tesztként a WebTest fájlban leírt teszteket és utasításokat fogja futtatni. Ezt követően tetszőlegesen sok weboldal modell (&lt;page>), teszteset (&lt;test>), kézikönyv (&lt;manual>) és művelet (&lt;operation>) következhet, végül pedig tetszőlegesen sok utasítás (&lt;statement>).
+A fájl elején a **webtest** kulcsszó definiálja azt a Java osztályt (&lt;class>) teljes Java package előtaggal (&lt;package>), amely JUnit tesztként a WebTest fájlban leírt teszteket és utasításokat fogja futtatni. Ezt követően tetszőlegesen sok weboldal modell (&lt;page>), teszteset (&lt;test>), kézikönyv (&lt;manual>) és művelet (&lt;operation>) következhet tetszőleges sorrendben, végül pedig tetszőlegesen sok utasítás (&lt;statement>).
 
 
 ## TestParams bővítmény
@@ -288,36 +288,19 @@ A fájl elején a **webtest** kulcsszó definiálja azt a Java osztályt (&lt;cl
 Egy paraméterezett teszteset szerkezete az alábbi:
 
 ```
-test <name> using <parameter>... 
+test <name>(<parameter>...)
   with <value>...
   <statement>...
 end
 ```
 
-A **using** kulcsszó után meg kell adni a paramétereket vesszővel elválasztva, majd a **with** kulcsszó után meg kell adni az argumentumokat. A **with** kulcsszó többször is használható: minden egyes használat egy-egy új példányt jelent a tesztből. A paraméterezett tesztekből [JUnit 5 paraméterezett teszteket](https://www.baeldung.com/parameterized-tests-junit-5) kell előállítani.
+Opcionálisan a teszt neve után zárójelben meg lehet adni a paramétereket vesszővel elválasztva, majd a **with** kulcsszó után meg kell adni az argumentumokat. A **with** kulcsszó többször is használható: minden egyes használat egy-egy új példányt jelent a tesztből. A paraméterezett tesztekből [JUnit 5 paraméterezett teszteket](https://www.baeldung.com/parameterized-tests-junit-5) kell előállítani.
 
-Az argumentumok megadása két módon történhet: indexelt vagy nevesített paraméterekkel.
-
-Indexelt esetben a paraméterek nevét nem kell kiírni, hanem az argumentumként beadott vesszővel elválasztott értékek a paraméterek definiálási sorrendjében kerülnek átadásra:
-
+Példa:
 ```
-test login using username,password 
+test login(string username, string password)
 with "Alice","secretA"
 with "Bob","secretB"
-  fill input "username" with username
-  fill input "password" with password
-  click button "Sign in"
-  assert label "Signed in as:" contains username
-  assert button "Sign out" exists
-end
-```
-
-Nevesített esetben a vesszővel elválasztott argumentumok név szerint hivatkoznak a paraméterekre, és minden érték az argumentum nevének megfelelő paraméter számára kerül átadásra:
-
-```
-test login using username,password 
-with username:"Alice",password:"secretA"
-with password:"secretB",username:"Bob"
   fill input "username" with username
   fill input "password" with password
   click button "Sign in"

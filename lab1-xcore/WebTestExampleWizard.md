@@ -6,31 +6,31 @@ Az alábbi példa egy olyan weboldalt működtet, amely egy varázsló segítsé
 webtest example.WizardTest
 
 page Name
-  set firstName to input "First name..."
-  set lastName to input "Last name..."
-  set next to button "Next"
+  element firstName = input "First name..."
+  element lastName = input "Last name..."
+  element next = button "Next"
 end
 
 page ContactInfo
-  set email to input "E-mail..."
-  set phone to input "Phone..."
-  set next to button "Next"
-  set previous to button "Previous"
+  element email = input "E-mail..."
+  element phone = input "Phone..."
+  element next = button "Next"
+  element previous = button "Previous"
 end
 
 page Birthday
-  set day to input "dd"
-  set month to input "mm"
-  set year to input "yyyy"
-  set next to button "Next"
-  set previous to button "Previous"
+  element day = input "dd"
+  element month = input "mm"
+  element year = input "yyyy"
+  element next = button "Next"
+  element previous = button "Previous"
 end
 
 page LoginInfo
-  set username to input "Username..."
-  set password to input "Password..."
-  set submit to button "Submit"
-  set previous to button "Previous"
+  element username = input "Username..."
+  element password = input "Password..."
+  element submit = button "Submit"
+  element previous = button "Previous"
 end
 
 open "https://www.w3schools.com/howto/howto_js_form_steps.asp"
