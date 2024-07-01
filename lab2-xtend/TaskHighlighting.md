@@ -1,6 +1,6 @@
 # Kódszínezés (syntax coloring, highlighting)
 
-A kódszínezés a kód olvashatóságát javítja. A kódszínezés két fázisban történhet: lexikai és szemantikai. A lexikai fázisban a lexer által előállított elemeket színezzük, pl. kulcsszavak, kommentek, stb. A szemantikai fázisban a fordító által értelmezett modell alapján végzünk színezést,pl. statikus és tagváltozók megkülönböztetése, tagváltozók és lokális változók megkülönböztetése, stb. Mindkét fázisban nagyon gyorsan ki kell számolni az eredményt, hiszen billentyűleütésre újra kell számolni a színeket, bár az Xtext amit csak lehet, cache-el.
+A kódszínezés a kód olvashatóságát javítja. A kódszínezés két fázisban történhet: lexikai és szemantikai. A lexikai fázisban a lexer által előállított elemeket színezzük, pl. kulcsszavak, kommentek, stb. A szemantikai fázisban a fordító által értelmezett modell alapján végzünk színezést, pl. statikus és tagváltozók megkülönböztetése, tagváltozók és lokális változók megkülönböztetése, stb. Mindkét fázisban nagyon gyorsan ki kell számolni az eredményt, hiszen billentyűleütésre újra kell számolni a színeket, bár az Xtext amit csak lehet, cache-el.
 
 Ebben a részfeladatban a WebTest fájl szerkezetét alkotó deklarációk kulcsszavait kell megkülönböztetni az utasítások kulcsszavaitól, valamint a **context as ... end** kontextusban a hivatkozott weboldalmodellből feloldott változókat és operációkat kell megkülönböztetni a lokális változóktól. Az egyszerűség kedvéért csak szemantikus kódszínezést fogunk használni.
 
