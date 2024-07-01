@@ -8,7 +8,7 @@ Ezen túlmenően hibaüzeneteket kell generálnunk akkor, ha valami probléma ad
 
 ## Scoping
 
-Az Xtext megpróbálja a neveket a kód hierarchiának megfelelő módon feloldani, azonban lehetnek olyan helyzetek, amikor a hierarchia mentén történő feloldás nem elég. A WebTest nyelvben ilyen helyzet a `context as [page] ... end` konstrukció belseje, ahol a hivatkozott oldalban definiált változókat és műveleteket fel kell tudni oldani a kontextuson belül.
+Az Xtext megpróbálja a neveket a kód hierarchiának megfelelő módon feloldani, azonban lehetnek olyan helyzetek, amikor a hierarchia mentén történő feloldás nem elég. A WebTest nyelvben ilyen helyzet a `context as <page> ... end` konstrukció belseje, ahol a hivatkozott oldalban definiált változókat és műveleteket fel kell tudni oldani a kontextuson belül.
 
 A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslScopeProvider.xtend** fájlt, és módosítsátok a tartalmát az alábbi módon:
 
@@ -62,6 +62,7 @@ Figyeljetek arra is, hogy szerkesztés közben nem mindig teljes a modell: előf
 * *Elhagyhatjátok a **super** scope-ra vonatkozó hívást, és az összes tartalmazó objektum bejárásával feloldhatjátok az összes lehetséges referenciát egy menetben.*
 * *Meghívhatjátok a **getScope** függvényt rekurzívan a tartalmazó objektumra, így jobban szeparálni lehet a felelősségeket.*
 * *Tetszőleges segédfüggvényeket használhattok.*
+* *A korábban definiált változók helyes kezeléséhez célszerű az aktuális utasítás indexét megkeresni a tartalmazó **BlockStatment**-ben, és a kisebb indexű változódeklarációkat elérhetővé tenni a scope-ban.*
 
 *A modell bejárásában sok segítséget nyújthatnak az alábbi konstrukciók:*
 

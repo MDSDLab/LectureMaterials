@@ -25,7 +25,7 @@ enum Type
 
 A korábbi értékek mellé bekerült két új érték:
 
-* `ERROR`: azt jelzi, hogy a típuselemzés során nem sikerült kikövetkeztetni egy adott kifejezés vagy változó típusát
+* `ERROR`: azt jelzi, hogy a típuselemzés során nem sikerült meghatározni egy adott kifejezés vagy változó típusát
 * `ANY`: azt jelzi, hogy az adott helyen a kódban tetszőleges típusú kifejezés elfogadható (ilyenek pl. a `print` utasítás argumentumai)
 
 Módosítsátok az **Expression** osztályt is az alábbi módon:
@@ -41,11 +41,11 @@ abstract class Expression
 
 Az `expectedType` attribútumban a kifejezés elvárt típusát, az `actualType` attribútumban pedig a kifejezés tényleges típusát kell tárolni. Ha még emlékeztek az előző félévből az előadásra: az `expectedType` egy örökölt attribútum, amelyet fentről lefelé kell kiszámolni a szintaxisfában, míg az `actualType` egy szintetizált attribútum, amelyet lentről felfelé kell kiértékelni. Ezeket a számításokat a `computeTypes()` függvény felüldefiniálásával lehet megtenni az `Expression` osztály leszármazottaiban: ki kell számolni és el kell tárolni a kifejezés aktuális típusát, valamint be kell állítani a részkifejezések elvárt típusát.
 
-Vezessétek be a `computeTypes()` függvényt az utasításokra (`Statement` és leszármazottai) is! Ezekben a függvényekben kell beállítani az adott utasítás alatt közvetlenül szereplő kifejezések elvárt típusát.
+Vezessétek be a `computeTypes()` függvényt az utasításokra (`Statement` és leszármazottai) is! Ezekben a függvényekben kell beállítani az adott utasításon belül közvetlenül szereplő kifejezések elvárt típusát (pl. `if` feltétele).
 
 Hasonlóan vezessétek be a `computeTypes()` függvényt a szintaxisfában feljebb lévő csúcsokra is (`Page`, `Operation`, `TestCase`, `Manual`, `Main` stb.), amelyek feladata, hogy az adott csúcs közvetlen gyermekein meghívják a `computeTypes()` függvényt.
 
-Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása. Célszerű úgy megírni a függvényt, hogy csak első meghívásra végezzen számítást a teljes fában, minden további meghívásra azonnal lépjen ki a függvény, és ne számoljon feleslegesen. Ebben segítséget adhat az Xcore **lazy** kulcsszava, érdemes ennek utánanézni.
+Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása. Célszerű úgy megírni a függvényt, hogy csak első meghívásra végezzen számítást a teljes fában, minden további meghívásra azonnal lépjen ki a függvény, és ne számoljon feleslegesen. Ebben segítséget adhat egy **lazy** segédattribútum felvétele a `Main`-ben: érdemes ennek a **lazy** kulcsszónak utánanézni.
 
 
 ## Kifejezések tényleges és elvárt típusa
@@ -64,11 +64,10 @@ Az alábbi felsorolásban megadjuk a kifejezések tényleges típusát, illetve 
 
 Az alábbi felsorolásban megadjuk, hogy melyik utasítás milyen típusú kifejezéseket vár el:
 
-* `<type> <name> = <value>`: a `value` elvárt típusa `type`, a `name` által definiált változó típusa `type` típusával
+* `<type> <name> = <value>`: a `value` elvárt típusa `type`, a `name` által definiált változó típusa `type`
 * `if <condition> then ... else ... end`: a `condition` elvárt típusa `BOOLEAN`
 * `while <condition> do ... end`: a `condition` elvárt típusa `BOOLEAN`
 * `<operation name> using <value>...`: a vesszőkkel elválasztott `value` értékű argumentumok elvárt típusai megegyeznek az operáció megfelelő paramétereinek típusával
-* `<operation name> using <name>:<value>...`: a vesszőkkel elválasztott `name` nevű `value` értékkel rendelkező argumentumok elvárt típusai megegyeznek az operáció megfelelő nevű paramétereinek típusával
 * `open <url>`: az `url` elvárt típusa `STRING`
 * `fill <elem> with <text>`: az `elem` elvárt típusa `ELEMENT`, a `text` elvárt típusa `STRING`
 * `click <elem>`: az `elem` elvárt típusa `ELEMENT`
@@ -82,62 +81,13 @@ A bővítményként megvalósítandó utasítások esetén a kifejezések elvár
 * `capture <elem>`: az `elem` elvárt típusa `ELEMENT`
 * `javascript <code> using <value>...`: az `code` elvárt típusa `STRING`, a vesszőkkel elválasztott `value` értékek elvárt típusa `ANY`
 * `foreach <item> in <items>`: az `item` tényleges típusa `ELEMENT`, az `items` elvárt típusa `ELEMENT`
-* `test <name> using <parameter>... with <value>... <statement>... end`: a vesszőkkel elválasztott `value` értékű argumentumok elvárt típusai megegyeznek az teszteset megfelelő paramétereinek típusával, a paraméterek tényleges típusát a teszteset törzse alapján kell kikövetkeztetni (ld. következő szakasz)
-* `test <name> using <parameter>... with <name>:<value>... <statement>... end`: a vesszőkkel elválasztott `name` nevű `value` értékkel rendelkező argumentumok elvárt típusai megegyeznek a teszteset megfelelő nevű paramétereinek típusával, a paraméterek tényleges típusát a teszteset törzse alapján kell kikövetkeztetni (ld. következő szakasz)
-
-## Változók és paraméterek típusának kikövetkeztetése
-
-A WebTest nyelvben nem kell explicit kiírni a változók és a paraméterek típusát. A típust a fordítónak kell automatikusan kikövetkeztetnie attól függően, hogy a változó definiálásakor milyen típusú értékkel van inicializálva, illetve hogy a paraméter milyen elvárt típussal rendelkezik az egyes utasításokban és kifejezésekben.
-
-Az előző szakasz megadta az egyes kifejezések tényleges és elvárt típusát. Ezeket lehet felhasználni a típuskikövetkeztetés során.
-
-Amennyiben a kikövetkeztetett típus nem egyértelmű (pl. a paraméternek `INTEGER` és `ELEMENT` típusúnak is kell lennie egyszerre), vagy nincs elég információ a kikövetkeztetéshez (pl. az adott paramétert sosem használjuk az operáción belül), akkor `ERROR` lesz a kikövetkeztetett típus.
-
-Ha `ANY` és egy konkrét típus (`STRING`, `INTEGER`, `BOOLEAN` vagy `ELEMENT`) is szóba jöhet a kikövetkeztetésnél, akkor a konkrét típus nyer, az lesz a kikövetkeztetett típus, mert az a speciálisabb.
-
-***TIPP:** A típuskikövetkeztetést célszerű az Xcore objektumokhoz csatolt **ModelInfo**,  **VariableInfo** és **ExpressionInfo** osztályok segítségével megvalósítani, de létrehozhattok további segédosztályokat is. A modell teljes bejárásával meg kell vizsgálni az összes helyet, ahol kifejezés szerepel, be kell állítani az összes kifejezés elvárt típusát az **ExpressionInfo**-ban. Ahol a kifejezés egy változóra történő hivatkozás, ott a kifejezés elvárt típusa egyben meghatározza a változó kikövetkeztetett típusát is, amit a megfelelő **VariableInfo** objektumban elmenthetünk.*
-
-*A modell bejárásában sok segítséget nyújthatnak az alábbi konstrukciók:*
-
-* *Az Xtend nyelv [dispatch](https://eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html#polymorphic-dispatch) függvénydeklarációja, amelyet meghívva futásidőben a dinamikus típus dől el, hogy melyik overload változat hívódik meg, így nem kell **instanceof**-ot használnunk. A dispatch függvényeket statikus függvényként is definiálhatjuk, ekkor úgy használhatók, mint C#-ban az extension method-ok, de továbbra is dinamikusan, futásidőben dől el, melyik dispatch változat hívódik meg az overload-ok közül.*
-* *Az **EcoreUtil2** osztály **getContainerOfType** függvénye megadja az adott modellbeli objektum legközelebbi olyan tartalmazó objektumát, amely az általunk kívánt típusnak megfelel. Ha az objektum maga már a kívánt típusú, akkor magával az objektummal tér vissza.*
-* *Az **EcoreUtil2** osztály **getAllContentsOfType** függvénye megadja az adott modellbeli objektum által tartalmazott összes olyan objektumot, amely az általunk kívánt típusnak megfelel.*
-* *Használhattok **instanceof**-ot is, ha szükséges.*
+* `test <name>(<parameter>...) with <value>... <statement>... end`: a vesszőkkel elválasztott `value` értékű argumentumok elvárt típusai megegyeznek az teszteset megfelelő paramétereinek típusával
 
 ## Validation
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.validation** csomagban hozzatok létre egy **TypeValidator.xtend** fájlt, a következő tartalommal:
+A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.validation** csomagban hozzatok létre egy **TypeValidator.xtend** fájlt, hasonlóan a névelemzésnél használt **NameValidator.xtend** fájlhoz.
 
-```
-package webtest.dsl.validation
-
-import org.eclipse.xtext.validation.Check
-import org.eclipse.xtext.validation.EValidatorRegistrar
-import webtest.model.Type
-import webtest.model.Variable
-
-class TypeValidator extends AbstractWebTestDslValidator {
-    // This empty override is necessary to prevent reporting duplicate validation messages
-    override register(EValidatorRegistrar registrar) {
-    }
-
-    @Check(NORMAL)
-    def checkInferredType(Variable variable) {
-        try {
-            val inferred = variable.type
-            if (inferred === null || inferred == Type.UNDEFINED || inferred == Type.ERROR) {
-                error("Could not infer the type of the variable '"+variable.name+"'.", variable, null)
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace
-        }
-    }    
-}
-```
-
-Ez a **checkInferredType** függvényben ellenőrzi, hogy sikerült-e minden változó és paraméter típusát kikövetkeztetni. Amennyiben nem, hibaüzenetet készít a problémás változókhoz és paraméterekhez: `Could not infer the type of the variable '<name>'.`
-
-Még egy lépést el kell végeznünk, hogy a fenti validáció lefusson. A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslValidator.xtend** fájlt, és módosítsátok a tartalmát az alábbi módon:
+A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslValidator.xtend** fájlt, és regisztráljátok be ezt a **TypeValidator** osztályt is az alábbi módon:
 
 ```
 package webtest.dsl.validation
@@ -155,13 +105,9 @@ class WebTestDslValidator extends AbstractWebTestDslValidator {
 }
 ```
 
-Így a **WebTestDslValidator** a **TypeValidator** osztályt is használni fogja validálásra.
-
-A laborfeladat során fejlesszétek tovább a **TypeValidator** osztályt:
+A **TypeValidator** osztályban készítsétek el az alábbi ellenőrzést:
 
 * Jelezzétek, ha egy kifejezés tényleges típusa nem felel meg a kifejezés elvárt típusával: `"Expression of type <expected type> expected but <actual type> was found."`. A behelyettesített típusnevek az alábbiak lehetnek: `STRING`, `INTEGER`, `BOOLEAN` vagy `ELEMENT`.
-
-***TIPP:** Az elvárt típust számíthatjátok a kifejezésekhez csatolt **ExpressionInfo** objektumokban, ahogy az előző szakasz leírta. A tényleges típust az Xcore metamodellben már leírtuk. A validációban csak ezeket kell egymással összeegyeztetni.*
 
 ## A típuselemzés ellenőrzése
 
