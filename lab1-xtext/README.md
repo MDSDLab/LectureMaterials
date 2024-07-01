@@ -6,7 +6,7 @@
 1. Csináljátok végig az [Xcore Wiki](https://wiki.eclipse.org/Xcore) és az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) oldalakon található tutorialokat!
 2. Az [mdsd-2024-lab1-xtext](https://github.com/MDSDLab/mdsd-2024-lab1-xcore-xtext) repóból másoljátok át a **webtest.parent** könyvtárat közvetlenül a saját repótok gyökerébe!
 3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a [számotokra kiosztott bővítményeket](ExtrasTable2024.md)!
-4. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból az `mvn clean package` parancs sikeresen lefut-e.
+4. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból az `mvn clean package` parancs sikeresen lefut-e. Ha nincs `mvn` parancs a gépeteken, telepítsétek a [Maven](https://maven.apache.org/download.cgi)-t.
 5. Készítsetek egy **hw1** nevű **tag**-et az utolsó commitra!
 
 ## Feladat célja
