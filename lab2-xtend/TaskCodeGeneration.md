@@ -5,9 +5,9 @@ A kódgenerálás során a feldolgozott és leellenőrzött WebTest kódokból J
 Az nincs előírva, hogy a generált Java kódnak hogyan kell kinéznie. Többféle alternatíva is lehetséges:
 
 * Lehet WebTest fájlonként teljesen önállóan működő Java kódokat készíteni, ahol az egyes Java kódok között semmilyen kapcsolat sincs.
-* A [projekt varázslóban](ProjectWizard.md) előállíthattok olyan segédosztályokat, amelyekre a WebTest fájlokból generált Java kódok építhetnek, így a generált kódok jóval egyszerűbbé válnak.
+* A [projekt varázslóban](TaskProjectWizard.md) előállíthattok olyan segédosztályokat, amelyekre a WebTest fájlokból generált Java kódok építhetnek, így a generált kódok jóval egyszerűbbé válnak.
 
-A generált Java kódoknak nem kell pontosan megegyeznie a **webtest.example** projektben szereplő mintakódokkal. (Sőt, nem is lehet pontosan ugyanazokat a kódokat előállítani, mert például a HTML elemek azonosítása be van égetve a mintakódokba, a generált kódnak azonban [dinamikusan kell kiderítenie](../lab1-xcore/WebTestReference.md#konstans-kifejez%C3%A9sek), melyik minta illesztése vezet a HTML elem megtalálásához.)
+A generált Java kódoknak nem kell pontosan megegyeznie a **webtest.example** projektben szereplő mintakódokkal. (Sőt, nem is lehet pontosan ugyanazokat a kódokat előállítani, mert például a HTML elemek azonosítása be van égetve a mintakódokba, a generált kódnak azonban [dinamikusan kell kiderítenie](../lab1-xtext/WebTestReference.md#konstans-kifejez%C3%A9sek), melyik minta illesztése vezet a HTML elem megtalálásához.)
 
 A kódgenerálás többféleképpen is megoldható, de legcélravezetőbb az [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html) nyelv és az abban található [sablonok](https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates) használata.
 
@@ -17,13 +17,13 @@ Mielőtt nekilátntok a generálásnak, célszerű manuálisan megírni azt a k�
 
 Célszerű segédosztályokat is készíteni, amelyekre a generált kódok építhetnek. Ezekben a segédosztályokban elrejthetitek a Selenium használatának egyéb kényelmetlenségeit, például:
 
-* A HTML elemek [dinamikus azonosítását](../lab1-xcore/WebTestReference.md#konstans-kifejez%C3%A9sek).
+* A HTML elemek [dinamikus azonosítását](../lab1-xtext/WebTestReference.md#konstans-kifejez%C3%A9sek).
 * A **click()** függvény nem mindig működik egy **WebElement** objektumon. Ilyenkor célszerű JavaScript kódból elvégezni a kattintást, lásd: **GoogleTest** példa a **webtest.example** projektben.
 * Annak eldöntése, hogy egy HTML elem létezik-e (egyértelműen azonosítható-e) és látható-e (**isDisplayed**), lásd: **WizardTest** példa a **webtest.example** projektben.
 * Egy `input` mező tartalmának törlése a szöveg begépelése előtt.
 * Egy `input` mező tartalma a `value` attribútumában van, de más HTML elemeknél a **getText()** hívással kérhető el a belső tartalom.
 
-Ezeket a segédosztályokat a [projekt varázslóban](ProjectWizard.md) célszerű generálni.
+Ezeket a segédosztályokat a [projekt varázslóban](TaskProjectWizard.md) célszerű generálni.
 
 Ebben a részfeladatban csak a segédosztályokra építő JUnit teszteket kell generálni.
 
@@ -157,7 +157,7 @@ Ez a generátor a **resource** paraméterből előbányássza a WebTest modellü
 
 ## Feladat
 
-Módosítsátok a **UnitTestGenerator** osztályt, hogy teljesen működő JUnit teszteket állítson elő. Szükség esetén definiálhattok segédosztályokat, amelyekre ezek a generált JUnit tesztek építenek. Ezeket a segédosztályokat ne itt, hanem a [projekt varázslóban](ProjectWizard.md) adjátok hozzá a projekthez.
+Módosítsátok a **UnitTestGenerator** osztályt, hogy teljesen működő JUnit teszteket állítson elő. Szükség esetén definiálhattok segédosztályokat, amelyekre ezek a generált JUnit tesztek építenek. Ezeket a segédosztályokat ne itt, hanem a [projekt varázslóban](TaskProjectWizard.md) adjátok hozzá a projekthez.
 
 A megvalósítandó 2 bővítmény támogatását se felejtsétek el beépíteni a generátorba!
 

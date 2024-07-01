@@ -20,7 +20,7 @@ Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy oly
 
 A fenti fájlok tartalmát a **webtest.generator** projekten belül az **webtest.generator.WebTestProjectGenerator** osztály állítja elő Xtend sablonok segítségével.
 
-A **webtest** könyvtárban lévő **.wt** kierjesztésű fájlokból generált JUnit tesztek az **src-gen/test/java** könyvtába fognak kerülni, de ezt a lépést nem ez a projekt varázsló, hanem később, a WebTest fordítóhoz kapcsolt generátor fogja elvégezni.
+A **webtest** könyvtárban lévő **.wt** kierjesztésű fájlokból generált JUnit tesztek az **src-gen/test/java** könyvtába fognak kerülni, de ezt a lépést nem ez a projekt varázsló, hanem a [következő részfeladatban](TaskCodeGeneration.md) elkészített generátor fogja elvégezni.
 
 A laborfeladat megoldása során elképzelhető, hogy ehhez a **WebTestProject** osztályhoz nem is kell hozzányúlnotok. Ha azonban vannak olyan segédosztályaitok (pl. a Selenium API felett egy csomagoló réteg), amelyekre a később generált JUnit tesztek építenek, akkor azokat célszerű itt, a **WebTestProject** osztály segítségével beilleszteni a varázsló által előállított projektbe. Ilyen osztály lehet például a **webtest.example** projektben szereplő **webtest.selenium.api.SeleniumTest** osztály, amelyet egy-az-egyben átvehettek, de akár saját ízléseteknek megfelelően átalakíthattok és továbbfejleszthettek. Ezen kívül készíthettek további segédosztályokat is (pl. az aktuális **context as ... end** kontextus követésére, vagy a **WebElement** osztály becsomagolására és felokosítására).
 
