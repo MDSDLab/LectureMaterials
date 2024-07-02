@@ -35,7 +35,7 @@ abstract class Expression
     Type expectedType
     Type actualType
 
-    op computeTypes() {}
+    op void computeTypes() {}
 }
 ```
 
@@ -45,7 +45,7 @@ Vezessétek be a `computeTypes()` függvényt az utasításokra (`Statement` és
 
 Hasonlóan vezessétek be a `computeTypes()` függvényt a szintaxisfában feljebb lévő csúcsokra is (`Page`, `Operation`, `TestCase`, `Manual`, `Main` stb.), amelyek feladata, hogy az adott csúcs közvetlen gyermekein meghívják a `computeTypes()` függvényt.
 
-Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása. Célszerű úgy megírni a függvényt, hogy csak első meghívásra végezzen számítást a teljes fában, minden további meghívásra azonnal lépjen ki a függvény, és ne számoljon feleslegesen. Ebben segítséget adhat egy **lazy** segédattribútum felvétele a `Main`-ben: érdemes ennek a **lazy** kulcsszónak utánanézni.
+Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása. Célszerű úgy megírni a függvényt, hogy csak első meghívásra végezzen számítást a teljes fában, minden további meghívásra azonnal lépjen ki a függvény, és ne számoljon feleslegesen. Ebben segítséget adhat egy segédattribútum felvétele a `Main`-ben, amiben eltárolhatjuk, meghívták-e már a `computeTypes()` függvényt.
 
 
 ## Kifejezések tényleges és elvárt típusa

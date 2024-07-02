@@ -51,7 +51,6 @@ A laborfeladat során ezt a **WebTestDslScopeProvider** osztályt kell továbbfe
 * Tegyétek elérhetővé a `context as` kontextuson belül a változókat, de ne csak a közvetlenül tartalmazó kontextusból, hanem az összes indirekten tartalmazó kontextusból is! A mélyebben lévő kontextusok változói elfedik a kijjebb lévő kontextusok azonos nevű változóit.
 * Tegyétek elérhetővé a `context as` kontextuson belül az operációkat is, de ne csak a közvetlenül tartalmazó kontextusból, hanem az összes indirekten tartalmazó kontextusból is! A mélyebben lévő kontextusok operációi elfedik a kijjebb lévő kontextusok azonos nevű operációit.
 * Ügyeljetek arra, hogy az utasításoknál csak a korábban definiált változókra szabad hivatkozni, egy később definiált változóra nem!
-* Ha a **BasePages** bővítményt meg kell valósítanotok, tegyétek elérhetővé a hivatkozott oldal őseiben szereplő változókat és operációkat is! Ügyeljetek arra, hogy az esetleges körkörös öröklődés ne okozzon végtelen ciklust!
 * Ha a **ForEach** bővítményt meg kell valósítanotok, ügyeljetek arra, hogy a `foreach ... in ... end` fejlécében definiált változó csak az adott `foreach` blokkon belül érhető el! Arra is figyeljetek, hogy két egymás utáni `foreach` blokk definiálhatja ugyanazt a nevű változót, és ez a két változó nem ugyanaz!
 * Ha a **TestParams** bővítményt meg kell valósítanotok, tegyétek elérhetővé a teszten belül a tesztparaméterek neveit!
 
@@ -142,7 +141,6 @@ A laborfeladat során fejlesszétek tovább a **NameValidator** osztályt:
 * Jelezzétek, ha egy operáció paraméterei duplikálva vannak: `Parameter '<name>' is already defined.`
 * Jelezzétek, ha egy operáció lokális változója elfedi az operáció valamelyik paraméterét: `Variable '<name>' is already defined.`
 * Jelezzétek, ha egy operáció meghívásakor az argumentumok száma különbözik a paraméterek számától: `Operation '<name>' has <parameter count> parameters but <argument count> arguments were specified.`
-* Ha a **BasePages** bővítményt meg kell valósítanotok, jelezzétek, ha körkörös öröklődés van: `Page '<name>' is in a circular inheritance.`
 * Ha a **ForEach** bővítményt meg kell valósítanotok, jelezzétek, ha a `foreach` fejlécében definiált változó ütközik egy másik lokális változóval: `Variable '<name>' is already defined.`
 * Ha a **Manual** bővítményt meg kell valósítanotok, jelezzétek, ha a manual-ok nevei duplikálva vannak: `Manual '<name>' is already defined.`
 * Ha a **TestParams** bővítményt meg kell valósítanotok:

@@ -2,6 +2,64 @@
 
 Ebben a listában néhány további hasznos ötlet szerepel, amelyekkel bővíteni lehet a WebTest nyelvet a kényelmesebb használhatóság érdekében.
 
+## Weboldal modellek közötti öröklődés
+
+A WebTest nyelv megkönnyíti egy weboldal vagy akár egy weboldal részeként megjelenő form vagy dialógusablak objektummodelljének elkészítését a **page** kulcsszó segítségével.
+
+Az eredeti WebTest nyelvi leírás szerint weboldal modell szerkezete az alábbi:
+
+```
+page <name>
+  <variable>...
+  <operation>...
+end
+```
+
+Ebben a kiterjesztésben megengedjük az öröklést is a weboldal modellek között, és csak egy darab őst lehet megadni. Az oldal neve után kettőspontot téve lehet megadni az ős modell nevét:
+
+```
+page <name> : <parent:page>
+  <variable>...
+  <operation>...
+end
+```
+
+Ha az oldal olyan változót vagy műveletet definiál, amely valamely ősben már szerepelt, akkor az oldal által definiált változó illetve művelet elfedi az ősökben definiáltakat.
+
+Példa:
+
+```
+webtest example.WizardTest
+
+page WizardPage
+  element next = button "Next"
+  element previous = button "Previous"
+end
+
+page Name : WizardPage
+  element firstName = input "First name..."
+  element lastName = input "Last name..."
+end
+
+page ContactInfo : WizardPage
+  element email = input "E-mail..."
+  element phone = input "Phone..."
+  element next = button "Next"
+end
+
+page Birthday : WizardPage
+  element day = input "dd"
+  element month = input "mm"
+  element year = input "yyyy"
+end
+
+page LoginInfo : WizardPage
+  element username = input "Username..."
+  element password = input "Password..."
+  element next = button "Submit" // hides WizardPage.next
+end
+```
+
 ## Aritmetikai műveletek, logikai és egyéb kifejezések
 
 Egy kicsit nehezebb feladat az aritmetikai műveletek (pl. összeadás, kivonás, szorzás, osztás), logikai (pl. egyenlőség, nemegyenlőség, kisebb, nagyobb) és egyéb kifejezések (karakterláncok összefűzése) támogatása. A nehézséget főként az Xtext nyelvtan megalkotása jelenti balrekurzió nélkül.

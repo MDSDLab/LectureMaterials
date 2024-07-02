@@ -81,7 +81,7 @@ operation <name>(<parameter>...)
 end
 ```
 
-A műveletnek nevet kell adni (&lt;name>), utána pedig zárójelek között kell felsorolni a paramétereket (&lt;parameter>) vesszőkkel elválasztva. A művelet törzse utasítások sorozata, amelyek felhasználhatnak változókat és paramétereket, illetve hívhatnak más műveleteket.
+A műveletnek nevet kell adni (&lt;name>), utána pedig opcionálisan zárójelek között lehet felsorolni a paramétereket (&lt;parameter>) vesszőkkel elválasztva. A művelet törzse utasítások sorozata, amelyek felhasználhatnak változókat és paramétereket, illetve hívhatnak más műveleteket.
 
 Példa egy weboldal modellre:
 
@@ -105,6 +105,10 @@ page Calculator
   
   operation multiply(text left, text right)
     binaryOperation using left, multiply, right
+  end
+
+  operation clear
+    click clear
   end
 end
 ```
@@ -215,7 +219,7 @@ click finishButton
 
 ### operáció meghívása
 
-Egy operáció meghívásához hivatkozni kell az operáció nevére, majd a **using** kulcsszó után meg kell adni az operációnak átadandó argumentumokat. Az argumentumként beadott vesszővel elválasztott értékek a paraméterek definiálási sorrendjében kerülnek átadásra:
+Egy operáció meghívásához hivatkozni kell az operáció nevére, majd a **using** kulcsszó után meg kell adni az operációnak átadandó argumentumokat, pontosan annyit, ahány paramétere van az operációnak. Ha az operációnak nincsenek paraméterei, a **using** kulcsszót el kell hagyni. Az argumentumként beadott vesszővel elválasztott értékek a paraméterek definiálási sorrendjében kerülnek átadásra:
 
 ```
 <operation name> using <value>...
@@ -230,7 +234,12 @@ operation login(string username, string password)
   click button "Sign in"
 end
 
+operation logout
+  click button "Sign out"
+end
+
 login using "alice", "secret"
+logout
 ```
 
 A fenti példában az "alice" érték a username, a "secret" érték a password paraméternek kerül átadásra.
