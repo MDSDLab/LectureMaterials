@@ -61,8 +61,7 @@ context as Calculator
   print "Page opened"
   multiply using "23","6"
   assert display is "138"
-  capture display
 end
 ```
 
-Ez a kód az **open** kulcsszóval megnyitja a weboldalt, majd a **context as** segítségével úgy tekinti, hogy az oldal megfelel a fent definiált *Calculator* objektummodellnek, vagyis feltételezi, hogy a kijelző és a gombok mind megtalálhatók rajta. A **wait** parancs addig várakozik, amíg a *display* elem meg nem jelenik. A **print** kulcsszó kiírja az alkalmazás logba, hogy *Page opened*, vagyis hogy az oldal betöltődött. Majd a *multiply* művelet meghívása következik *23* és *6* értékekkel. Az **assert** kulcsszó ellenőrzi, hogy az eredmény a kijelzőn az elvárt *138* értéket tartalmazza-e. Végül a **capture** kulcsszó úgy gördíti az oldalt, hogy a kijelző látható legyen, majd élénk színű kerettel kiemeli azt, egy képernyőképet készít az oldal tartalmáról, majd megszünteti a kiemelést.
+Ez a kód az **open** kulcsszóval megnyitja a weboldalt, majd a **context as** segítségével úgy tekinti, hogy az oldal megfelel a fent definiált *Calculator* objektummodellnek, vagyis feltételezi, hogy a kijelző és a gombok mind megtalálhatók rajta. A **wait** parancs addig várakozik, amíg a *display* elem meg nem jelenik. A **print** kulcsszó kiírja az alkalmazás logba, hogy *Page opened*, vagyis hogy az oldal betöltődött. Majd a *multiply* művelet meghívása következik *23* és *6* értékekkel. Az **assert** kulcsszó ellenőrzi, hogy az eredmény a kijelzőn az elvárt *138* értéket tartalmazza-e.
