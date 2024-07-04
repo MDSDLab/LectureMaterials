@@ -8,7 +8,7 @@ Ezen túlmenően hibaüzeneteket kell generálnunk akkor, ha valami probléma ad
 
 ## Xcore metamodell módosítása
 
-Nyissátok meg a **webtest.model** projektet, és a **model** könyvtárban a **WebTest.xcore** fájlban a **Type** enumerációt módosítsátok az alábbi módon:
+Nyissátok meg a **webtest.model** projektet, és a **model** könyvtárban a **WebTest.xcore** fájlban a `Type` enumerációt módosítsátok az alábbi módon:
 
 ```
 enum Type
@@ -28,7 +28,7 @@ A korábbi értékek mellé bekerült két új érték:
 * `ERROR`: azt jelzi, hogy a típuselemzés során nem sikerült meghatározni egy adott kifejezés vagy változó típusát
 * `ANY`: azt jelzi, hogy az adott helyen a kódban tetszőleges típusú kifejezés elfogadható (ilyenek pl. a `print` utasítás argumentumai)
 
-Módosítsátok az **Expression** osztályt is az alábbi módon:
+Módosítsátok az `Expression` osztályt is az alábbi módon:
 ```
 abstract class Expression
 {
@@ -41,11 +41,26 @@ abstract class Expression
 
 Az `expectedType` attribútumban a kifejezés elvárt típusát, az `actualType` attribútumban pedig a kifejezés tényleges típusát kell tárolni. Ha még emlékeztek az előző félévből az előadásra: az `expectedType` egy örökölt attribútum, amelyet fentről lefelé kell kiszámolni a szintaxisfában, míg az `actualType` egy szintetizált attribútum, amelyet lentről felfelé kell kiértékelni. Ezeket a számításokat a `computeTypes()` függvény felüldefiniálásával lehet megtenni az `Expression` osztály leszármazottaiban: ki kell számolni és el kell tárolni a kifejezés aktuális típusát, valamint be kell állítani a részkifejezések elvárt típusát.
 
-Vezessétek be a `computeTypes()` függvényt az utasításokra (`Statement` és leszármazottai) is! Ezekben a függvényekben kell beállítani az adott utasításon belül közvetlenül szereplő kifejezések elvárt típusát (pl. `if` feltétele).
+Vezessétek be a `computeTypes()` függvényt az összes többi osztályban is (`Main`, `Page`, `Operation`, `Statement` stb.).
 
-Hasonlóan vezessétek be a `computeTypes()` függvényt a szintaxisfában feljebb lévő csúcsokra is (`Page`, `Operation`, `TestCase`, `Manual`, `Main` stb.), amelyek feladata, hogy az adott csúcs közvetlen gyermekein meghívják a `computeTypes()` függvényt.
+A `computeTypes()` függvény kitöltésénél célszerű a következő sablont követni, ez éppen az attribútumok megfelelő kiértékelését adja:
 
-Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása. Célszerű úgy megírni a függvényt, hogy csak első meghívásra végezzen számítást a teljes fában, minden további meghívásra azonnal lépjen ki a függvény, és ne számoljon feleslegesen. Ebben segítséget adhat egy segédattribútum felvétele a `Main`-ben, amiben eltárolhatjuk, meghívták-e már a `computeTypes()` függvényt.
+```
+abstract class X
+{
+    contains Y y
+
+    op void computeTypes() {
+        this.actualType = Type.<type>    // if X is an expression
+        if (y !== null) {
+            y.expectedType = Type.<type>     // if Y is an expression
+            y.computeTypes()
+        }
+    }
+}
+```
+
+Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása. Célszerű úgy megírni a függvényt, hogy csak első meghívásra végezzen számítást a teljes fában, minden további meghívásra azonnal lépjen ki, és ne számoljon feleslegesen. Ebben segítséget adhat egy segédattribútum felvétele a `Main`-ben, amiben eltárolhatjuk, meghívták-e már a `computeTypes()` függvényt.
 
 
 ## Kifejezések tényleges és elvárt típusa
