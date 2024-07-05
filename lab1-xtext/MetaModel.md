@@ -61,9 +61,10 @@ A **TestParams** nevű bővítményt az alábbi nézet mutatja be:
 Segítségképpen megadjuk a WebTest metamodell legelső nézetének Xcore változatát:
 
 ```
+@GenModel(modelDirectory="webtest.model/src-gen", forceOverwrite="true", updateClasspath="true", complianceLevel="17")
 package webtest.model
 
-enum Type 
+enum Type
 {
   UNDEFINED,
   STRING,
@@ -90,8 +91,8 @@ abstract class Declaration extends NamedElement
 
 class Variable extends NamedElement
 {
+  Type ^type
   contains Expression value
-  Type type
 }
 
 class Page extends Declaration
@@ -122,7 +123,7 @@ class BlockStatement extends Statement
 
 abstract class Expression
 {
-}
+} 
 ```
 
 A laborfeladat megoldásához ezt a kódrészletet kell kibővíteni a többi nézetben szereplő elemekkel.

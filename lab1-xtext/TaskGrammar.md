@@ -19,13 +19,12 @@ Main: 'webtest' testClass+=ID ('.' testClass+=ID)* declarations+=Declaration* bo
 
 // ...
 
-Expression: BinaryExpression | UnaryExpression | SimpleExpression;
-BinaryExpression returns Expression: IsExpression | ContainsExpression;
+Expression: NotExpression;
+NotExpression returns Expression: {NotExpression} 'not' operand=ConditionalExpression | ConditionalExpression;
+ConditionalExpression returns Expression: IsExpression | ContainsExpression | ExistsExpression | SimpleExpression;
 IsExpression: left=ReferenceExpression 'is' right=SimpleExpression;
 ContainsExpression: left=ReferenceExpression 'contains' right=SimpleExpression;
-UnaryExpression returns Expression: ExistsExpression | NotExpression;
 ExistsExpression: operand=ReferenceExpression 'exists';
-NotExpression: 'not' operand=Expression;
 SimpleExpression returns Expression: ReferenceExpression | StringExpression | IntegerExpression | BooleanExpression;
 ReferenceExpression returns SimpleExpression: ElementExpression | VariableExpression;
 ElementExpression: tag=ID label=STRING;
