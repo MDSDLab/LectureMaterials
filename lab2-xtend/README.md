@@ -20,8 +20,6 @@ Az előző (**lab1-xtext**) labor eredményét kell továbbfejleszteni. Nyissát
 
 Oldjátok meg az alábbi feladatokat:
 
-Xtext IDE támogatás:
-
 1. [Kódvázlat (outline view, label provider)](TaskOutline.md)
 2. [Kódszínezés (syntax coloring, highlighting)](TaskHighlighting.md)
 3. [Projekt varázsló (project wizard)](TaskProjectWizard.md)
