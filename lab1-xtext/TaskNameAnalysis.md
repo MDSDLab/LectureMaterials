@@ -157,7 +157,7 @@ A validátorok által jelzett hibákat a **Runtime Eclipse** piros aláhúzássa
 
 A névfeloldás és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **NameAnalysisTests** tesztelő osztály segítségével.
 
-Előfordulhat, hogy ebben a fázisban még nem tudnak elindulni a tesztek, mert nem fordul a **webtest.dsl.tests** projekt. Ilyenkor célszerű kibővíteni az Xcore metamodellben a `Type` enumot és az `Expression` osztályt a [típuselemzés](TaskTypeAnalysis.md#xcore-metamodell-módosítása) feladatban megadott módon. Ezután a **webtest.dsl.tests** projektnek fordulnia kell, és a tesztek lefuttathatók.
+Előfordulhat, hogy ebben a fázisban még nem tudnak elindulni a tesztek, mert nem fordul a **webtest.dsl.tests** projekt. Ilyenkor célszerű kibővíteni az Xcore metamodellben a `Type` enumot és az `Expression` osztályt a [típuselemzés](TaskTypeAnalysis.md) feladatban megadott módon. Ezután a **webtest.dsl.tests** projektnek fordulnia kell, és a tesztek lefuttathatók.
 
 ## Feltöltendő
 
