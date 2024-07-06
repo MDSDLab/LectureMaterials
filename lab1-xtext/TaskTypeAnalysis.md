@@ -145,10 +145,10 @@ A **TypeValidator** osztályban készítsétek el az alábbi ellenőrzést:
 
 A validátorok által jelzett hibákat a **Runtime Eclipse** piros aláhúzással jelzi a **.wt** fájlban.
 
-A típuselemzés és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **TypeAnalysisTests** tesztelő osztály segítségével.
+A típuselemzés és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **TypeAnalysisTests** és a **TypeAnalysisExtensionsTests** tesztelő osztályok segítségével.
 
 ## Feltöltendő
 
 Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
 
-* A **TypeAnalysisTests** összes tesztjének sikeres lefutása (mivel a név- és típuselemzés összefügg, valószínűleg a névelemzés részfeladat megoldására is szükség lesz ehhez)
+* A **TypeAnalysisTests** és a **TypeAnalysisExtensionsTests** összes tesztjének sikeres lefutása (mivel a név- és típuselemzés összefügg, valószínűleg a névelemzés részfeladat megoldására is szükség lesz ehhez)

@@ -55,9 +55,7 @@ A generálás után kattintsatok jobb gombbal a **webtest.dsl** projekten, és v
 
 ## Ellenőrzés
 
-A nyelvtan helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **WebTestDslParsingTest**, **ParseTests**, **ParseExtensionsTests** és **ParseExamplesTests** tesztelő osztályok segítségével.
-
-Előfordulhat, hogy ebben a fázisban még nem tudnak elindulni a tesztek, mert nem fordul a **webtest.dsl.tests** projekt. Ilyenkor célszerű kibővíteni az Xcore metamodellben a `Type` enumot, valamint az `Expression` és a `Main` osztályt a [típuselemzés](TaskTypeAnalysis.md) feladatban megadott módon. Ezután a **webtest.dsl.tests** projektnek fordulnia kell, és a tesztek lefuttathatók.
+A nyelvtan helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **ParseTests**, **ParseExtensionsTests** és **ParseExamplesTests** tesztelő osztályok segítségével.
 
 ## Feltöltendő
 
@@ -65,4 +63,4 @@ Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és t
 
 * A **Runtime Eclipse**-ben megnyitott legalább 20 soros **.wt** kiterjesztésű fájl, amely legalább 5 közös nyelvi elemre és a 2 bővítményre is tartalmaz példát.
 * Az **Eclipse**-ben menyitott **WebTest.xtext** fájlban a 2 bővítmény Xtext nyelvtani reprezentációja.
-* A **WebTestDslParsingTest**, **ParseTests**, **ParseExtensionsTests** és **ParseExamplesTests** összes tesztjének sikeres lefutása
+* A **ParseTests**, **ParseExtensionsTests** és **ParseExamplesTests** összes tesztjének sikeres lefutása

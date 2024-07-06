@@ -155,12 +155,10 @@ Hogy a névfeloldás és a scoping jól működik-e, könnyen ellenőrizhetitek 
 
 A validátorok által jelzett hibákat a **Runtime Eclipse** piros aláhúzással jelzi a **.wt** fájlban.
 
-A névfeloldás és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **NameAnalysisTests** tesztelő osztály segítségével.
-
-Előfordulhat, hogy ebben a fázisban még nem tudnak elindulni a tesztek, mert nem fordul a **webtest.dsl.tests** projekt. Ilyenkor célszerű kibővíteni az Xcore metamodellben a `Type` enumot, valamint az `Expression` és a `Main` osztályt a [típuselemzés](TaskTypeAnalysis.md) feladatban megadott módon. Ezután a **webtest.dsl.tests** projektnek fordulnia kell, és a tesztek lefuttathatók.
+A névfeloldás és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **NameAnalysisTests** és a **NameAnalysisExtensionsTests** tesztelő osztályok segítségével.
 
 ## Feltöltendő
 
 Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw1** mappába az alábbiakról:
 
-* A **NameAnalysisTests** összes tesztjének sikeres lefutása
+* A **NameAnalysisTests** és a **NameAnalysisExtensionsTests** összes tesztjének sikeres lefutása
