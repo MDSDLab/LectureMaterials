@@ -4,7 +4,7 @@
 
 1. Csináljátok végig az [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorialt!
 2. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott bővítményeket!
-3. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból az `mvn clean package` parancs sikeresen lefut-e.
+3. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia.
 4. Készítsetek egy **hw2** nevű **tag**-et az utolsó commitra!
 
 ## Feladat célja
@@ -43,8 +43,8 @@ Ha az összes részfeladattal végeztetek, az alábbi működés az elvárt:
 
 ## Referenciák
 
-Hasznos linkek az Xtext és Xtend használatához:
+Hasznos linkek a feladat megoldásához:
 
-* Az előző féléves Xtext-Xtend gyakorlat [útmutatója](../lab1-xcore/images/GY4-XtextXtend-Utmutato.pdf)
+* Az előző féléves Xtext-Xtend gyakorlat [útmutatója](../lab1-xtext/images/GY3-Xtext-Utmutato.pdf)
 * [Xtext](https://eclipse.dev/Xtext/documentation/index.html)
 * [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html)
