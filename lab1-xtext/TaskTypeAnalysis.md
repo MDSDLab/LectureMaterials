@@ -41,7 +41,24 @@ abstract class Expression
 
 Az `expectedType` attribútumban a kifejezés elvárt típusát, az `actualType` attribútumban pedig a kifejezés tényleges típusát kell tárolni. Ha még emlékeztek az előző félévből az előadásra: az `expectedType` egy örökölt attribútum, amelyet fentről lefelé kell kiszámolni a szintaxisfában, míg az `actualType` egy szintetizált attribútum, amelyet lentről felfelé kell kiértékelni. Ezeket a számításokat a `computeTypes()` függvény felüldefiniálásával lehet megtenni az `Expression` osztály leszármazottaiban: ki kell számolni és el kell tárolni a kifejezés aktuális típusát, valamint be kell állítani a részkifejezések elvárt típusát.
 
-Vezessétek be a `computeTypes()` függvényt az összes többi osztályban is (`Main`, `Page`, `Operation`, `Statement` stb.).
+Módosítsátok a `Main` osztályt is az alábbi módon:
+```
+class Main
+{
+	unsettable boolean typesComputed
+	String[] testClass
+	contains Declaration[] declarations
+	contains BlockStatement body
+	
+	op void computeTypes() {
+		if (typesComputed) return;
+        typesComputed = true
+        // TODO
+	}
+}
+```
+
+Vezessétek be a `computeTypes()` függvényt az összes többi osztályban is ( `Page`, `Operation`, `Statement` stb.).
 
 A `computeTypes()` függvény kitöltésénél célszerű a következő sablont követni, ez éppen az attribútumok megfelelő kiértékelését adja:
 
