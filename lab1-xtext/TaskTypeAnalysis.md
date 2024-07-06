@@ -77,7 +77,7 @@ abstract class X
 }
 ```
 
-Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása. Célszerű úgy megírni a függvényt, hogy csak első meghívásra végezzen számítást a teljes fában, minden további meghívásra azonnal lépjen ki, és ne számoljon feleslegesen. Ebben segítséget adhat egy segédattribútum felvétele a `Main`-ben, amiben eltárolhatjuk, meghívták-e már a `computeTypes()` függvényt.
+Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása.
 
 
 ## Kifejezések tényleges és elvárt típusa
