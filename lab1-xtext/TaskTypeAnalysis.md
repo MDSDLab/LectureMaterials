@@ -45,16 +45,16 @@ Módosítsátok a `Main` osztályt is az alábbi módon:
 ```
 class Main
 {
-	unsettable boolean typesComputed
-	String[] testClass
-	contains Declaration[] declarations
-	contains BlockStatement body
-	
-	op void computeTypes() {
-		if (typesComputed) return;
+    unsettable boolean typesComputed
+    String[] testClass
+    contains Declaration[] declarations
+    contains BlockStatement body
+    
+    op void computeTypes() {
+        if (typesComputed) return;
         typesComputed = true
         // TODO
-	}
+    }
 }
 ```
 
