@@ -161,7 +161,7 @@ Módosítsátok a **UnitTestGenerator** osztályt, hogy teljesen működő JUnit
 
 A megvalósítandó 2 bővítmény támogatását se felejtsétek el beépíteni a generátorba!
 
-***TIPP:** Az Xtend nyelv [dispatch](https://eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html#polymorphic-dispatch) függvénydeklarációja hasznos lehet az utasítások és kifejezések generálása során, amelyet meghívva futásidőben a dinamikus típus dől el, hogy melyik overload változat hívódik meg, így nem kell **instanceof**-ot használni.*
+***TIPP:** Az Xtend nyelv [dispatch](https://eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html#polymorphic-dispatch) függvénydeklarációja hasznos lehet az utasítások és kifejezések generálása során, amelyet meghívva futásidőben a dinamikus típus alapján dől el, hogy melyik overload változat hívódik meg, így nem kell **instanceof**-ot használni.*
 
 ## Ellenőrzés
 
