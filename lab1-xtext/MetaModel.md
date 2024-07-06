@@ -62,23 +62,23 @@ package webtest.model
 
 enum Type
 {
-  UNDEFINED,
-  STRING,
-  INTEGER,
-  BOOLEAN,
-  ELEMENT
+    UNDEFINED,
+    STRING,
+    INTEGER,
+    BOOLEAN,
+    ELEMENT
 }
 
 class Main
 {
-  String[] testClass
-  contains Declaration[] declarations
-  contains BlockStatement body
+    String[] testClass
+    contains Declaration[] declarations
+    contains BlockStatement body
 }
 
 abstract class NamedElement
 {
-  String name
+    String name
 }
 
 abstract class Declaration extends NamedElement
@@ -87,25 +87,25 @@ abstract class Declaration extends NamedElement
 
 class Variable extends NamedElement
 {
-  Type ^type
-  contains Expression value
+    Type ^type
+    contains Expression value
 }
 
 class Page extends Declaration
 {
-  contains Variable[] variables
-  contains Operation[] operations
+    contains Variable[] variables
+    contains Operation[] operations
 }
 
 class Operation extends Declaration
 {
-  contains Variable[] parameters
-  contains BlockStatement body
+    contains Variable[] parameters
+    contains BlockStatement body
 }
 
 class TestCase extends Declaration
 {
-  contains BlockStatement body
+    contains BlockStatement body
 }
 
 abstract class Statement
@@ -114,7 +114,7 @@ abstract class Statement
 
 class BlockStatement extends Statement
 {
-  contains Statement[] statements
+    contains Statement[] statements
 }
 
 abstract class Expression

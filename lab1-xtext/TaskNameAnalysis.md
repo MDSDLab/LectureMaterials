@@ -54,7 +54,7 @@ A laborfeladat során ezt a **WebTestDslScopeProvider** osztályt kell továbbfe
 * Ha a **ForEach** bővítményt meg kell valósítanotok, ügyeljetek arra, hogy a `foreach ... in ... end` fejlécében definiált változó csak az adott `foreach` blokkon belül érhető el! Arra is figyeljetek, hogy két egymás utáni `foreach` blokk definiálhatja ugyanazt a nevű változót, és ez a két változó nem ugyanaz!
 * Ha a **TestParams** bővítményt meg kell valósítanotok, tegyétek elérhetővé a teszten belül a tesztparaméterek neveit!
 
-Figyeljetek arra is, hogy szerkesztés közben nem mindig teljes a modell: előfordulhatnak null értékek olyen helyeken is, ahol nem számítunk rá.
+Figyeljetek arra is, hogy szerkesztés közben nem mindig teljes a modell: előfordulhatnak null értékek olyan helyeken is, ahol nem számítunk rá.
 
 ***TIPP:** A **getScope** függvényben többféle stratégiát is követhettek:*
 
@@ -156,6 +156,8 @@ Hogy a névfeloldás és a scoping jól működik-e, könnyen ellenőrizhetitek 
 A validátorok által jelzett hibákat a **Runtime Eclipse** piros aláhúzással jelzi a **.wt** fájlban.
 
 A névfeloldás és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **NameAnalysisTests** tesztelő osztály segítségével.
+
+Előfordulhat, hogy ebben a fázisban még nem tudnak elindulni a tesztek, mert nem fordul a **webtest.dsl.tests** projekt. Ilyenkor célszerű kibővíteni az Xcore metamodellben a `Type` enumot és az `Expression` osztályt a [típuselemzés](TaskTypeAnalysis.md#xcore-metamodell-módosítása) feladatban megadott módon. Ezután a **webtest.dsl.tests** projektnek fordulnia kell, és a tesztek lefuttathatók.
 
 ## Feltöltendő
 
