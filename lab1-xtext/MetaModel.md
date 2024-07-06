@@ -32,10 +32,6 @@ Az egyszerűbb kifejezéseket alábbi nézet mutatja be:
 
 ## Bővítmények
 
-A **BasePages** nevű bővítményt az alábbi nézet mutatja be:
-
-![Main](images/WebTest-Extra-BasePages.png)
-
 A **Capture** nevű bővítményt az alábbi nézet mutatja be:
 
 ![Main](images/WebTest-Extra-Capture.png)
