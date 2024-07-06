@@ -13,7 +13,6 @@ A **webtest.model** projekten belül a **model/webtest.xcore** fájlban kell dol
 A **webtest.model.tests** projekt azt teszteli, hogy az elkészített Xcore metamodell megfelel-e a kiadott osztálydiagramoknak. A projektben az alábbi JUnit tesztosztályok szerepelnek:
 
 * **MetaModelTests**: a közös metamodell leképzését ellenőrzi
-* **BasePagesTests**: a **BasePages** nevű bővítmény leképzését ellenőrzi
 * **CaptureTests**: a **Capture** nevű bővítmény leképzését ellenőrzi
 * **ForEachTests**: a **ForEach** nevű bővítmény leképzését ellenőrzi
 * **JavaScriptTests**: a **JavaScript** nevű bővítmény leképzését ellenőrzi
