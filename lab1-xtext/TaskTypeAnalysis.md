@@ -58,6 +58,8 @@ class Main
 }
 ```
 
+A `Main` osztály `computeTypes()` függvényét meghívva lehet elindítani a típusszámítást a teljes szintaxisfára vonatkozóan. A `typesComputed` attribútum abban nyújt segítséget, hogy ha már egyszer le lett futtatva a típusszámítás, akkor többször már ne hajtódjon végre.
+
 Vezessétek be a `computeTypes()` függvényt az összes többi osztályban is ( `Page`, `Operation`, `Statement` stb.).
 
 A `computeTypes()` függvény kitöltésénél célszerű a következő sablont követni, ez éppen az attribútumok megfelelő kiértékelését adja:
