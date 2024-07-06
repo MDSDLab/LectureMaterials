@@ -2,6 +2,7 @@
 
 ## A laborfeladat elvégzésének lépései
 
+0. Ezen a laboron az első laboron megoldott feladatot kell majd tovább folytatni.
 1. Csináljátok végig az [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorialt!
 2. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott bővítményeket!
 3. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia.
