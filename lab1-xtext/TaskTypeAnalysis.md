@@ -65,7 +65,7 @@ Vezessétek be a `computeTypes()` függvényt az összes többi osztályban is (
 A `computeTypes()` függvény kitöltésénél célszerű a következő sablont követni, ez éppen az attribútumok megfelelő kiértékelését adja:
 
 ```
-abstract class X
+class X
 {
     contains Y y
 
