@@ -8,15 +8,15 @@ A [0. laborfeladat](lab0-init/README.md) célja annak ellenőrzése, hogy minden
 
 Határidő 1 bónuszpontért: Szeptember 14. csütörtök reggel 8:00.
 
-# 1. labor - Xcore metamodell
+# 1. labor - Xcore metamodell és Xtext fordító
 
 Az [1. laborfeladat](lab1-xtext/README.md) célja a [WebTest nyelv](lab1-xtext/WebTestLanguageSpecification.md) metamodelljének kialakítása.
 
 Határidő: Szeptember 19. kedd 23:59.
 
-# 2. labor - Xtext fordító és Xtend generátor
+# 2. labor - IDE támogatás és Xtend generátor
 
-A [2. laborfeladat](lab2-xtend/README.md) célja Xtext segítségével fordító és Eclipse IDE támogatás, valamint Xtend segítségével kódgenerátor készítése a [WebTest nyelvhez](lab1-xtext/WebTestLanguageSpecification.md).
+A [2. laborfeladat](lab2-xtend/README.md) célja Eclipse IDE támogatás, valamint Xtend segítségével kódgenerátor készítése a [WebTest nyelvhez](lab1-xtext/WebTestLanguageSpecification.md).
 
 Határidő: Október 9. hétfő 23:59.
 
