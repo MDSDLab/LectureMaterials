@@ -61,7 +61,7 @@ A **TestParams** nevű bővítményt az alábbi nézet mutatja be:
 Segítségképpen megadjuk a WebTest metamodell legelső nézetének Xcore változatát:
 
 ```
-@GenModel(modelDirectory="webtest.model/src-gen", forceOverwrite="true", updateClasspath="true", complianceLevel="17")
+@GenModel(modelDirectory="webtest.model/src-gen", forceOverwrite="true", updateClasspath="false", complianceLevel="17.0")
 package webtest.model
 
 enum Type
