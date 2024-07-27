@@ -12,7 +12,7 @@ Először meg kell határozni azokat a kategóriákat, amelyek önálló színek
 
 A **webtest.dsl.ui** projektben hozzatok létre egy **webtest.dsl.ui.highlighting** csomagot, benne pedig egy **HighlightingConfiguration.xtend** fájlt a következő tartalommal:
 
-```
+```Java
 package webtest.dsl.ui.highlighting
 
 import org.eclipse.swt.SWT
@@ -112,7 +112,7 @@ Az Xtext beépített konfigurációin felül a **DECLARATION_ID** a WebTest kód
 
 Hozzatok létre egy **WebTestDslHighlighter.xtend** fájlt a **webtest.dsl.ui.highlighting** csomagban a következő tartalommal:
 
-```
+```Java
 package webtest.dsl.ui.highlighting
 
 import com.google.inject.Inject
@@ -170,7 +170,7 @@ A fenti kód kiszínezi a **webtest** kulcsszót a fájl elején.
 
 Ahhoz, hogy a fenti két osztály meghívásra kerüljön, be kell őket regisztrálni a **webtest.dsl.ui** csomagban lévő **WebTestDslUiModule** osztályba:
 
-```
+```Java
 package webtest.dsl.ui
 
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor

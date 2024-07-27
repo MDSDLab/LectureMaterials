@@ -10,7 +10,7 @@ Határidő 1 bónuszpontért: Szeptember 14. csütörtök reggel 8:00.
 
 # 1. labor - Xcore metamodell és Xtext fordító
 
-Az [1. laborfeladat](lab1-xtext/README.md) célja a [WebTest nyelv](lab1-xtext/WebTestLanguageSpecification.md) metamodelljének kialakítása.
+Az [1. laborfeladat](lab1-xtext/README.md) célja a [WebTest nyelv](lab1-xtext/WebTestLanguageSpecification.md) metamodelljének és fordítójának kialakítása.
 
 Határidő: Szeptember 19. kedd 23:59.
 

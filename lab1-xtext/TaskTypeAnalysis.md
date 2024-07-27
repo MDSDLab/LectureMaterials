@@ -10,7 +10,7 @@ Ezen túlmenően hibaüzeneteket kell generálnunk akkor, ha valami probléma ad
 
 Nyissátok meg a **webtest.model** projektet, és a **model** könyvtárban a **WebTest.xcore** fájlban a `Type` enumerációt módosítsátok az alábbi módon:
 
-```
+```Java
 enum Type
 {
     UNDEFINED,
@@ -29,7 +29,7 @@ A korábbi értékek mellé bekerült két új érték:
 * `ANY`: azt jelzi, hogy az adott helyen a kódban tetszőleges típusú kifejezés elfogadható (ilyenek pl. a `print` utasítás argumentumai)
 
 Módosítsátok az `Expression` osztályt is az alábbi módon:
-```
+```Java
 abstract class Expression
 {
     Type expectedType
@@ -42,7 +42,7 @@ abstract class Expression
 Az `expectedType` attribútumban a kifejezés elvárt típusát, az `actualType` attribútumban pedig a kifejezés tényleges típusát kell tárolni. Ha még emlékeztek az előző félévből az előadásra: az `expectedType` egy örökölt attribútum, amelyet fentről lefelé kell kiszámolni a szintaxisfában, míg az `actualType` egy szintetizált attribútum, amelyet lentről felfelé kell kiértékelni. Ezeket a számításokat a `computeTypes()` függvény felüldefiniálásával lehet megtenni az `Expression` osztály leszármazottaiban: ki kell számolni és el kell tárolni a kifejezés aktuális típusát, valamint be kell állítani a részkifejezések elvárt típusát.
 
 Módosítsátok a `Main` osztályt is az alábbi módon:
-```
+```Java
 class Main
 {
     unsettable boolean typesComputed
@@ -53,7 +53,8 @@ class Main
     op void computeTypes() {
         if (typesComputed) return;
         typesComputed = true
-        // TODO
+        declarations.forEach[it.computeTypes()]
+        body?.computeTypes()
     }
 }
 ```
@@ -64,7 +65,7 @@ Vezessétek be a `computeTypes()` függvényt az összes többi osztályban is (
 
 A `computeTypes()` függvény kitöltésénél célszerű a következő sablont követni, ez éppen az attribútumok megfelelő kiértékelését adja:
 
-```
+```Java
 class X
 {
     contains Y y
@@ -74,6 +75,25 @@ class X
         if (y !== null) {
             y.expectedType = Type.<type>     // if Y is an expression
             y.computeTypes()
+        }
+    }
+}
+```
+
+Például:
+
+```Java
+class IsExpression extends BinaryExpression
+{
+    op void computeTypes() {
+        actualType = Type.BOOLEAN
+        if (left !== null) {
+            left.expectedType = Type.ELEMENT
+            left.computeTypes()
+        }
+        if (right !== null) {
+            right.expectedType = Type.STRING
+            right.computeTypes()
         }
     }
 }

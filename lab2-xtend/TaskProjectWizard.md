@@ -1,5 +1,7 @@
 # Projekt varázsló (project wizard)
 
+Ebben a részfeladatban nincs semmi teendőtök, csak olvassátok el az alábbi leírást!
+
 Ahhoz, hogy a WebTest fájlokból előálló JUnit tesztek végrehajthatók legyenek, a WebTest fájlokat egy megfelelő szerkezetű projektbe kell beágyazni (ld. **webtest.example** projekt).
 
 Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy olyan varázslót (**src/webtest/dsl/ui/wizard/WebTestDslProjectTemplateProvider.xtend**), ami Selenium alapú JUnit tesztek futtatására alkalmas projektet állít elő. Ebben a fájlban két osztály található: **WebTestDslProjectTemplateProvider** és **WebTestProject**. A kívánt projekt tényleges létrehozását a **WebTestProject** osztály végzi, amely a következő könyvtárakat és fájlokat hozza létre:
@@ -17,15 +19,16 @@ Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy oly
 * **.classpath**: az Eclipse egyik konfigurációs fájlja, amely a forráskódokat tartalmazó könyvtárakat határozza meg
 * **.gitignore**: a Git verziókezelő konfigurációs fájlja, amely beállítja, hogy a **target** és **output** könyvtárak ne kerüljenek verziókezelés alá
 * **pom.xml**: a Maven konfigurációs fájl, amely tartalmazza a JUnit 5 és a Selenium függőségeket
+* **src/main/java/webtest/selenium/api/Page.java**: egy weboldal modell ősét reprezentáló segédosztály
+* **src/main/java/webtest/selenium/api/PageElement.java**: egy weboldal elemet reprezentáló segédosztály
+* **src/test/java/webtest/selenium/api/SeleniumTest.java**: a Selenium meghívását támogató segédosztály
 
 A fenti fájlok tartalmát a **webtest.generator** projekten belül az **webtest.generator.WebTestProjectGenerator** osztály állítja elő Xtend sablonok segítségével.
 
 A **webtest** könyvtárban lévő **.wt** kierjesztésű fájlokból generált JUnit tesztek az **src-gen/test/java** könyvtába fognak kerülni, de ezt a lépést nem ez a projekt varázsló, hanem a [következő részfeladatban](TaskCodeGeneration.md) elkészített generátor fogja elvégezni.
 
-A laborfeladat megoldása során elképzelhető, hogy ehhez a **WebTestProject** osztályhoz nem is kell hozzányúlnotok. Ha azonban vannak olyan segédosztályaitok (pl. a Selenium API felett egy csomagoló réteg), amelyekre a később generált JUnit tesztek építenek, akkor azokat célszerű itt, a **WebTestProject** osztály segítségével beilleszteni a varázsló által előállított projektbe. Ilyen osztály lehet például a **webtest.example** projektben szereplő **webtest.selenium.api.SeleniumTest** osztály, amelyet egy-az-egyben átvehettek, de akár saját ízléseteknek megfelelően átalakíthattok és továbbfejleszthettek. Ezen kívül készíthettek további segédosztályokat is (pl. az aktuális **context as ... end** kontextus követésére, vagy a **WebElement** osztály becsomagolására és felokosítására).
+A varázslóhoz és az ahhoz kapcsolódó fájlokhoz ne nyúljatok hozzá, ne írjátok át őket! Ez a részfeladat csak előkészítette a következő részfeladat megoldását.
 
 ## Feltöltendő
 
-Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
-
-* A **WebTestProject** osztály forráskódja a normál Eclipse-ben megnyitva
+Mivel ebben a részfeladatban nincs semmi teendő, itt nem kell képernyőképet feltölteni.

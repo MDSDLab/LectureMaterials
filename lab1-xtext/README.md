@@ -4,7 +4,7 @@
 
 0. Töltsétek le, és telepítsétek az [Eclipse IDE for Java and DSL Developers 2024-06 R](https://www.eclipse.org/downloads/packages/release/2024-06/r/eclipse-ide-java-and-dsl-developers) verziót. FONTOS: pontosan ezt a változatot és ezt a verziót használjátok, mert a projektek csak ezzel fordulnak helyesen!
 1. Csináljátok végig az [Xcore Wiki](https://wiki.eclipse.org/Xcore) és az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) oldalakon található tutorialokat!
-2. Az [mdsd-2024-lab1-xtext](https://github.com/MDSDLab/mdsd-2024-lab1-xtext) repóból másoljátok át a **webtest.parent** könyvtárat közvetlenül a saját repótok gyökerébe!
+2. Az [mdsd-2024-lab1-xtext](https://github.com/MDSDLab/mdsd-2024-lab1-xtext) repóból másoljátok át a **webtest.dsl.parent** könyvtárat közvetlenül a saját repótok gyökerébe!
 3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a [számotokra kiosztott bővítményeket](ExtrasTable2024.md)!
 4. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia. Ha nincs `mvn` parancs a gépeteken, telepítsétek a [Maven](https://maven.apache.org/download.cgi)-t.
 5. Készítsetek egy **hw1** nevű **tag**-et az utolsó commitra!
@@ -17,7 +17,7 @@ A WebTest nyelv [közös részét](WebTestReference.md) mindenkinek meg kell val
 
 ## Feladat leírása
 
-Nyissátok meg a **webtest.parent** könyvtár alatt található projekteket Eclipse alatt: **File > Import... / General > Existing Projects into Workspace**, és **root directory**-nak a **webtest.parent**-et válasszuk! A megnyitás után előfordulhatnak fordítási hibák a **webtest.dsl** projekten belül a **WebTestDsl.xtext** fájlban, valamint a **webtest.dsl.tests** és a **webtest.model.tests** projektekben. Ezek a hibák azért jelennek meg, mert a laborfeladat során kiegészítendő fájlok tartalma még nem teljes. A hibáknak el kell tűnnie a laborfeladat megoldásának végére. A többi projektnek hiba nélkül kell betöltődnie.
+Nyissátok meg a **webtest.dsl.parent** könyvtár alatt található projekteket Eclipse alatt: **File > Import... / General > Existing Projects into Workspace** (nem Maven > Existing Maven Projects!), és **root directory**-nak a **webtest.dsl.parent**-et válasszátok! A megnyitás után előfordulhatnak fordítási hibák a **webtest.dsl** projekten belül a **WebTestDsl.xtext** fájlban, valamint a **webtest.dsl.tests** és a **webtest.model.tests** projektekben. Ezek a hibák azért jelennek meg, mert a laborfeladat során kiegészítendő fájlok tartalma még nem teljes. A hibáknak el kell tűnnie a laborfeladat megoldásának végére. A többi projektnek hiba nélkül kell betöltődnie.
 
 A **webtest.dsl** projektben az **src** könyvtár alatt a **webtest.dsl** csomagban szereplő **WebTestExtensions** osztályban állítsátok **false**-ra az azon bővítményekhez tartozó értékeket, amelyeket nem kell megvalósítanotok. Így csak olyan tesztek lesznek engedélyezve, amelyek számotokra relevánsak.
 

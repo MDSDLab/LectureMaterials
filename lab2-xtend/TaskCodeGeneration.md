@@ -2,18 +2,15 @@
 
 A kódgenerálás során a feldolgozott és leellenőrzött WebTest kódokból JUnit teszteket kell automatizáltan előállítani. Lényegében a WebTest kódokat Java kódra kell lefordítani.
 
-Az nincs előírva, hogy a generált Java kódnak hogyan kell kinéznie. Többféle alternatíva is lehetséges:
+A generált Java kódóknak a [projekt varázslóban](TaskProjectWizard.md) létrehozott projektstruktúrába kell illeszkednie, és azon belül kell működőképesnek lennie.
 
-* Lehet WebTest fájlonként teljesen önállóan működő Java kódokat készíteni, ahol az egyes Java kódok között semmilyen kapcsolat sincs.
-* A [projekt varázslóban](TaskProjectWizard.md) előállíthattok olyan segédosztályokat, amelyekre a WebTest fájlokból generált Java kódok építhetnek, így a generált kódok jóval egyszerűbbé válnak.
-
-A generált Java kódoknak nem kell pontosan megegyeznie a **webtest.example** projektben szereplő mintakódokkal. (Sőt, nem is lehet pontosan ugyanazokat a kódokat előállítani, mert például a HTML elemek azonosítása be van égetve a mintakódokba, a generált kódnak azonban [dinamikusan kell kiderítenie](../lab1-xtext/WebTestReference.md#konstans-kifejez%C3%A9sek), melyik minta illesztése vezet a HTML elem megtalálásához.)
-
-A kódgenerálás többféleképpen is megoldható, de legcélravezetőbb az [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html) nyelv és az abban található [sablonok](https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates) használata.
+A kódgenerálás megvalósítására legcélravezetőbb az [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html) nyelv és az abban található [sablonok](https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates) használata.
 
 ## A generálás előkészítése
 
-Mielőtt nekilátntok a generálásnak, célszerű manuálisan megírni azt a kódot, amit szerenétek automatizáltan előállítani. Ha egyből a generátort írjátok, akkor nagyon nagy az overhead-je a kipróbálásnak: *generátor módosítása -> Runtime Eclipse indítása -> WebTest fájl szerkesztése -> generált Java kód futtatása JUnit tesztként, feltéve, hogy egyáltalán lefordul*. Javasolt tehát először kézzel megírni egy teljes projektet, amely minden olyan elemet tartalmaz, amit generálni szeretnétek, majd az ebben lévő elemeket érdemes általánosítani és beépíteni egy generátorba.
+Mielőtt nekilátnátok a generálásnak, célszerű manuálisan megírni azt a kódot, amit szerenétek automatizáltan előállítani. Ha egyből a generátort írjátok, akkor nagyon nagy az overhead-je a kipróbálásnak: *generátor módosítása -> Runtime Eclipse indítása -> WebTest fájl szerkesztése -> generált Java kód futtatása JUnit tesztként, feltéve, hogy egyáltalán lefordul*. Javasolt tehát először kézzel megírni egy teljes projektet, amely minden olyan elemet tartalmaz, amit generálni szeretnétek, majd az ebben lévő elemeket érdemes általánosítani és beépíteni egy generátorba.
+
+Szerencsére nektek már nem kell manuálisan megírni ezeket a kódokat, mert ezt már megtettük helyettetek a **webtest.example** projektben, amelyben mind a WebTest kódok, mind a belőlük előállítandó Java kódok megtalálhatók. Célszerű, de nem szükséges pontosan ugyanezeket a Java kódokat előállítani. Elegendő, ha viselkedésben megegyezik az általatok generált Java kód a példaként megadott kódokkal.
 
 Célszerű segédosztályokat is készíteni, amelyekre a generált kódok építhetnek. Ezekben a segédosztályokban elrejthetitek a Selenium használatának egyéb kényelmetlenségeit, például:
 
@@ -23,15 +20,15 @@ Célszerű segédosztályokat is készíteni, amelyekre a generált kódok épí
 * Egy `input` mező tartalmának törlése a szöveg begépelése előtt.
 * Egy `input` mező tartalma a `value` attribútumában van, de más HTML elemeknél a **getText()** hívással kérhető el a belső tartalom.
 
-Ezeket a segédosztályokat a [projekt varázslóban](TaskProjectWizard.md) célszerű generálni.
+Ezeket a segédosztályokat a [projekt varázslóba](TaskProjectWizard.md) már beépítettük nektek (**Page**, **PageElement**, **SeleniumTest**), így nektek már csak meg kell hívnotok őket az általatok generált kódból.
 
-Ebben a részfeladatban csak a segédosztályokra építő JUnit teszteket kell generálni.
+Ebben a részfeladatban csak a WebTest kódokból előálló JUnit teszteket kell generálnotok, amelyeknek a projekt varázsló által létrehozott projekten belül kell működőképesnek lenniük.
 
 ## A generátor váza
 
 Segítségképpen megadjuk a generátor vázát, amiből könnyebben ki lehet indulni a feladat megoldása során. Hozzatok létre a **webtest.generator** projekten belül az **src** könyvtár alatt a **webtest.generator** csomagban egy **UnitTestGenerator.xtend** fájlt az alábbi tartalommal:
 
-```
+```Java
 package webtest.generator
 
 import webtest.model.Main
@@ -119,7 +116,7 @@ Ez egy minimális JUnit tesztvázat tud generálni, amelyben az egyes függvény
 
 Ahhoz, hogy az Xtext figyelembe vegye a generátorotokat, meg kell hívni a generátort a **webtest.dsl** projekten belül található **webtest.dsl.generator.WebTestDslGenerator** osztályból. Módosítsátok az osztályt az alábbi módon:
 
-```
+```Java
 /*
  * generated by Xtext 2.30.0
  */
@@ -157,7 +154,7 @@ Ez a generátor a **resource** paraméterből előbányássza a WebTest modellü
 
 ## Feladat
 
-Módosítsátok a **UnitTestGenerator** osztályt, hogy teljesen működő JUnit teszteket állítson elő. Szükség esetén definiálhattok segédosztályokat, amelyekre ezek a generált JUnit tesztek építenek. Ezeket a segédosztályokat ne itt, hanem a [projekt varázslóban](TaskProjectWizard.md) adjátok hozzá a projekthez.
+Módosítsátok a **UnitTestGenerator** osztályt, hogy teljesen működő JUnit teszteket állítson elő!
 
 A megvalósítandó 2 bővítmény támogatását se felejtsétek el beépíteni a generátorba!
 

@@ -12,7 +12,7 @@ Az Xtext megpróbálja a neveket a kód hierarchiának megfelelő módon felolda
 
 A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslScopeProvider.xtend** fájlt, és módosítsátok a tartalmát az alábbi módon:
 
-```
+```Java
 package webtest.dsl.scoping
 
 import org.eclipse.emf.ecore.EObject
@@ -30,27 +30,57 @@ import webtest.model.ModelPackage
  */
 class WebTestDslScopeProvider extends AbstractWebTestDslScopeProvider {
 
-    override getScope(EObject obj, EReference ref) {
-        var baseScope = super.getScope(obj, ref)
-        if (ref == ModelPackage.Literals.VARIABLE_EXPRESSION__VARIABLE) {
-            var context = EcoreUtil2.getContainerOfType(obj, typeof(ContextStatement))
-            if (context?.page !== null) {
-                return Scopes.scopeFor(context.page.variables, baseScope) 
-            } 
-        }
-        return baseScope;
-    }
+	override getScope(EObject obj, EReference ref) {
+		if (ref == ModelPackage.Literals.CALL_STATEMENT__OPERATION || ref == ModelPackage.Literals.VARIABLE_EXPRESSION__VARIABLE) {
+			val scope = getScope(obj, ref, obj.eContainer)
+			return scope
+		} else {
+			return super.getScope(obj, ref)
+		}
+	}
+
+	def IScope getScope(EObject obj, EReference ref, EObject container) {
+		if (container === null) return IScope.NULLSCOPE
+		val baseScope = getScope(obj, ref, container.eContainer)
+		if (ref == ModelPackage.Literals.CALL_STATEMENT__OPERATION) {
+			if (container instanceof ContextStatement) {
+				val context = container as ContextStatement
+				if (context?.page !== null) return Scopes.scopeFor(context.page.operations, baseScope)
+			}
+			return baseScope
+		}
+		if (ref == ModelPackage.Literals.VARIABLE_EXPRESSION__VARIABLE) {
+			if (container instanceof Statement) {
+				val candidates = new ArrayList<Variable>()
+				val stmt = container as Statement
+				if (stmt.eContainer instanceof BlockStatement) {
+					val block = stmt.eContainer as BlockStatement
+					val index = block.statements.indexOf(stmt)
+					for (var i = 0; i < index; i++) {
+						val prevStmt = block.statements.get(i)
+						if (prevStmt instanceof VariableStatement) {
+							val varStmt = prevStmt as VariableStatement
+							candidates.add(varStmt.variable)
+						}
+					}
+				}
+				return Scopes.scopeFor(candidates, baseScope)
+			}
+		}
+		return baseScope;
+	}
     
 }
 ```
 
-A fenti kód a változó hivatkozásoknál (**VariableExpression** osztály **variable** property-je: **ModelPackage.Literals.VARIABLE_EXPRESSION__VARIABLE**) megkeresi a hivatkozást közvetlenül tartalmazó `context as` kontextust (**ContextStatement**) az **EcoreUtil2.getContainerOfType** segédfüggvénnyel. Ha van ilyen kontextus és létezik hozzá weboldalmodell (**page**), akkor a hivatkozott weboldalmodell változóit elérhetővé teszi névfeloldásra, illetve ha a feloldás ezek közül a változók közül nem sikerül, akkor továbbkeres a **baseScope**-ban, ami az Xtext alapértelmezett hierarchikus névfeloldásából jön.
+A fenti kód két esetre mutat példát:
+
+* A `context as` kontextuson belül elérhetővé teszi az operációkat, amelyek a kontextusban hivatkozott weboldalmodellben (**Page**) vannak definiálva. Sőt, nemcsak a közvetlen tartalmazó kontextusból, hanem az összes többi kijjebb lévő kontextusból is elérhetővé válnak az operációk. A belső kontextusok elfedik a kijjebb lévő kontextusok operációit, ha vannak közös nevűek.
+* Az utasítások csak a korábban definiált változókra hivatkozhatnak, a később definiált változókra nem.
 
 A laborfeladat során ezt a **WebTestDslScopeProvider** osztályt kell továbbfejlesztenetek:
 
 * Tegyétek elérhetővé a `context as` kontextuson belül a változókat, de ne csak a közvetlenül tartalmazó kontextusból, hanem az összes indirekten tartalmazó kontextusból is! A mélyebben lévő kontextusok változói elfedik a kijjebb lévő kontextusok azonos nevű változóit.
-* Tegyétek elérhetővé a `context as` kontextuson belül az operációkat is, de ne csak a közvetlenül tartalmazó kontextusból, hanem az összes indirekten tartalmazó kontextusból is! A mélyebben lévő kontextusok operációi elfedik a kijjebb lévő kontextusok azonos nevű operációit.
-* Ügyeljetek arra, hogy az utasításoknál csak a korábban definiált változókra szabad hivatkozni, egy később definiált változóra nem!
 * Ha a **ForEach** bővítményt meg kell valósítanotok, ügyeljetek arra, hogy a `foreach ... in ... end` fejlécében definiált változó csak az adott `foreach` blokkon belül érhető el! Arra is figyeljetek, hogy két egymás utáni `foreach` blokk definiálhatja ugyanazt a nevű változót, és ez a két változó nem ugyanaz!
 * Ha a **TestParams** bővítményt meg kell valósítanotok, tegyétek elérhetővé a teszten belül a tesztparaméterek neveit!
 
