@@ -10,13 +10,13 @@ A WebTest nyelven az alábbi modellt készíthetjük hozzá:
 
 ```
 page Calculator
-  element display = input "number display"
-  element clear = button "AC"
-  element add = button "+"
-  element subtract = button "-"
-  element multiply = button "×"
-  element divide = button "/"
-  element compute = button "="
+  element display = input "display"
+  element clear = input "AC"
+  element add = input "+"
+  element subtract = input "-"
+  element multiply = input "×"
+  element divide = input "/"
+  element compute = input "="
   
   operation binaryOperation(string left, element op, string right)
     click clear
@@ -27,7 +27,7 @@ page Calculator
   end
   
   operation multiply(string left, string right)
-    binaryOperation using left, multiply, right
+    binaryOperation using left,multiply,right
   end
 end
 ```
@@ -55,7 +55,7 @@ A *binaryOperation* segítségével egy másik műveletet is definiálunk *multi
 A fenti modellt a következőképpen használhatjuk a WebTest nyelvben:
 
 ```
-open "https://www.calculatorsoup.com/calculators/math/basic.php"
+open "https://www.theonlinecalculator.com/"
 context as Calculator
   wait until display exists
   print "Page opened"
