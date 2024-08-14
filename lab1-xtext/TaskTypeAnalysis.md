@@ -71,9 +71,9 @@ class X
     contains Y y
 
     op void computeTypes() {
-        this.actualType = Type.<type>    // if X is an expression
+        this.actualType = Type.<type>     // if X is an expression
         if (y !== null) {
-            y.expectedType = Type.<type>     // if Y is an expression
+            y.expectedType = Type.<type>  // if Y is an expression
             y.computeTypes()
         }
     }
@@ -139,24 +139,25 @@ A bővítményként megvalósítandó utasítások esetén a kifejezések elvár
 
 ## Validation
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.validation** csomagban hozzatok létre egy **TypeValidator.xtend** fájlt, hasonlóan a névelemzésnél használt **NameValidator.xtend** fájlhoz.
+A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.validation** csomagban hozzatok létre egy **TypeValidator.java** fájlt, hasonlóan a névelemzésnél használt **NameValidator.java** fájlhoz.
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslValidator.xtend** fájlt, és regisztráljátok be ezt a **TypeValidator** osztályt is az alábbi módon:
+A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslValidator.java** fájlt, és regisztráljátok be ezt a **TypeValidator** osztályt is az alábbi módon:
 
-```
-package webtest.dsl.validation
+```Java
+package webtest.dsl.validation;
 
-import org.eclipse.xtext.validation.ComposedChecks
+import org.eclipse.xtext.validation.ComposedChecks;
 
 /**
  * This class contains custom validation rules. 
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-@ComposedChecks(validators=#[NameValidator, TypeValidator])
-class WebTestDslValidator extends AbstractWebTestDslValidator {
-
+@ComposedChecks(validators = {NameValidator.class, TypeValidator.class})
+public class WebTestDslValidator extends AbstractWebTestDslValidator {
+	
 }
+
 ```
 
 A **TypeValidator** osztályban készítsétek el az alábbi ellenőrzést:

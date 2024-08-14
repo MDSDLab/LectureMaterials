@@ -10,32 +10,32 @@ A kódszínezéssel kapcsolatos legfontosabb információkat [itt találhatjuk](
 
 Először meg kell határozni azokat a kategóriákat, amelyek önálló színeket kaphatnak. Ezek a kategóriák az Eclipse beállításoknál (**Window > Preferences > Xtext Languages > WebTestDsl > Syntax Coloring**) szerkeszthetővé is válnak, így a felhasználók saját maguk konfigurálhatják az általuk preferált színeket.
 
-A **webtest.dsl.ui** projektben hozzatok létre egy **webtest.dsl.ui.highlighting** csomagot, benne pedig egy **HighlightingConfiguration.xtend** fájlt a következő tartalommal:
+A **webtest.dsl.ui** projektben hozzatok létre egy **webtest.dsl.ui.highlighting** csomagot, benne pedig egy **HighlightingConfiguration.java** fájlt a következő tartalommal:
 
 ```Java
-package webtest.dsl.ui.highlighting
+package webtest.dsl.ui.highlighting;
 
-import org.eclipse.swt.SWT
-import org.eclipse.swt.graphics.RGB
-import org.eclipse.xtext.ide.editor.syntaxcoloring.HighlightingStyles
-import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration
-import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcceptor
-import org.eclipse.xtext.ui.editor.utils.TextStyle
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.HighlightingStyles;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcceptor;
+import org.eclipse.xtext.ui.editor.utils.TextStyle;
 
-class HighlightingConfiguration implements IHighlightingConfiguration {
-    public static final String DEFAULT_ID = HighlightingStyles.DEFAULT_ID
-    public static final String INVALID_TOKEN_ID = HighlightingStyles.INVALID_TOKEN_ID
-    public static final String NUMBER_ID = HighlightingStyles.NUMBER_ID
-    public static final String STRING_ID = HighlightingStyles.STRING_ID
-    public static final String COMMENT_ID = HighlightingStyles.COMMENT_ID
-    public static final String PUNCTUATION_ID = HighlightingStyles.PUNCTUATION_ID
-    public static final String TASK_ID = HighlightingStyles.TASK_ID
-    public static final String KEYWORD_ID = HighlightingStyles.KEYWORD_ID
+public class HighlightingConfiguration implements IHighlightingConfiguration {
+    public static final String DEFAULT_ID = HighlightingStyles.DEFAULT_ID;
+    public static final String INVALID_TOKEN_ID = HighlightingStyles.INVALID_TOKEN_ID;
+    public static final String NUMBER_ID = HighlightingStyles.NUMBER_ID;
+    public static final String STRING_ID = HighlightingStyles.STRING_ID;
+    public static final String COMMENT_ID = HighlightingStyles.COMMENT_ID;
+    public static final String PUNCTUATION_ID = HighlightingStyles.PUNCTUATION_ID;
+    public static final String TASK_ID = HighlightingStyles.TASK_ID;
+    public static final String KEYWORD_ID = HighlightingStyles.KEYWORD_ID;
 
-    public static final String DECLARATION_ID = "DECLARATION_ID"
-    public static final String PAGE_MEMBER_ID = "PAGE_MEMBER_ID"
+    public static final String DECLARATION_ID = "DECLARATION_ID";
+    public static final String PAGE_MEMBER_ID = "PAGE_MEMBER_ID";
     
-    override configure(IHighlightingConfigurationAcceptor acceptor) {
+    @Override
+    public void configure(IHighlightingConfigurationAcceptor acceptor) {
         acceptor.acceptDefaultHighlighting(DEFAULT_ID, "Default", defaultTextStyle());
         acceptor.acceptDefaultHighlighting(INVALID_TOKEN_ID, "Invalid symbol", errorTextStyle());
         acceptor.acceptDefaultHighlighting(NUMBER_ID, "Number", numberTextStyle());
@@ -49,59 +49,59 @@ class HighlightingConfiguration implements IHighlightingConfiguration {
         acceptor.acceptDefaultHighlighting(PAGE_MEMBER_ID, "Page member", pageMemberTextStyle());
     }    
     
-    def TextStyle defaultTextStyle() {
-        val textStyle = new TextStyle();
+    public TextStyle defaultTextStyle() {
+        var textStyle = new TextStyle();
         return textStyle;
     }
 
-    def TextStyle errorTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle errorTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         return textStyle;
     }
     
-    def TextStyle numberTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle numberTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         textStyle.setColor(new RGB(128, 0, 128));
         return textStyle;
     }
 
-    def TextStyle stringTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle stringTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         textStyle.setColor(new RGB(128, 0, 0));
         return textStyle;
     }
 
-    def TextStyle commentTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle commentTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         textStyle.setColor(new RGB(128, 128, 128));
         return textStyle;
     }
 
-    def TextStyle punctuationTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle punctuationTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         return textStyle;
     }
     
-    def TextStyle taskTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle taskTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         textStyle.setColor(new RGB(127, 159, 191));
         return textStyle;
     }
     
-    def TextStyle keywordTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle keywordTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         textStyle.setColor(new RGB(0, 0, 128));
         return textStyle;
     }
 
-    def TextStyle declarationTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle declarationTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         textStyle.setColor(new RGB(0, 128, 128));
         return textStyle;
     }
     
-    def TextStyle pageMemberTextStyle() {
-        val textStyle = defaultTextStyle().copy();
+    public TextStyle pageMemberTextStyle() {
+        var textStyle = defaultTextStyle().copy();
         textStyle.setColor(new RGB(128, 128, 0));
         return textStyle;
     }
@@ -110,55 +110,59 @@ class HighlightingConfiguration implements IHighlightingConfiguration {
 
 Az Xtext beépített konfigurációin felül a **DECLARATION_ID** a WebTest kód vázát alkotó deklarációk színezését, a **PAGE_MEMBER_ID** pedig a kontextuson belül feloldott tagok színezését reprezentálja. A többi stílus az Xtext beépített stílusa.
 
-Hozzatok létre egy **WebTestDslHighlighter.xtend** fájlt a **webtest.dsl.ui.highlighting** csomagban a következő tartalommal:
+Hozzatok létre egy **WebTestDslHighlighter.java** fájlt a **webtest.dsl.ui.highlighting** csomagban a következő tartalommal:
 
 ```Java
-package webtest.dsl.ui.highlighting
+package webtest.dsl.ui.highlighting;
 
-import com.google.inject.Inject
-import org.eclipse.xtext.Keyword
-import org.eclipse.xtext.ide.editor.syntaxcoloring.DefaultSemanticHighlightingCalculator
-import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor
-import org.eclipse.xtext.nodemodel.ILeafNode
-import org.eclipse.xtext.nodemodel.INode
-import org.eclipse.xtext.resource.XtextResource
-import org.eclipse.xtext.util.CancelIndicator
-import webtest.dsl.services.WebTestDslGrammarAccess
-import webtest.model.Main
+import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.DefaultSemanticHighlightingCalculator;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.util.CancelIndicator;
 
-class WebTestDslHighlighter extends DefaultSemanticHighlightingCalculator {
+import com.google.inject.Inject;
+
+import webtest.dsl.services.WebTestDslGrammarAccess;
+import webtest.model.Main;
+
+public class WebTestDslHighlighter extends DefaultSemanticHighlightingCalculator {
     @Inject
     WebTestDslGrammarAccess ga;
 
-    override provideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor, CancelIndicator cancelIndicator) {
-        if (resource?.parseResult === null) return;
+    @Override
+    public void provideHighlightingFor(XtextResource resource, IHighlightedPositionAcceptor acceptor, CancelIndicator cancelIndicator) {
+        if (resource == null || resource.getParseResult() == null) return;
             
-        val root = resource.parseResult.rootNode
-        for (node : root.getAsTreeIterable()) {
-            if (cancelIndicator.canceled) return;
-            if (node.semanticElement instanceof Main) {
-                keyword(acceptor, node, ga.mainAccess.webtestKeyword_0, HighlightingConfiguration.DECLARATION_ID);
+        var root = resource.getParseResult().getRootNode();
+        for (var node : root.getAsTreeIterable()) {
+            if (cancelIndicator.isCanceled()) return;
+            var semanticElement = node.getSemanticElement();
+            if (semanticElement instanceof Main) {
+                keyword(acceptor, node, ga.getMainAccess().getWebtestKeyword_0(), HighlightingConfiguration.DECLARATION_ID);
             }
         }
     }
     
-    protected def void keyword(IHighlightedPositionAcceptor acceptor, INode node, Keyword keyword, String conf) {
-        for (leaf : node.leafNodes) {
-            var ge = leaf.grammarElement
+    protected void keyword(IHighlightedPositionAcceptor acceptor, INode node, Keyword keyword, String conf) {
+        for (var leaf : node.getLeafNodes()) {
+            var ge = leaf.getGrammarElement();
             if (keyword == ge) {
                 highlight(acceptor, leaf, conf);
             }
         }
     }    
-    
-    protected def void highlight(IHighlightedPositionAcceptor acceptor, INode node, String conf) {
-        if(node === null) return;
+        
+    protected void highlight(IHighlightedPositionAcceptor acceptor, INode node, String conf) {
+        if(node == null) return;
         if(node instanceof ILeafNode) {
-            acceptor.addPosition(node.offset, node.length, conf);
+            acceptor.addPosition(node.getOffset(), node.getLength(), conf);
         } else {
-            for(leaf : node.leafNodes) {
-                if(!leaf.hidden) {
-                    acceptor.addPosition(leaf.offset, leaf.length, conf);
+            for(var leaf : node.getLeafNodes()) {
+                if(!leaf.isHidden()) {
+                    acceptor.addPosition(leaf.getOffset(), leaf.getLength(), conf);
                 }
             }
         }
@@ -171,25 +175,30 @@ A fenti kód kiszínezi a **webtest** kulcsszót a fájl elején.
 Ahhoz, hogy a fenti két osztály meghívásra kerüljön, be kell őket regisztrálni a **webtest.dsl.ui** csomagban lévő **WebTestDslUiModule** osztályba:
 
 ```Java
-package webtest.dsl.ui
+package webtest.dsl.ui;
 
-import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
-import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator
-import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration
-import webtest.dsl.ui.highlighting.HighlightingConfiguration
-import webtest.dsl.ui.highlighting.WebTestDslHighlighter
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+
+import webtest.dsl.ui.highlighting.HighlightingConfiguration;
+import webtest.dsl.ui.highlighting.WebTestDslHighlighter;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
  */
-@FinalFieldsConstructor
-class WebTestDslUiModule extends AbstractWebTestDslUiModule {
-    def Class<? extends IHighlightingConfiguration> bindHighlightConf() {
-        HighlightingConfiguration
+public class WebTestDslUiModule extends AbstractWebTestDslUiModule {
+
+    public WebTestDslUiModule(AbstractUIPlugin plugin) {
+        super(plugin);
+    }
+    
+    public Class<? extends IHighlightingConfiguration> bindHighlightConf() {
+        return HighlightingConfiguration.class;
     }
 
-    def Class<? extends ISemanticHighlightingCalculator> bindSemanticCalculator() {
-        WebTestDslHighlighter
+    public Class<? extends ISemanticHighlightingCalculator> bindSemanticCalculator() {
+        return WebTestDslHighlighter.class;
     }
 }
 ```
@@ -208,7 +217,7 @@ Módosítsátok a **WebTestDslHighlighter** osztályt, hogy az alábbi elemeket 
 * Ha a **TestParams** bővítményt meg kell valósítanotok, akkor a **TestCase**-hez tartozó **using** és a **TestCaseInstance**-hoz tartózó **with** kulcsszót
 * Ha a **Manual** bővítményt meg kell valósítanotok, akkor a nyitó **manual** és a záró **end** kulcsszót
 
-Módosítsátok a **WebTestDslHighlighter** osztályt, hogy az alábbi elemeket is kiszínezze **PAGE_MEMBER_ID** stílusúra:
+Módosítsátok a **WebTestDslHighlighter** osztályt, hogy az alábbi elemeket is kiszínezze **PAGE_MEMBER_ID** stílusúra (ezek nehéz feladatok):
 
 * Egy **Page**-en belül az oldal változóinak és operációinak nevét
 * Egy **VariableExpression**-ön belül a változó nevét, ha az egy **Page** saját változója

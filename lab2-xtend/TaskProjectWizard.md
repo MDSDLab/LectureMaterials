@@ -4,7 +4,7 @@ Ebben a részfeladatban nincs semmi teendőtök, csak olvassátok el az alábbi 
 
 Ahhoz, hogy a WebTest fájlokból előálló JUnit tesztek végrehajthatók legyenek, a WebTest fájlokat egy megfelelő szerkezetű projektbe kell beágyazni (ld. **webtest.example** projekt).
 
-Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy olyan varázslót (**src/webtest/dsl/ui/wizard/WebTestDslProjectTemplateProvider.xtend**), ami Selenium alapú JUnit tesztek futtatására alkalmas projektet állít elő. Ebben a fájlban két osztály található: **WebTestDslProjectTemplateProvider** és **WebTestProject**. A kívánt projekt tényleges létrehozását a **WebTestProject** osztály végzi, amely a következő könyvtárakat és fájlokat hozza létre:
+Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy olyan varázslót (**src/webtest/dsl/ui/wizard/WebTestProject.java**), ami Selenium alapú JUnit tesztek futtatására alkalmas projektet állít elő az alábbi könyvtárak és fájlok létrehozásával:
 
 * **src/main/java**: egy Maven projekt esetén ez tartalmazza a Java forrásfájlokat
   * **.gitignore**: a Git verziókezelő konfigurációs fájlja (üres, mert csak arra szolgál, hogy az **src/main/java** könyvtár megmaradjon verziókezelés alatt)

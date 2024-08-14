@@ -2,11 +2,11 @@
 
 ## A laborfeladat elvégzésének lépései
 
-0. Töltsétek le, és telepítsétek az [Eclipse IDE for Java and DSL Developers 2023-06 R](https://www.eclipse.org/downloads/packages/release/2023-06/r/eclipse-ide-java-and-dsl-developers) verziót. FONTOS: pontosan ezt a változatot és ezt a verziót használjátok, mert a projektek csak ezzel fordulnak helyesen!
+0. Töltsétek le, és telepítsétek az [Eclipse IDE for Java and DSL Developers 2024-06 R](https://www.eclipse.org/downloads/packages/release/2024-06/r/eclipse-ide-java-and-dsl-developers) verziót. FONTOS: pontosan ezt a változatot és ezt a verziót használjátok, mert a projektek csak ezzel fordulnak helyesen!
 1. Csináljátok végig az [Xcore Wiki](https://wiki.eclipse.org/Xcore) és az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) oldalakon található tutorialokat!
 2. Az [mdsd-2024-lab1-xtext](https://github.com/MDSDLab/mdsd-2024-lab1-xtext) repóból másoljátok át a **webtest.dsl.parent** könyvtárat közvetlenül a saját repótok gyökerébe!
 3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a [számotokra kiosztott bővítményeket](ExtrasTable2024.md)!
-4. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia. Ha nincs `mvn` parancs a gépeteken, telepítsétek a [Maven](https://maven.apache.org/download.cgi)-t.
+4. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia. Ha nincs `mvn` parancs a gépeteken, telepítsétek a [Maven](https://maven.apache.org/download.cgi)-t, és adjátok hozzá a Maven `bin` könyvtárát a `PATH` környezeti változóhoz.
 5. Készítsetek egy **hw1** nevű **tag**-et az utolsó commitra!
 
 ## Feladat célja
@@ -37,7 +37,7 @@ A **webtest.model.tests** projekt azt teszteli, hogy az elkészített Xcore meta
 
 A **webtest.dsl.tests** projekt azt teszteli, hogy az elkészített Xtext nyelvtan, valamint a hozzá tartozó név- és típuselemzés megfelel-e a laborfeladat követelményeinek.
 
-A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülnek leadás után!
+A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni, és a Maven fordítás is sikeres a `compile.bat` segítségével. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülnek leadás után!
 
 ## Referenciák
 
