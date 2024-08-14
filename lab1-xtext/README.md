@@ -21,6 +21,8 @@ Nyissátok meg a **webtest.dsl.parent** könyvtár alatt található projekteket
 
 A **webtest.dsl** projektben az **src** könyvtár alatt a **webtest.dsl** csomagban szereplő **WebTestExtensions** osztályban állítsátok **false**-ra az azon bővítményekhez tartozó értékeket, amelyeket nem kell megvalósítanotok. Így csak olyan tesztek lesznek engedélyezve, amelyek számotokra relevánsak.
 
+FONTOS: Az **xtend** kiterjesztésű fájlok csak az Eclipse IDE-ben dolgozva látják az azonos projektben lévő **java** kiterjesztésű fájlokat, a Maven fordítás során nem! Emiatt célszerű ezen a laboron az **xtend** kiterjesztésű fájlokat mellőzni. Ha mégis használtok ilyen fájlokat, győződjetek meg róla, hogy a Maven fordítás is működőképes-e!
+
 Oldjátok meg az alábbi feladatokat:
 
 0. [Mintapélda kipróbálása](TaskExample.md)

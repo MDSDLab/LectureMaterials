@@ -18,6 +18,8 @@ A WebTest nyelv közös részét mindenkinek meg kell valósítania. A bővítm�
 
 Az előző (**lab1-xtext**) labor eredményét kell továbbfejleszteni. Nyissátok meg a **webtest.parent** könyvtár alatt található projekteket Eclipse alatt!
 
+FONTOS: Az **xtend** kiterjesztésű fájlok csak az Eclipse IDE-ben dolgozva látják az azonos projektben lévő **java** kiterjesztésű fájlokat, a Maven fordítás során nem! Emiatt célszerű csak a kódgenerálás során használni az **xtend** kiterjesztésű fájlokat. Mindenképpen győződjetek meg róla, hogy a Maven fordítás is működőképes-e!
+
 Oldjátok meg az alábbi feladatokat:
 
 1. [Kódvázlat (outline view, label provider)](TaskOutline.md)
