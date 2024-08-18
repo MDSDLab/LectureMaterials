@@ -17,7 +17,7 @@ A WebTest nyelv [közös részét](WebTestReference.md) mindenkinek meg kell val
 
 ## Feladat leírása
 
-Nyissátok meg a **webtest.dsl.parent** könyvtár alatt található projekteket Eclipse alatt: **File > Import... / General > Existing Projects into Workspace** (nem Maven > Existing Maven Projects!), és **root directory**-nak a **webtest.dsl.parent**-et válasszátok! A megnyitás után előfordulhatnak fordítási hibák a **webtest.dsl** projekten belül a **WebTestDsl.xtext** fájlban, valamint a **webtest.dsl.tests** és a **webtest.model.tests** projektekben. Ezek a hibák azért jelennek meg, mert a laborfeladat során kiegészítendő fájlok tartalma még nem teljes. A hibáknak el kell tűnnie a laborfeladat megoldásának végére. A többi projektnek hiba nélkül kell betöltődnie.
+Nyissátok meg a **webtest.dsl.parent** könyvtár alatt található projekteket Eclipse alatt: **File > Import... / General > Existing Projects into Workspace** (nem Maven > Existing Maven Projects!), és **root directory**-nak a **webtest.dsl.parent**-et válasszátok! A megnyitás után előfordulhatnak fordítási hibák a **webtest.dsl.tests** és a **webtest.model.tests** projektekben. Ezek a hibák azért jelennek meg, mert a laborfeladat során kiegészítendő fájlok tartalma még nem teljes. A hibáknak el kell tűnnie a laborfeladat megoldásának végére. A többi projektnek hiba nélkül kell betöltődnie.
 
 A **webtest.dsl** projektben az **src** könyvtár alatt a **webtest.dsl** csomagban szereplő **WebTestExtensions** osztályban állítsátok **false**-ra az azon bővítményekhez tartozó értékeket, amelyeket nem kell megvalósítanotok. Így csak olyan tesztek lesznek engedélyezve, amelyek számotokra relevánsak.
 
