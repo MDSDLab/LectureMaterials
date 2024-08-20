@@ -22,16 +22,16 @@ FONTOS: Az **xtend** kiterjesztésű fájlok csak az Eclipse IDE-ben dolgozva l�
 
 Oldjátok meg az alábbi feladatokat:
 
-1. [Kódvázlat (outline view, label provider)](TaskOutline.md)
-2. [Kódszínezés (syntax coloring, highlighting)](TaskHighlighting.md)
+1. [Kódvázlat (outline view, label provider)](TaskOutline.md) (5 pont)
+2. [Kódszínezés (syntax coloring, highlighting)](TaskHighlighting.md) (5 pont)
 3. [Projekt varázsló (project wizard)](TaskProjectWizard.md)
-4. [Kódgenerálás (code generation)](TaskCodeGeneration.md)
+4. [Kódgenerálás (code generation)](TaskCodeGeneration.md) (15 pont)
 
 ## Megoldás ellenőrzése
 
 A **webtest.dsl.ui.tests** projekt azt teszteli, hogy az elkészített Xtext IDE támogatás megfelel-e a laborfeladat követelményeinek.
 
-A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni, és a generátor is megfelelően működik. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülnek leadás után!
+A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni, és a generátor is megfelelően működik. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülhetnek a leadás után!
 
 Ha az összes részfeladattal végeztetek, az alábbi működés az elvárt:
 

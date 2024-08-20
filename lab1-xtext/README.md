@@ -26,10 +26,10 @@ FONTOS: Az **xtend** kiterjesztésű fájlok csak az Eclipse IDE-ben dolgozva l�
 Oldjátok meg az alábbi feladatokat:
 
 0. [Mintapélda kipróbálása](TaskExample.md)
-1. [Metamodell elkészítése](TaskMetaModel.md)
-2. [Nyelvtan elkészítése](TaskGrammar.md)
-3. [Névelemzés](TaskNameAnalysis.md)
-4. [Típuselemzés](TaskTypeAnalysis.md)
+1. [Metamodell elkészítése](TaskMetaModel.md) (5 pont)
+2. [Nyelvtan elkészítése](TaskGrammar.md) (10 pont)
+3. [Névelemzés](TaskNameAnalysis.md) (5 pont)
+4. [Típuselemzés](TaskTypeAnalysis.md) (5 pont)
 
 ## Megoldás ellenőrzése
 
@@ -37,7 +37,7 @@ A **webtest.model.tests** projekt azt teszteli, hogy az elkészített Xcore meta
 
 A **webtest.dsl.tests** projekt azt teszteli, hogy az elkészített Xtext nyelvtan, valamint a hozzá tartozó név- és típuselemzés megfelel-e a laborfeladat követelményeinek.
 
-A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni, és a Maven fordítás is sikeres a `compile.bat` segítségével. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülnek leadás után!
+A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni, és a Maven fordítás is sikeres a `compile.bat` segítségével. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülhetnek a leadás után!
 
 ## Referenciák
 
