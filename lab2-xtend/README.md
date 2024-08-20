@@ -35,9 +35,9 @@ A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns te
 
 Ha az összes részfeladattal végeztetek, az alábbi működés az elvárt:
 
-1. Indítsunk el a **Runtime Eclipse**-et
+1. Indítsuk el a **Runtime Eclipse**-et
 2. Készítsünk egy új **WebTest projektet** a varázsló segítségével
-3. A projekt **webtest** könyvtárába készítsünk egy új **.wt** kiterjesztésű fált
+3. A projekt **webtest** könyvtárában készítsünk egy új **.wt** kiterjesztésű fált
 4. Írjunk WebTest nyelven teszteket a **.wt** kiterjesztésű fájlba, és közben élvezzük a saját Xtext alapú IDE támogatásunk előnyeit: kódszínezés, outline nézet, validációk, stb.
 5. Mentsük el a **.wt** kiterjesztésű fájlt. Ekkor automatikusan előáll a neki megfelelő JUnit tesztet tartalmazó Java kód.
 6. Kattintsunk jobb gombbal a projekten, és válasszuk a **Run As > JUnit Test** menüpontot. Ennek hatására a JUnit teszt egy Selenium által vezérelt böngészőn keresztül végrehajtja a WebTest nyelven leírt utasításainkat.

@@ -23,8 +23,6 @@ A bővítményeket tesztelő osztályokból csak azokat kell megtartani, amelyek
 
 A **MetaModelTests** osztályt és belsejét mindenképpen meg kell tartani.
 
-A metamodellel kapcsolatos feladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni. (A laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő előre kiadott teszteken túl további tesztek is futtatásra kerülnek leadás után!)
-
 ## Feltöldendő
 
 A megoldás során az alábbi fázisokról készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw1** mappába:

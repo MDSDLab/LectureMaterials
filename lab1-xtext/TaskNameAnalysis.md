@@ -161,9 +161,9 @@ class NameValidator extends AbstractWebTestDslValidator {
 
 Ez a **checkDuplicatePageNames** függvényben ellenőrzi, hogy minden **Page** neve egyedi-e. Amennyiben nem, hibaüzenetet készít az ismétlődő nevekhez: `Page '<name>' is already defined.`
 
-A hibaüzenet az oldal nevéhez kötve jelenik meg: mivel a **Page** a **NamedElemenet**-ből származik, az oldal nevét a **NamedElement** osztály **name** property-je reprezentálja.
+A hibaüzenet az oldal nevéhez kötve jelenik meg: mivel a **Page** a **NamedElement**-ből származik, az oldal nevét a **NamedElement** osztály **name** property-je reprezentálja.
 
-A **@Check** annotációval Jelezzétek, hogy a **checkDuplicatePageNames** egy olyan függvény, amelyet a kód validációja során meg kell hívni. A **NORMAL** paraméter azt jelzi, hogy a kód mentésekor ellenőrizzük a feltételeket. A **checkDuplicatePageNames** függvény paramétere az az objektum, amelyen az ellenőrzést le kell futtani. Jelen esetben a teljes modell gyökerén (**Main**) keresztül bejárjuk az összes **Page** objektumot, de más validációk esetén másfajta objektum is megadható paraméterként, ilyenkor az összes szóba jöhető objektumra meghívódik a validáló függvény.
+A **@Check** annotáció azt jelzi, hogy a **checkDuplicatePageNames** egy olyan függvény, amelyet a kód validációja során meg kell hívni. A **NORMAL** paraméter azt jelenti, hogy a kód mentésekor ellenőrizzük a feltételeket. A **checkDuplicatePageNames** függvény paramétere az az objektum, amelyen az ellenőrzést le kell futtani. Jelen esetben a teljes modell gyökerén (**Main**) keresztül bejárjuk az összes **Page** objektumot, de más validációk esetén másfajta objektum is megadható paraméterként, ilyenkor az összes szóba jöhető objektumra meghívódik a validáló függvény.
 
 Még egy lépést el kell végeznünk, hogy a fenti validáció lefusson. A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslValidator.java** fájlt, és módosítsátok a tartalmát az alábbi módon:
 

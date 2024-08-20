@@ -162,7 +162,7 @@ public class WebTestDslValidator extends AbstractWebTestDslValidator {
 
 A **TypeValidator** osztályban készítsétek el az alábbi ellenőrzést:
 
-* Jelezzétek, ha egy kifejezés tényleges típusa nem felel meg a kifejezés elvárt típusával: `"Expression of type <expected type> expected but <actual type> was found."`. A behelyettesített típusnevek az alábbiak lehetnek: `STRING`, `INTEGER`, `BOOLEAN` vagy `ELEMENT`.
+* Jelezzétek, ha egy kifejezés tényleges típusa nem felel meg a kifejezés elvárt típusának: `"Expression of type <expected type> expected but <actual type> was found."`. A behelyettesített típusnevek az alábbiak lehetnek: `STRING`, `INTEGER`, `BOOLEAN` vagy `ELEMENT`.
 
 ## A típuselemzés ellenőrzése
 

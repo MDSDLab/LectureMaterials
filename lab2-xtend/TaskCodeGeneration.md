@@ -166,9 +166,9 @@ A megvalósítandó 2 bővítmény támogatását se felejtsétek el beépíteni
 
 Az alábbi módon lehet ellenőrizni a generátor helyes működését:
 
-1. Indítsunk el a **Runtime Eclipse**-et!
+1. Indítsuk el a **Runtime Eclipse**-et!
 2. Készítsünk egy új **WebTest projektet** a varázsló segítségével!
-3. A projekt **webtest** könyvtárába készítsünk egy új **.wt** kiterjesztésű fált a megfelelő tartalommal!
+3. A projekt **webtest** könyvtárában készítsünk egy új **.wt** kiterjesztésű fált a megfelelő tartalommal!
 4. Mentsük el a **.wt** kiterjesztésű fájlt! Ekkor automatikusan előáll a neki megfelelő JUnit tesztet tartalmazó Java kód.
 5. Kattintsunk jobb gombbal a projekten, és válasszuk a **Run As > JUnit Test** menüpontot. Ennek hatására a JUnit teszt egy Selenium által vezérelt böngészőn keresztül végrehajtja a WebTest nyelven leírt utasításainkat.
 

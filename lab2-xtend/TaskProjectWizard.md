@@ -19,8 +19,8 @@ Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy oly
 * **.classpath**: az Eclipse egyik konfigurációs fájlja, amely a forráskódokat tartalmazó könyvtárakat határozza meg
 * **.gitignore**: a Git verziókezelő konfigurációs fájlja, amely beállítja, hogy a **target** és **output** könyvtárak ne kerüljenek verziókezelés alá
 * **pom.xml**: a Maven konfigurációs fájl, amely tartalmazza a JUnit 5 és a Selenium függőségeket
-* **src/main/java/webtest/selenium/api/Page.java**: egy weboldal modell ősét reprezentáló segédosztály
-* **src/main/java/webtest/selenium/api/PageElement.java**: egy weboldal elemet reprezentáló segédosztály
+* **src/test/java/webtest/selenium/api/Page.java**: egy weboldal modell ősét reprezentáló segédosztály
+* **src/test/java/webtest/selenium/api/PageElement.java**: egy weboldal elemet reprezentáló segédosztály
 * **src/test/java/webtest/selenium/api/SeleniumTest.java**: a Selenium meghívását támogató segédosztály
 
 A fenti fájlok tartalmát a **webtest.generator** projekten belül az **webtest.generator.WebTestProjectGenerator** osztály állítja elő Xtend sablonok segítségével.

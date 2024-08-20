@@ -1,6 +1,6 @@
 # Kódvázlat (outline view, label provider)
 
-Az outline (vázlat) nézet segítségével a kód szerkezetéről kapunk áttekintő képet. Az Xtext által generált alapértelmezett outline nézet így néz ki:
+Az outline (vázlat) nézet segítségével a kód szerkezetéről kapunk áttekintő képet. Az Xtext által generált alapértelmezett outline nézet így néz ki a **Runtime Eclipse**-ben:
 
 ![Outline-Initial](images/Outline-Initial.png)
 
