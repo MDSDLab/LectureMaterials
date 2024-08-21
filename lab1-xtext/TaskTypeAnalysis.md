@@ -162,7 +162,7 @@ public class WebTestDslValidator extends AbstractWebTestDslValidator {
 
 A **TypeValidator** osztályban készítsétek el az alábbi ellenőrzést:
 
-* Jelezzétek, ha egy kifejezés tényleges típusa nem felel meg a kifejezés elvárt típusának: `"Expression of type <expected type> expected but <actual type> was found."`. A behelyettesített típusnevek az alábbiak lehetnek: `STRING`, `INTEGER`, `BOOLEAN` vagy `ELEMENT`.
+* Jelezzétek, ha egy kifejezés tényleges típusa nem felel meg a kifejezés elvárt típusának: `"Expression of type <expected type> expected but <actual type> was found."`. A behelyettesített típusnevek az alábbiak lehetnek: `STRING`, `INTEGER`, `BOOLEAN`, `ELEMENT` vagy `UNDEFINED`.
 
 ## A típuselemzés ellenőrzése
 
@@ -172,6 +172,6 @@ A típuselemzés és -validáció helyes működését a **webtest.dsl.tests** p
 
 ## Feltöltendő
 
-Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
+Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw1** mappába az alábbiakról:
 
-* A **TypeAnalysisTests** és a **TypeAnalysisExtensionsTests** összes tesztjének sikeres lefutása (mivel a név- és típuselemzés összefügg, valószínűleg a névelemzés részfeladat megoldására is szükség lesz ehhez)
+* A **TypeAnalysisTests** és a **TypeAnalysisExtensionsTests** összes tesztjének sikeres lefutása.

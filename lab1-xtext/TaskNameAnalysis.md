@@ -213,4 +213,4 @@ A névfeloldás és -validáció helyes működését a **webtest.dsl.tests** pr
 
 Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw1** mappába az alábbiakról:
 
-* A **NameAnalysisTests** és a **NameAnalysisExtensionsTests** összes tesztjének sikeres lefutása
+* A **NameAnalysisTests** és a **NameAnalysisExtensionsTests** összes tesztjének sikeres lefutása. (A **NameAnalysisTests.testLocalVariableErrors()** teszt sikeréhez a típuselemzés részfeladat megoldására is szükség lehet.)

@@ -1,4 +1,4 @@
-# Name analysis (scoping, validation)
+# Name analysis
 
 The goal of name analysis is to connect name references with their definitions (e.g., for variables).
 
@@ -213,4 +213,4 @@ You can check your name analysis implementation using the **webtest.dsl.tests** 
 
 During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
 
-* The test summary window in **Eclipse** for the **webtest.model.tests** project, which shows that all the tests in **NameAnalysisTests** and **NameAnalysisExtensionsTests** are executed successfully.
+* The test summary window in **Eclipse** for the **webtest.model.tests** project, which shows that all the tests in **NameAnalysisTests** and **NameAnalysisExtensionsTests** are executed successfully. (For the success of the test **NameAnalysisTests.testLocalVariableErrors()** test the solution of type analysis task may be necessary.)

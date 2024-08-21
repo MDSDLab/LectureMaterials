@@ -1,14 +1,14 @@
-# Típuselemzés (type analysis, validation)
+# Type analysis
 
-A típuselemzés feladata, hogy meghatározza az egyes kifejezések típusát, és ellenőrizze, hogy ezek a típusok megfelelnek-e a kód adott helyén elvárt típusnak.
+The goal of type analysis is to determine the types of expressions and check whether these types are compatible with the expected type at that point in the code.
 
-Az Xtext nem végez típusellenőrzést, így ennek megvalósítása a mi feladatunk.
+Xtext performs no type analysis. We have to do this ourselves.
 
-Ezen túlmenően hibaüzeneteket kell generálnunk akkor, ha valami probléma adódik a típusok ellenőrzésével. Ezt a validáció során tehetjük meg, amelyről részletes leírás [itt található](https://eclipse.dev/Xtext/documentation/303_runtime_concepts.html#validation).
+In addition, we have to report errors if anything goes wrong during type analysis. This can be done using  [validation](https://eclipse.dev/Xtext/documentation/303_runtime_concepts.html#validation).
 
-## Xcore metamodell módosítása
+## Modification of the Xcore meta-model
 
-Nyissátok meg a **webtest.model** projektet, és a **model** könyvtárban a **WebTest.xcore** fájlban a `Type` enumerációt módosítsátok az alábbi módon:
+Inside the **webtest.model** project under the **model** folder open the **WebTest.xcore** file, and modify the `Type` enumeration as follows:
 
 ```Java
 enum Type
@@ -23,12 +23,12 @@ enum Type
 }
 ```
 
-A korábbi értékek mellé bekerült két új érték:
+We have two additional values compared to the ones before:
 
-* `ERROR`: azt jelzi, hogy a típuselemzés során nem sikerült meghatározni egy adott kifejezés vagy változó típusát
-* `ANY`: azt jelzi, hogy az adott helyen a kódban tetszőleges típusú kifejezés elfogadható (ilyenek pl. a `print` utasítás argumentumai)
+* `ERROR`: marks that the type of a given expression or variable could not be determined
+* `ANY`: marks that at some point in the code any type of expression is acceptable (e.g., the arguments of the `print` statement)
 
-Módosítsátok az `Expression` osztályt is az alábbi módon:
+Modify the `Expression` class as follows:
 ```Java
 abstract class Expression
 {
@@ -39,9 +39,9 @@ abstract class Expression
 }
 ```
 
-Az `expectedType` attribútumban a kifejezés elvárt típusát, az `actualType` attribútumban pedig a kifejezés tényleges típusát kell tárolni. Ha még emlékeztek az előző félévből az előadásra: az `expectedType` egy örökölt attribútum, amelyet fentről lefelé kell kiszámolni a szintaxisfában, míg az `actualType` egy szintetizált attribútum, amelyet lentről felfelé kell kiértékelni. Ezeket a számításokat a `computeTypes()` függvény felüldefiniálásával lehet megtenni az `Expression` osztály leszármazottaiban: ki kell számolni és el kell tárolni a kifejezés aktuális típusát, valamint be kell állítani a részkifejezések elvárt típusát.
+The `expectedType` property stores the expected type of the expression, while the `actualType` property stores the actual type. If you remember from previous semester: `expectedType` is an inherited attribute which has to be computed top-down, while `actualType` is a synthesized attribute which has to be computed bottom-up. These computations can be performed by overriding the `computeTypes()` operation inside the descendants of the `Expression` class: the actual type of the current expression must be computed and stored, and the expected types of all the directly contained sub-expressions must be set.
 
-Módosítsátok a `Main` osztályt is az alábbi módon:
+Modify the `Main` class as follows:
 ```Java
 class Main
 {
@@ -59,11 +59,11 @@ class Main
 }
 ```
 
-A `Main` osztály `computeTypes()` függvényét meghívva lehet elindítani a típusszámítást a teljes szintaxisfára vonatkozóan. A `typesComputed` attribútum abban nyújt segítséget, hogy ha már egyszer le lett futtatva a típusszámítás, akkor többször már ne hajtódjon végre.
+The `computeTypes()` operation of `Main` can be used to start the type computation for the whole syntax tree.The `typesComputed` property helps to avoid running the computation multiple times.
 
-Vezessétek be a `computeTypes()` függvényt az összes többi osztályban is ( `Page`, `Operation`, `Statement` stb.).
+Introduce the `computeTypes()` operation in all the other classes ( `Page`, `Operation`, `Statement` etc.).
 
-A `computeTypes()` függvény kitöltésénél célszerű a következő sablont követni, ez éppen az attribútumok megfelelő kiértékelését adja:
+The body of the `computeTypes()` operation should follow the following template to get the correct evaluation order of the `actualType` and `expectedType` attributes:
 
 ```Java
 class X
@@ -80,7 +80,7 @@ class X
 }
 ```
 
-Például:
+For example:
 
 ```Java
 class IsExpression extends BinaryExpression
@@ -99,49 +99,48 @@ class IsExpression extends BinaryExpression
 }
 ```
 
-Így végül a `Main` csúcson a `computeTypes()` függvényt meghívva a teljes szintaxisfára megtörténik a típusok számítása.
+Finally, by calling `computeTypes()` on `Main` we can perform type computation for the whole syntax tree.
 
+## Actual and expected types of expressions
 
-## Kifejezések tényleges és elvárt típusa
+The following list specifies the actual types of expressions and the expected types of their sub-expressions:
 
-Az alábbi felsorolásban megadjuk a kifejezések tényleges típusát, illetve azt is, hogy melyik kifejezés milyen típusú részkifejezéseket vár el:
+* `<elem> is <value>`: the expected type of `elem` is `ELEMENT`, the expected type of `value` is `STRING`, the actual type of the whole expression is `BOOLEAN`
+* `<elem> contains <value>`: the expected type of `elem` is `ELEMENT`, the expected type of `value` is `STRING`, the actual type of the whole expression is `BOOLEAN`
+* `<elem> exists`: the expected type of `elem` is `ELEMENT`, the actual type of the whole expression is `BOOLEAN`
+* `not <value>`: the expected type of `value` is `BOOLEAN`, the actual type of the whole expression is `BOOLEAN`
+* string constant: the actual type is `STRING`
+* integer constant: the actual type is `INTEGER`
+* boolean constant: the actual type is `BOOLEAN`
+* HTML element constant: the actual type is `ELEMENT`
+* variable reference as an expression: the actual type of the expression is the type of the variable
 
-* `<elem> is <value>`: az `elem` elvárt típusa `ELEMENT`, a `value` elvárt típusa `STRING`, a teljes kifejezés tényleges típusa `BOOLEAN`
-* `<elem> contains <value>`: az `elem` elvárt típusa `ELEMENT`, a `value` elvárt típusa `STRING`, a teljes kifejezés tényleges típusa `BOOLEAN`
-* `<elem> exists`: az `elem` elvárt típusa `ELEMENT`, a teljes kifejezés tényleges típusa `BOOLEAN`
-* `not <value>`: a `value` elvárt típusa `BOOLEAN`, a teljes kifejezés tényleges típusa `BOOLEAN`
-* karakterlánc konstans kifejezés: tényleges típusa `STRING`
-* egész szám konstans kifejezés: tényleges típusa `INTEGER`
-* logikai érték konstans kifejezés: tényleges típusa `BOOLEAN`
-* HTML elem konstans kifejezés: tényleges típusa `ELEMENT`
-* változó hivatkozás mint kifejezés: tényleges típusa a változó tényleges típusa
+The following list specifies the expected types of expressions inside statements:
 
-Az alábbi felsorolásban megadjuk, hogy melyik utasítás milyen típusú kifejezéseket vár el:
+* `<type> <name> = <value>`: the expected type of `value` is `type`, the type of the variable `name` is `type`
+* `if <condition> then ... else ... end`: the expected type of `condition` is `BOOLEAN`
+* `while <condition> do ... end`: the expected type of `condition` is `BOOLEAN`
+* `<operation name> using <value>...`: the expected types of the `value` arguments are the actual types of the corresponding parameters
+* `open <url>`: the expected type of `url` is `STRING`
+* `fill <elem> with <text>`: the expected type of `elem` is `ELEMENT`, the expected type of `text` is `STRING`
+* `click <elem>`: the expected type of `elem` is `ELEMENT`
+* `context <elem> as <page> ... end`: the expected type of `elem` is `ELEMENT`
+* `print <value>...`: the expected type of the `value` arguments is `ANY`
+* `assert <condition>`: the expected type of `condition` is `BOOLEAN`
+* `wait <time> seconds until <condition>`: the expected type of `time` is `INTEGER`, the expected type of `condition` is `BOOLEAN`
 
-* `<type> <name> = <value>`: a `value` elvárt típusa `type`, a `name` által definiált változó típusa `type`
-* `if <condition> then ... else ... end`: a `condition` elvárt típusa `BOOLEAN`
-* `while <condition> do ... end`: a `condition` elvárt típusa `BOOLEAN`
-* `<operation name> using <value>...`: a vesszőkkel elválasztott `value` értékű argumentumok elvárt típusai megegyeznek az operáció megfelelő paramétereinek típusával
-* `open <url>`: az `url` elvárt típusa `STRING`
-* `fill <elem> with <text>`: az `elem` elvárt típusa `ELEMENT`, a `text` elvárt típusa `STRING`
-* `click <elem>`: az `elem` elvárt típusa `ELEMENT`
-* `context <elem> as <page> ... end`: az `elem` elvárt típusa `ELEMENT`
-* `print <value>...`: a vesszőkkel elválasztott `value` értékek elvárt típusa `ANY`
-* `assert <condition>`: a `condition` elvárt típusa `BOOLEAN`
-* `wait <time> seconds until <condition>`: a `time` elvárt típusa `INTEGER`, a `condition` elvárt típusa `BOOLEAN`
+The following list specifies the expected types of expressions inside extension statements:
 
-A bővítményként megvalósítandó utasítások esetén a kifejezések elvárt típusai a következők:
-
-* `capture <elem>`: az `elem` elvárt típusa `ELEMENT`
-* `javascript <code> using <value>...`: az `code` elvárt típusa `STRING`, a vesszőkkel elválasztott `value` értékek elvárt típusa `ANY`
-* `foreach <item> in <items>`: az `item` tényleges típusa `ELEMENT`, az `items` elvárt típusa `ELEMENT`
-* `test <name>(<parameter>...) with <value>... <statement>... end`: a vesszőkkel elválasztott `value` értékű argumentumok elvárt típusai megegyeznek az teszteset megfelelő paramétereinek típusával
+* `capture <elem>`: the expected type of `elem` is `ELEMENT`
+* `javascript <code> using <value>...`: the expected type of `code` is `STRING`, the expected type of the `value` arguments is `ANY`
+* `foreach <item> in <items>`: the type of `item` is `ELEMENT`, the expected type of `items` is `ELEMENT`
+* `test <name>(<parameter>...) with <value>... <statement>... end`: the expected types of the `value` arguments are the actual types of the corresponding parameters
 
 ## Validation
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.validation** csomagban hozzatok létre egy **TypeValidator.java** fájlt, hasonlóan a névelemzésnél használt **NameValidator.java** fájlhoz.
+Inside the **webtest.dsl** project under the **src** in the **webtest.dsl.validation** package create a **TypeValidator.java** file similarly to **NameValidator.java**.
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslValidator.java** fájlt, és regisztráljátok be ezt a **TypeValidator** osztályt is az alábbi módon:
+Inside the **webtest.dsl** project under the **src** from the **webtest.dsl.scoping** package open the **WebTestDslValidator.java** file, and register the **TypeValidator** class as follows:
 
 ```Java
 package webtest.dsl.validation;
@@ -160,18 +159,20 @@ public class WebTestDslValidator extends AbstractWebTestDslValidator {
 
 ```
 
-A **TypeValidator** osztályban készítsétek el az alábbi ellenőrzést:
+Make the following validation inside the **TypeValidator** class:
 
-* Jelezzétek, ha egy kifejezés tényleges típusa nem felel meg a kifejezés elvárt típusának: `"Expression of type <expected type> expected but <actual type> was found."`. A behelyettesített típusnevek az alábbiak lehetnek: `STRING`, `INTEGER`, `BOOLEAN` vagy `ELEMENT`.
+* Report if the actual type is incompatible with the expected type: `"Expression of type <expected type> expected but <actual type> was found."`. The possible type names to be substituted are: `STRING`, `INTEGER`, `BOOLEAN`, `ELEMENT` or `UNDEFINED`.
 
-## A típuselemzés ellenőrzése
 
-A validátorok által jelzett hibákat a **Runtime Eclipse** piros aláhúzással jelzi a **.wt** fájlban.
+## Check the solution
 
-A típuselemzés és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **TypeAnalysisTests** és a **TypeAnalysisExtensionsTests** tesztelő osztályok segítségével.
+Errors reported by the validators are marked by red underscores inside **.wt** files in **Runtime Eclipse**.
 
-## Feltöltendő
+You can check your name analysis implementation using the **webtest.dsl.tests** project, by running it as a JUnit test (**Run as > JUnit Test**). The classes **TypeAnalysisTests** and **TypeAnalysisExtensionsTests** check the correctness of the name analysis.
 
-Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
 
-* A **TypeAnalysisTests** és a **TypeAnalysisExtensionsTests** összes tesztjének sikeres lefutása (mivel a név- és típuselemzés összefügg, valószínűleg a névelemzés részfeladat megoldására is szükség lesz ehhez)
+## To be uploaded
+
+During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
+
+* The test summary window in **Eclipse** for the **webtest.model.tests** project, which shows that all the tests in **TypeAnalysisTests** and **TypeAnalysisExtensionsTests** are executed successfully.
