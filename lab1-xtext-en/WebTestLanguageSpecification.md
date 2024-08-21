@@ -14,4 +14,3 @@ The following pages provide more details about the WebTest language:
 * [Example: dialog boxes](WebTestExampleDialog.md)
 * [WebTest language reference](WebTestReference.md)
 * [WebTest language extensions](WebTestReferenceExtra.md)
-* [WebTest language further ideas](WebTestReferenceIdeas.md)

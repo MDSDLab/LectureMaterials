@@ -30,14 +30,14 @@ A kiemelés megszüntetéséhez az alábbi JavaScript kód használható, ahol `
 arguments[0].style.outline = ''; arguments[0].style.outlineOffset = '';
 ```
 
-A **capture** az elkészült képet PNG fájlként lementi, és az alkalmazáslogba kiírja, hogy `Captured: <filename.png>`. A fájlnév generálásánál fontos, hogy a fájl neve egyedi legyen (pl. sorfolytonos számozás egy statikus változóban), és különböző **capture** utasítások ne írják felül egymás képeit.
+A **capture** az elkészült képet PNG fájlként lementi az `output` nevű könyvtárba, és az alkalmazáslogba kiírja, hogy `Captured: <filename.png>`. A fájlnév generálásánál fontos, hogy a fájl neve egyedi legyen (pl. sorfolytonos számozás egy statikus változóban), és különböző **capture** utasítások ne írják felül egymás képeit.
 
 A **capture** utasítás felhasználói útmutató automatikus előállításában is segíthet.
 
 Példa:
 
 ```
-print "A bejelentkezéshez nyomjuk meg a Sign in gombot:"
+print "Click Sign in to log in:"
 capture button "Sign in"
 click button "Sign in"
 ```

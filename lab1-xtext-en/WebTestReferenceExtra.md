@@ -1,50 +1,50 @@
-# WebTest nyelv referencia - Bővítmények
+# WebTest language extensions
 
-## Capture bővítmény
+## Capture extension
 
-A **capture page** kulcsszó képernyőképet készít a böngészőben látható HTML oldalról:
+The **capture page** keyword takes a screenshot of the web page:
 
 ```
 capture page
 ```
 
-A **capture** kulcsszónak egy HTML elemet is lehet adni paraméterként:
+The **capture** keyword can accept an HTML element as a parameter:
 
 ```
 capture <elem:element>
 ```
 
-Ekkor a **capture** kulcsszó úgy gördíti az oldalt, hogy a hivatkozott HTML elem látható legyen, majd élénk színű kerettel kiemeli azt. Ezután képernyőképet készít a böngészőben látható HTML oldalról, végül megszünteti a kiemelést.
+In the latter case the **capture** keyword scrolls the page such that the specified element becomes visible, it highlights the element with a red frame, takes a screenshot, and finally, removes the highlight.
 
-A kiemeléshez és görgetéshez az alábbi JavaScript kód használható, ahol `arguments[0]` a kiemelendő elemet jelenti:
+For scrolling and highlighting the following JavaScript code can be used, where `arguments[0]` is the element to be shown and highlighted:
 
 ```javascript
 arguments[0].style.outline = 'red solid 4px'; arguments[0].style.outlineOffset = '-4px'; arguments[0].scrollIntoView({ block: 'center', inline: 'center' });
 ```
 
-A fenti kód lefuttatása után célszerű kb. 1 másodpercet várni, hogy biztosan végrehajtódjon a parancs, majd ezután célszerű elkészíteni a képernyőképet.
+After the execution of the code above, it is advisable to wait for 1 second to make sure that the command is ececuted, and only take the screenshot after this.
 
-A kiemelés megszüntetéséhez az alábbi JavaScript kód használható, ahol `arguments[0]` a kiemelendő elemet jelenti:
+To remove the highlight, the following JavaScript code can be used:
 
 ```javascript
 arguments[0].style.outline = ''; arguments[0].style.outlineOffset = '';
 ```
 
-A **capture** az elkészült képet PNG fájlként lementi, és az alkalmazáslogba kiírja, hogy `Captured: <filename.png>`. A fájlnév generálásánál fontos, hogy a fájl neve egyedi legyen (pl. sorfolytonos számozás egy statikus változóban), és különböző **capture** utasítások ne írják felül egymás képeit.
+The **capture** statement saves the screen shot as a PNG image into the `output` folder, and prints `Captured: <filename.png>` to the application log. The name of the file must be unique (e.g., linear numbering).
 
-A **capture** utasítás felhasználói útmutató automatikus előállításában is segíthet.
+The **capture** statement may help in creating user manuals.
 
-Példa:
+Example:
 
 ```
-print "A bejelentkezéshez nyomjuk meg a Sign in gombot:"
+print "Click Sign in to log in:"
 capture button "Sign in"
 click button "Sign in"
 ```
 
-## ForEach bővítmény
+## ForEach extension
 
-Ha egy HTML elem nem egyértelműen azonosítható be a `<tag> <label>` kombinációval, szükség lehet az összes lehetséges elem bejárására (pl. lista minden elemének vagy a táblázat minden sorának bejárása). Erre szolgál a **foreach** ciklus:
+If an HTML is not uniqe according to the `<tag> <label>` combination, it may be necessary to iterate through all of the possibilities (e.g., the elements of a list or the rows of a table). This is what the **foreach** loop is for:
 
 ```
 foreach <item:element> in <list:element>
@@ -52,7 +52,7 @@ foreach <item:element> in <list:element>
 end
 ```
 
-Vegyük az alábbi HTML kódot:
+Let's take the following HTML code:
 
 ```html
 <ul id="Greetings">
@@ -85,7 +85,7 @@ Vegyük az alábbi HTML kódot:
 </table> 
 ```
 
-Példák a **foreach** használatára a fenti HTML kódhoz:
+Examples of using **foreach** for the HTML code above:
 
 ```
 context ul "Greetings"
@@ -108,7 +108,7 @@ context table "Companies"
 end
 ```
 
-Egy kicsit összetettebb példa, ahol a táblázat egy sorát egy modellel reprezentáljuk:
+A more complex example where each row of a table is represented by a page object model:
 
 ```
 page CompanyOperations
@@ -125,44 +125,42 @@ context table "Companies"
 end
 ```
 
-## JavaScript bővítmény
+## JavaScript extension
 
-A **javascript** kulcsszó lefuttat egy adott JavaScript kódot az oldalon:
+The **javascript** keyword executes the given JavaScipt code:
 
 ```
 javascript <code:string>
 ```
 
-A **javascript** kulcsszónak argumentumokat is lehet adni vesszőkkel elválasztva:
+We can specify arguments separated by commas for the **javascript** keyword after the **using** keyword:
 
 ```
 javascript <code:string> using <value>...
 ```
 
-A **javascript** kulcsszó lefuttatja az adott JavaScript kódot a megadott argumentumokkal.
-
-Példa, amely megjelenít egy dialógus ablakot:
+An example that displays an alert dialog box:
 
 ```
 javascript 'alert("Hello World!");'
 ```
 
-Példa, amely beállítja a keresőmező értékét a keresendő szövegre:
+An example that sets the value of the search field to the given search text:
 
 ```
 element searchField = input "q"
 javascript 'arguments[0].value=arguments[1];' using searchField, "jwst"
 ```
 
-Példa, amely úgy görgeti az ablakot, hogy a keresőgomb látható legyen:
+An example that scrolls the page so that the search button becomes visible:
 
 ```
 javascript 'arguments[0].scrollIntoView(true);' using button "Search"
 ```
 
-## Manual bővítmény
+## Manual extension
 
-Egy kézikönyv szerkezete az alábbi:
+The structure of a **manual** is the following:
 
 ```
 manual <name>
@@ -170,49 +168,49 @@ manual <name>
 end
 ```
 
-A kézikönyvnek nevet kell adni (&lt;name>). A kézikönyv törzse utasítások sorozata. A kézikönyvek függetlenek egymástól, és tetszőleges sorrendben végrehajthatók. A kézikönyvek kimenetét (**print** ill. **capture** utasítások eredménye) egy HTML dokumentumba kell írni, amely szöveges kézikönyvként szolgál a tesztelt weboldal használatához.
+A manual must have a name (&lt;name>). The body of the manual is a list of statements. Manuals are independent of each other and can be executed in any order. The output of a manual (results of the **print** and **capture** statements) must be written into an HTML file in the `output` folder, which serves as a user manual for the given web page. The name of the file must be the same as the name of the manual.
 
-Példa egy kézikönyvre:
+Example for a manual:
 
 ```
 manual LoginLogout
-  print "<h1>Bejelentkezés-kijelentkezés</h1>"
-  print "<p>Az alkalmazáshoz való bejelentkezéshez írjuk be a felhasználónevet:</p>"
+  print "<h1>Login-logout</h1>"
+  print "<p>Type the user name to log into the application:</p>"
   fill input "username" with "alice"
   capture input "username"
-  print "<p>Majd a jelszót:</p>"
+  print "<p>Then type the password:</p>"
   fill input "password" with "secret"
   capture input "password"
-  print "<p>Végül pedig nyomjuk meg a <b>Sign in</b> feliratú gombot:</p>"
+  print "<p>Finally, click the <b>Sign in</b> button:</p>"
   capture button "Sing in"
   click button "Sing in"
-  print "<p>A kijelentkezéshez a <b>Sign out</b> feliratú gomb használható:</p>"
+  print "<p>Click the <b>Sign out</b> button to log out:</p>"
   capture button "Sing out"
   click button "Sing out"
 end
 ```
 
-Ezt a példát futtatva az alábbi HTML kódnak áll elő **LoginLogout.html** néven:
+After executing the example above, the following **LoginLogout.html** must be produced:
 
 ```html
 <html>
     <body>
-        <h1>Bejelentkezés-kijelentkezés</h1>
-        <p>Az alkalmazáshoz való bejelentkezéshez írjuk be a felhasználónevet:</p>
+        <h1>Login-logout</h1>
+        <p>Type the user name to log into the application:</p>
         <img src="screenshot001.png" /> 
-        <p>Majd a jelszót:</p>
+        <p>Then type the password:</p>
         <img src="screenshot002.png" /> 
-        <p>Végül pedig nyomjuk meg a <b>Sign in</b> feliratú gombot:</p>
+        <p>Finally, click the <b>Sign in</b> button:</p>
         <img src="screenshot003.png" /> 
-        <p>A kijelentkezéshez a <b>Sign out</b> feliratú gomb használható:</p>
+        <p>Click the <b>Sign out</b> button to log out:</p>
         <img src="screenshot004.png" /> 
     </body>
 </html>
 ```
 
-A keletkező HTML szebbé tehető CSS stílusokkal (pl. bootstrap).
+The resulting HTML can be made nicer using CSS styles (e.g., bootstrap).
 
-Egy WebTest fájl szerkezete kézikönyvekkel bővítve az alábbi:
+The structure of a WebTest file with the addition of manuals becomes:
 
 ```
 webtest <package>.<class>
@@ -222,12 +220,12 @@ webtest <package>.<class>
 <statement>...
 ```
 
-A fájl elején a **webtest** kulcsszó definiálja azt a Java osztályt (&lt;class>) teljes Java package előtaggal (&lt;package>), amely JUnit tesztként a WebTest fájlban leírt teszteket és utasításokat fogja futtatni. Ezt követően tetszőlegesen sok weboldal modell (&lt;page>), teszteset (&lt;test>), kézikönyv (&lt;manual>) és művelet (&lt;operation>) következhet tetszőleges sorrendben, végül pedig tetszőlegesen sok utasítás (&lt;statement>).
+At the beginning of the file the **webtest** keyword defines the Java class (&lt;class>) with full package prefix (&lt;package>) that will result in a JUnit test by compiling the WebTest file. After this, any number of web page model (&lt;page>), test case (&lt;test>), manual (&lt;manual>) and operation (&lt;operation>) may follow in any order. Finally any number of statements (&lt;statement>) may come.
 
 
-## TestParams bővítmény
+## TestParams extension
 
-Egy paraméterezett teszteset szerkezete az alábbi:
+A parameterized test case has the following structure:
 
 ```
 test <name>(<parameter>...)
@@ -236,9 +234,9 @@ test <name>(<parameter>...)
 end
 ```
 
-Opcionálisan a teszt neve után zárójelben meg lehet adni a paramétereket vesszővel elválasztva, majd a **with** kulcsszó után meg kell adni az argumentumokat. A **with** kulcsszó többször is használható: minden egyes használat egy-egy új példányt jelent a tesztből. A paraméterezett tesztekből [JUnit 5 paraméterezett teszteket](https://www.baeldung.com/parameterized-tests-junit-5) kell előállítani.
+After the name of the test, a list of comma separated parameters can be specified enclosed within parenthesis. The parameter list is optional. If it is not present, the parenthesis must be omitted. If it is present, after the **with** keyword we can specify the arguments separated by commas. The **with** keyword can be used multiple times: each use corresponds to a different instance of the test case. These parameterized tests must be mapped to [JUnit 5 parameterized tests](https://www.baeldung.com/parameterized-tests-junit-5).
 
-Példa:
+Example:
 ```
 test login(string username, string password)
 with "Alice","secretA"
