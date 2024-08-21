@@ -106,9 +106,9 @@ Figyeljetek arra is, hogy szerkesztés közben nem mindig teljes a modell: előf
 ***TIPP:** A **getScope** függvényben többféle stratégiát is követhettek:*
 
 * *Elhagyhatjátok a **super** scope-ra vonatkozó hívást, és az összes tartalmazó objektum bejárásával feloldhatjátok az összes lehetséges referenciát egy menetben.*
-* *Meghívhatjátok a **getScope** függvényt rekurzívan a tartalmazó objektumra, így jobban szeparálni lehet a felelősségeket.*
+* *Meghívhatjátok a **getScope** függvényt rekurzívan a tartalmazó objektumra (ahogy a fenti példában bemutattuk), így jobban szeparálni lehet a felelősségeket.*
 * *Tetszőleges segédfüggvényeket használhattok.*
-* *A korábban definiált változók helyes kezeléséhez célszerű az aktuális utasítás indexét megkeresni a tartalmazó **BlockStatment**-ben, és a kisebb indexű változódeklarációkat elérhetővé tenni a scope-ban.*
+* *A korábban definiált változók helyes kezeléséhez célszerű az aktuális utasítás indexét megkeresni a tartalmazó **BlockStatment**-ben, és a kisebb indexű változódeklarációkat elérhetővé tenni a scope-ban (ahogy a fenti példában bemutattuk).*
 
 *A modell bejárásában sok segítséget nyújthatnak az alábbi konstrukciók:*
 

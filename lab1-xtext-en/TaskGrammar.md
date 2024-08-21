@@ -55,7 +55,7 @@ After the generation is successful, right click on the **webtest.dsl** project, 
 
 ## Check the solution
 
-You can check you grammar using the **webtest.dsl.tests** project, by running it as a JUnit test (**Run as > JUnit Test**). The classes **ParseTests** and **ParseExtensionsTests** check the correctness of the grammar.
+You can check your grammar using the **webtest.dsl.tests** project, by running it as a JUnit test (**Run as > JUnit Test**). The classes **ParseTests** and **ParseExtensionsTests** check the correctness of the grammar.
 
 ## To be uploaded
 

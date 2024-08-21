@@ -1,16 +1,16 @@
-# Névelemzés (name analysis, scoping, validation)
+# Name analysis (scoping, validation)
 
-A névelemzés feladata, hogy összekösse a nevek felhasználását a nevek definíciójával (pl. változók esetén).
+The goal of name analysis is to connect name references with their definitions (e.g., for variables).
 
-Az Xtext automatikusan képes bizonyos szintű névfeloldást megvalósítani a szögletes zárójelek (`[...]`) segítségével megadott kereszthivatkozásokon keresztül. Egyes esetekben azonban az Xtext algoritmusa nem elég okos. Ilyenkor nekünk kell segítséget adni az Xtext számára. Erre szolgál a scoping, amelyről részletes leírás [itt található](https://eclipse.dev/Xtext/documentation/303_runtime_concepts.html#scoping).
+Xtext can do some name analysis using square brackets (`[...]`), however, the default behavior is not always sufficient. In these cases we need to lend some help to Xtest using [scoping](https://eclipse.dev/Xtext/documentation/303_runtime_concepts.html#scoping).
 
-Ezen túlmenően hibaüzeneteket kell generálnunk akkor, ha valami probléma adódik a nevek definíciójával vagy a nevek feloldásával. A feloldással kapcsolatos problémákat az Xtext automatikusan jelzi. A definíciókkal (pl. duplikált nevek) kapcsolatos hibákat nekünk kell jeleznünk. Ezt a validáció során tehetjük meg, amelyről részletes leírás [itt található](https://eclipse.dev/Xtext/documentation/303_runtime_concepts.html#validation).
+In addition, we need to provide error messages if there are problems with name definitions or name resolutions. The problems with name resolutions are automatically reported by Xtext, but the problems with name definitions (e.g., duplicate names) must be reported by us using [validation](https://eclipse.dev/Xtext/documentation/303_runtime_concepts.html#validation).
 
 ## Scoping
 
-Az Xtext megpróbálja a neveket a kód hierarchiának megfelelő módon feloldani, azonban lehetnek olyan helyzetek, amikor a hierarchia mentén történő feloldás nem elég. A WebTest nyelvben ilyen helyzet a `context as <page> ... end` konstrukció belseje, ahol a hivatkozott oldalban definiált változókat és műveleteket fel kell tudni oldani a kontextuson belül.
+By default, Xtext tries to resolve names according to the structure of the code. However, in some cases this is insufficient. For example, in the WebTest language the `context as <page> ... end` construct must allow the resolution of variables and operations defined in the page, and Xtext cannot infer this from the structure of the code.
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslScopeProvider.java** fájlt, és módosítsátok a tartalmát az alábbi módon:
+Inside the **webtest.dsl** project, under the folder **src** from the package **webtest.dsl.scoping** open the file **WebTestDslScopeProvider.java**, and modify its contents as follows:
 
 ```Java
 /*
@@ -88,40 +88,40 @@ public class WebTestDslScopeProvider extends AbstractWebTestDslScopeProvider {
 }
 ```
 
-A fenti kód két esetre mutat példát:
+The code above shows two examples:
 
-* A `context as` kontextuson belül elérhetővé teszi az operációkat, amelyek a kontextusban hivatkozott weboldalmodellben (**Page**) vannak definiálva. Sőt, nemcsak a közvetlen tartalmazó kontextusból, hanem az összes többi kintebb lévő kontextusból is elérhetővé válnak az operációk, mivel a potenciális scope-ok láncolt listába vannak szervezve (**Scopes.scopeFor** hívás). A belső kontextusok elfedik a kijjebb lévő kontextusok operációit, ha vannak közös nevűek.
-* Az utasítások csak a korábban definiált változókra hivatkozhatnak, a később definiált változókra nem, és itt is elérhetők a kintebb lévő blokkokban korábban definiált változók a láncolt listás szervezésnek köszönhetően.
+* It allows the resolution of operations inside `context as`, which were defined in the context's **Page**. In addition, it also allows the resolution of operations from all other containing `context as` constructs, since the potential scopes are organized into a linked list (using **Scopes.scopeFor**). The inner contexts hide operations from the outer contexts, in case those operations have the same names.
+* Statements can refer to variables only defined before the statement itself, and not after. Also, variables defined earlier in containing blocks are also available, again, due to the linked list organization of scopes.
 
-A laborfeladat során ezt a **WebTestDslScopeProvider** osztályt kell továbbfejlesztenetek:
+In this task you have to develop this **WebTestDslScopeProvider** class further:
 
-* Tegyétek elérhetővé a `context as` kontextuson belül a változókat, de ne csak a közvetlenül tartalmazó kontextusból, hanem az összes indirekten tartalmazó kontextusból is! A mélyebben lévő kontextusok változói elfedik a kintebb lévő kontextusok azonos nevű változóit.
-* Legyenek elérhetők az operációk paraméterei változókként az operáció törzsén belül.
-* Legyenek elérhetők egy **Page**-en belül a saját tagváltozók és tagoperációk a **Page** többi operációinak törzsében.
-* Ha a **ForEach** bővítményt meg kell valósítanotok, ügyeljetek arra, hogy a `foreach ... in ... end` fejlécében definiált változó csak az adott `foreach` blokkon belül érhető el! Arra is figyeljetek, hogy két egymás utáni `foreach` blokk definiálhatja ugyanazt a nevű változót, és ez a két változó nem ugyanaz!
-* Ha a **TestParams** bővítményt meg kell valósítanotok, tegyétek elérhetővé a teszten belül a tesztparaméterek neveit!
+* Make variables of a **Page** of a `context as` construct available, and also from all other containing `context as` constructs. The inner contexts hide variables from the outer contexts, in case those variables have the same names.
+* The parameters of an operation should be available inside the body of the operation.
+* The variables and operations defined directly in a **Page** should be available in all operations inside the **Page**.
+* If you have to implement the **ForEach** extension, make sure that the variable defined in the header of `foreach ... in ... end` is only available within the body of the `foreach` construct. Two `foreach` blocks next to each other can define the same variable name in their headers, but these variables are not the same!
+* If you have to implement the **TestParams** extension, the parameters of the test should be available in the body of the test.
 
-Figyeljetek arra is, hogy szerkesztés közben nem mindig teljes a modell: előfordulhatnak null értékek olyan helyeken is, ahol nem számítunk rá.
+Be careful: while we edit a WebTest file, it is not always complete. There may be null values in the model built from the WebTest file even at places where you don't expect it. So make sure to check the model before accessing any property to avoid unwanted exceptions during scoping.
 
-***TIPP:** A **getScope** függvényben többféle stratégiát is követhettek:*
+***HINT:** Inside the **getScope** function you can follow various strategies:*
 
-* *Elhagyhatjátok a **super** scope-ra vonatkozó hívást, és az összes tartalmazó objektum bejárásával feloldhatjátok az összes lehetséges referenciát egy menetben.*
-* *Meghívhatjátok a **getScope** függvényt rekurzívan a tartalmazó objektumra, így jobban szeparálni lehet a felelősségeket.*
-* *Tetszőleges segédfüggvényeket használhattok.*
-* *A korábban definiált változók helyes kezeléséhez célszerű az aktuális utasítás indexét megkeresni a tartalmazó **BlockStatment**-ben, és a kisebb indexű változódeklarációkat elérhetővé tenni a scope-ban.*
+* *You can ignore the **super** call by traversing all the containing objects and resolving references all in one go.*
+* *You can call the **getScope** function recursively for the containing object (like in the example above). This way the responsibilities are distributed more evenly.*
+* *You can use your own helper functions.*
+* *For the correct handling of variables defined earlier, it is recommended to find the index of the current statement in the containing **BlockStatment**, and only make the variable definitions with smaller indices available in the scope (like in the example above).*
 
-*A modell bejárásában sok segítséget nyújthatnak az alábbi konstrukciók:*
+*To traverse the model, the following constructs can be helpful:*
 
-* *Az **EcoreUtil2** osztály **getContainerOfType** függvénye megadja az adott modellbeli objektum legközelebbi olyan tartalmazó objektumát, amely az általunk kívánt típusnak megfelel. Ha az objektum maga már a kívánt típusú, akkor magával az objektummal tér vissza.*
-* *Az **EcoreUtil2** osztály **getAllContainers** függvénye megadja az adott modellbeli objektum összes direkt és indirekt tartalmazó objektumát.*
-* *Az **EcoreUtil2** osztály **getAllContentsOfType** függvénye megadja az adott modellbeli objektum által tartalmazott összes olyan objektumot, amely az általunk kívánt típusnak megfelel.*
-* *Az **instanceof** kulcsszó használata is hasznos lehet.*
+* *The function **getContainerOfType** of the **EcoreUtil2** class gives the nearest container object of a given type.*
+* *The function **getAllContainers** of the **EcoreUtil2** class gives all the direct and indirect container objects.*
+* *The function **getAllContentsOfType** of the **EcoreUtil2** class gives all the directly or indirectly contained objects of a given type.*
+* *Using **instanceof** can be useful, too.*
 
 ## Validation
 
-Ha egy nevet nem sikerült feloldani, azt az Xtext automatikusan hibaüzenetként jelzi. A duplikált neveket azonban nekünk kell jeleznünk. Ezt validációk segítségével tehetjük meg.
+If a name coult not be resolved, the error is reported automatically by Xtext. However, duplicate name definitions must be reported by us. We can do this using validators.
 
-A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.validation** csomagban hozzatok létre egy **NameValidator.java** fájlt, a következő tartalommal:
+Inside the **webtest.dsl** project under the **src** folder in the **webtest.dsl.validation** package create a new file called **NameValidator.java** with the following content:
 
 ```Java
 package webtest.dsl.validation;
@@ -159,13 +159,13 @@ class NameValidator extends AbstractWebTestDslValidator {
 }
 ```
 
-Ez a **checkDuplicatePageNames** függvényben ellenőrzi, hogy minden **Page** neve egyedi-e. Amennyiben nem, hibaüzenetet készít az ismétlődő nevekhez: `Page '<name>' is already defined.`
+The **checkDuplicatePageNames** function checks whether the names of the **Page** elements are unique. If not, it will report an error for the duplicate names: `Page '<name>' is already defined.`
 
-A hibaüzenet az oldal nevéhez kötve jelenik meg: mivel a **Page** a **NamedElement**-ből származik, az oldal nevét a **NamedElement** osztály **name** property-je reprezentálja.
+The error message is reported on the name of the page: since **Page** is a descendant of **NamedElement**, the name of the page is represented by the property **name** of the **NamedElement** class.
 
-A **@Check** annotáció azt jelzi, hogy a **checkDuplicatePageNames** egy olyan függvény, amelyet a kód validációja során meg kell hívni. A **NORMAL** paraméter azt jelenti, hogy a kód mentésekor ellenőrizzük a feltételeket. A **checkDuplicatePageNames** függvény paramétere az az objektum, amelyen az ellenőrzést le kell futtani. Jelen esetben a teljes modell gyökerén (**Main**) keresztül bejárjuk az összes **Page** objektumot, de más validációk esetén másfajta objektum is megadható paraméterként, ilyenkor az összes szóba jöhető objektumra meghívódik a validáló függvény.
+The **@Check** annotation tells Xtext to call the **checkDuplicatePageNames** function during validation. The **NORMAL** parameter tells Xtext to check this condition when the WebTest code is saved. The single argument of the **checkDuplicatePageNames** function is the object on which the validation should be performed. In this case it is the root of the whole model (**Main**), since through this we can check all the **Page** objects inside the model. For other validations, the type of the parameter can defer from **Main**, and Xtext will call the validation for every possible object of the chosen type.
 
-Még egy lépést el kell végeznünk, hogy a fenti validáció lefusson. A **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl.scoping** csomagból nyissátok meg a **WebTestDslValidator.java** fájlt, és módosítsátok a tartalmát az alábbi módon:
+We have to do another step for Xtext to recognize our validator. Inside the **webtest.dsl** project under the **src** folder from the **webtest.dsl.scoping** package open **WebTestDslValidator.java*, and modify it as follows:
 
 ```Java
 package webtest.dsl.validation;
@@ -183,34 +183,34 @@ public class WebTestDslValidator extends AbstractWebTestDslValidator {
 }
 ```
 
-Az Xtext ugyanis csak a **WebTestDslValidator** validátort regisztrálja be automatikusan. Ennek a **@ComposedChecks** annotációval megadhatjuk, mely más validátorokat vegyen még figyelembe. A későbbiekben még további validátorokat is fogtok majd ide regisztrálni.
+Since Xtext only registers the **WebTestDslValidator** validator automatically. Using the **@ComposedChecks** annotation on this class we can specify other validators for Xtext to take into account. Later, you will also register further validators here.
 
-A laborfeladat során fejlesszétek tovább a **NameValidator** osztályt:
+Develop the **NameValidator** class further:
 
-* Jelezzétek, ha a tesztek nevei duplikálva vannak: `Test case '<name>' is already defined.`
-* Jelezzétek, ha a változók nevei duplikálva vannak: `Variable '<name>' is already defined.`
-* Jelezzétek, ha az operációk nevei duplikálva vannak: `Operation '<name>' is already defined.`
-* Jelezzétek, ha egy operáció paraméterei duplikálva vannak: `Parameter '<name>' is already defined.`
-* Jelezzétek, ha egy operáció lokális változója elfedi az operáció valamelyik paraméterét: `Variable '<name>' is already defined.`
-* Jelezzétek, ha egy operáció meghívásakor az argumentumok száma különbözik a paraméterek számától: `Operation '<name>' has <parameter count> parameters but <argument count> arguments were specified.`
-* Ha a **ForEach** bővítményt meg kell valósítanotok, jelezzétek, ha a `foreach` fejlécében definiált változó ütközik egy másik lokális változóval: `Variable '<name>' is already defined.`
-* Ha a **Manual** bővítményt meg kell valósítanotok, jelezzétek, ha a manual-ok nevei duplikálva vannak: `Manual '<name>' is already defined.`
-* Ha a **TestParams** bővítményt meg kell valósítanotok:
+* Report if test cases have duplicate names: `Test case '<name>' is already defined.`
+* Report if variables have duplicate names: `Variable '<name>' is already defined.`
+* Report if operations have duplicate names: `Operation '<name>' is already defined.`
+* Report if operation parameters have duplicate names: `Parameter '<name>' is already defined.`
+* Report if a local variable hides a parameter inside an operation: `Variable '<name>' is already defined.`
+* Report if the number of arguments when calling an operation differs from the number of parameters of the operation: `Operation '<name>' has <parameter count> parameters but <argument count> arguments were specified.`
+* If you have to implement the **ForEach** extension, report if a variable defined in the header of `foreach` collides with another local variable or parameter: `Variable '<name>' is already defined.`
+* If you have to implement the **Manual** extension, report if the manuals have duplicate names: `Manual '<name>' is already defined.`
+* If you have to implement the **TestParams** extension:
 
-  * Jelezzétek, ha egy tesztesetben a tesztparaméterek nevei duplikálva vannak: `Parameter '<name>' is already defined.`
-  * Jelezzétek, ha egy lokális változó elfedi egy teszt valamelyik paraméterét: `Variable '<name>' is already defined.`
-  * Jelezzétek, ha egy teszteset konfigurálásakor a `with` kulcsszó után az argumentumok száma különbözik a paraméterek számától: `Test case '<name>' has <parameter count> parameters but <argument count> arguments were specified.`
+  * Report if the test parameters have duplicate names: `Parameter '<name>' is already defined.`
+  * Report if a local variable hides a test parameter: `Variable '<name>' is already defined.`
+  * Report if the number of arguments supplied after the `with` keyword differs from the number of parameters of the test: `Test case '<name>' has <parameter count> parameters but <argument count> arguments were specified.`
 
-## Ellenőrzés
+## Check the solution
 
-Hogy a névfeloldás és a scoping jól működik-e, könnyen ellenőrizhetitek a **Runtime Eclipse** alatt, ha a **Ctrl** billentyű lenyomása mellett rákattintotok egy változó, operáció, stb. nevére. Ilyenkor az Xtext átnavigál a név definíciójához.
+You can check whether name resolution and scoping works correctly easily inside the **Runtime Eclipse**: click on a name while holding **Ctrl** down. Xtext will jump to the definition of the name.
 
-A validátorok által jelzett hibákat a **Runtime Eclipse** piros aláhúzással jelzi a **.wt** fájlban.
+Errors reported by the validators are marked by red underscores inside **.wt** files in **Runtime Eclipse**.
 
-A névfeloldás és -validáció helyes működését a **webtest.dsl.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Test**) is ellenőrizhetitek a **NameAnalysisTests** és a **NameAnalysisExtensionsTests** tesztelő osztályok segítségével.
+You can check your name analysis implementation using the **webtest.dsl.tests** project, by running it as a JUnit test (**Run as > JUnit Test**). The classes **NameAnalysisTests** and **NameAnalysisExtensionsTests** check the correctness of the name analysis.
 
-## Feltöltendő
+## To be uploaded
 
-Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw1** mappába az alábbiakról:
+During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
 
-* A **NameAnalysisTests** és a **NameAnalysisExtensionsTests** összes tesztjének sikeres lefutása
+* The test summary window in **Eclipse** for the **webtest.model.tests** project, which shows that all the tests in **NameAnalysisTests** and **NameAnalysisExtensionsTests** are executed successfully.

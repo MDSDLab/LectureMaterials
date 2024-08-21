@@ -42,7 +42,7 @@ The **webtest.model.tests** project tests whether the Xcore meta-model is correc
 
 The **webtest.dsl.tests** project tests whether the Xtext grammar, and the name- and type analysis are correct.
 
-The solution of the lab tasks can be regarded as complete, it all the relevant tests run successfully, and the Maven compilation is also successful using the `compile.bat` command. However, during the evaluation of your solution, we may execute further tests, too.
+The solution of the lab tasks can be regarded as complete, if all the relevant tests run successfully, and the Maven compilation is also successful using the `compile.bat` command. However, during the evaluation of your solution, we may execute further tests, too.
 
 ## References
 
