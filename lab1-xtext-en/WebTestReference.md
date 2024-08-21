@@ -1,8 +1,8 @@
-# WebTest nyelv referencia
+# WebTest language reference
 
-## WebTest fájl szerkezete
+## WebTest file structure
 
-A WebTest fájlok **.wt** kiterjesztéssel rendelkeznek. Egy WebTest fájl szerkezete az alábbi:
+WebTest files have the **.wt** extension. The structure of a WebTest file is the following:
 
 ```
 webtest <package>.<class>
@@ -12,9 +12,9 @@ webtest <package>.<class>
 <statement>...
 ```
 
-A fájl elején a **webtest** kulcsszó definiálja azt a Java osztályt (&lt;class>) teljes Java package előtaggal (&lt;package>), amely JUnit tesztként a WebTest fájlban leírt teszteket és utasításokat fogja futtatni. Ezt követően tetszőlegesen sok weboldal modell (&lt;page>), teszteset (&lt;test>) és művelet (&lt;operation>) következhet tetszőleges sorrendben, végül pedig tetszőlegesen sok utasítás (&lt;statement>).
+At the beginning of the file the **webtest** keyword defines the Java class (&lt;class>) with full package prefix (&lt;package>) that will result in a JUnit test by compiling the WebTest file. After this, any number of web page model (&lt;page>), test case (&lt;test>) and operation (&lt;operation>) may follow in any order. Finally any number of statements (&lt;statement>) may come.
 
-Példa egy ilyen fájlszerkezetre:
+An example for such a file structure:
 
 ```
 webtest example.Calculator
@@ -32,7 +32,7 @@ test multiply23and6
 end
 ```
 
-Másik példa egy ilyen fájlszerkezetre:
+Another example:
 
 ```
 webtest example.Google
@@ -46,11 +46,11 @@ open "https://www.google.com"
 search using "jwst"
 ```
 
-## Weboldal modell (page ... end)
+## Web page object model (page ... end)
 
-A WebTest nyelv megkönnyíti egy weboldal vagy akár egy weboldal részeként megjelenő form vagy dialógusablak objektummodelljének elkészítését a **page** kulcsszó segítségével.
+The WebTest language makes modeling a whole web page or just a part of a page (e.g., a form or a dialog box) easier using the **page** keyword.
 
-Egy weboldal modell szerkezete az alábbi:
+The structure of a page object model is the following:
 
 ```
 page <name>
@@ -59,21 +59,21 @@ page <name>
 end
 ```
 
-A modellnek nevet kell adni (&lt;name>), a modellen belül pedig definiálhatunk változókat (&lt;variable>), amelyek például valamilyen HTML taget reprezentálnak, de egyéb (karakterlánc, egész szám, stb.) értékeket reprezentáló változók is megadhatók. Ezen kívül definiálhatunk még műveleteket (&lt;operation>), amelyek valamilyen utasítássorozatot hajtanak végre az elemek segítségével.
+The object model must have a name (&lt;name>), and in its body we can define variables (&lt;variable>), which can represent HTML elements or other (string, integer, etc.) values. In addition, we can define operations  (&lt;operation>), which perform a series of statements.
 
-### HTML elemet reprezentáló változók
+### Variables representing HTML elements
 
-Egy HTML elemet reprezentáló változó definíciójának szerkezete az alábbi:
+A variable representing an HTML element can be defined as:
 
 ```
 element <name> = <tag> <label>
 ```
 
-A változónak nevet kell adni (&lt;name>), és meg kell határozni, hogy az elem milyen HTML tag-re (&lt;tag>) hivatkozik és milyen címkével (&lt;label>). A tag és címke segít az elem egyértelmű beazonosításában. Az elemek beazonosításnak részleteit a kifejezések szakasz ismerteti.
+A variable must have a name (&lt;name>), an HTML tag (&lt;tag>) kind and a label (&lt;label>). The tag and the label help to identify the exact HTML element the variable refers to. The details of the HTML element identification are described in the expressions section.
 
 ### operation ... end
 
-Egy művelet szerkezete az alábbi:
+The structure of an operation is the following:
 
 ```
 operation <name>(<parameter>...)
@@ -81,9 +81,9 @@ operation <name>(<parameter>...)
 end
 ```
 
-A műveletnek nevet kell adni (&lt;name>), utána pedig opcionálisan zárójelek között lehet felsorolni a paramétereket (&lt;parameter>) vesszőkkel elválasztva. A művelet törzse utasítások sorozata, amelyek felhasználhatnak változókat és paramétereket, illetve hívhatnak más műveleteket.
+An operation must have a name (&lt;name>), which is optionally followed by a list of comma separated parameters (&lt;parameter>) enclosed in parenthesis. The body of an operation contains a list of statements which can use variables, parameters and call other operations.
 
-Példa egy weboldal modellre:
+An example for a web page object model:
 
 ```
 page Calculator
@@ -113,9 +113,9 @@ page Calculator
 end
 ```
 
-## Teszteset (test ... end)
+## Test case (test ... end)
 
-Egy teszteset szerkezete az alábbi:
+The structure of a test case is the following:
 
 ```
 test <name>
@@ -123,9 +123,9 @@ test <name>
 end
 ```
 
-A tesztesetnek nevet kell adni (&lt;name>). A teszteset törzse utasítások sorozata. A tesztesetek függetlenek egymástól, és tetszőleges sorrendben végrehajthatók.
+A test case must have a name (&lt;name>), and its body contains a list of statements. Test cases are executed independently of each other in any order.
 
-Példa egy tesztesetre:
+An example for a test case:
 
 ```
 test login
@@ -137,24 +137,24 @@ test login
 end
 ```
 
-## Utasítások
+## Statements
 
-### Változó definíció
+### Variable definition
 
-Egy változót az alábbi szintaxis definiál:
+A variable is defined by the following syntax:
 
 ```
 <type> <name> = <value>
 ```
 
-Egy változónak meg kell adni a típusát (&lt;type>), a nevét (&lt;name>) és az értékét (&lt;value>). Az érték nem módosítható, a változók csak a definíció helyén kaphatnak értéket. A lehetséges típusok a következők:
+A variable must have a type (&lt;type>), a name (&lt;name>) and a value (&lt;value>). The value cannot be modified: variables can get their values only at the place of their definition. The type must be one of the following:
 
-* **string**: karakterláncot reprezentál
-* **integer**: egész számot reprezentál
-* **boolean**: logikai értéket reprezentál
-* **element**: HTML oldalnak egy elemét (tag-jét) reprezentálja
+* **string**: represents a string of characters
+* **integer**: represents an integer number
+* **boolean**: represents a logical true or false value
+* **element**: represents an HTML element
 
-Példák:
+Examples:
 
 ```
 string url = "https://www.google.com"
@@ -165,7 +165,7 @@ boolean loggedIn = logout exists
 
 ### if ... then ... else ... end
 
-Az **if** utasítás feltételes elágazást definiál:
+The **if** statement defines conditional execution:
 
 ```
 if <condition:boolean> then
@@ -175,9 +175,9 @@ else
 end
 ```
 
-Az **if** kulcsszó után meg kell adni egy feltételt (**boolean** típusú kifejezést), majd a **then** kulcsszó után azokat az utasításokat, amelyeket a feltétel teljesülése esetén kell végrehajtani. Az **else** kulcsszó után megadhatók azok az utasítások, amelyeket akkor kell kiértékelni, ha a feltétel hamis. Az **else** ág opcionális.
+After the **if** keyword a condition (an expression of **boolean** type)  must be defined followed by the **then** keyword and the statements which should be executed when the condition is true. Statements after the **else** keyword are executed when the condition is false. The **else** branch is optional.
 
-Példák:
+Examples:
 
 ```
 if not loggedIn then
@@ -195,7 +195,7 @@ end
 
 ### while ... do ... end
 
-Az **while** utasítás ciklust definiál:
+The **while** statement defines a loop:
 
 ```
 while <condition:boolean> do
@@ -203,9 +203,9 @@ while <condition:boolean> do
 end
 ```
 
-A **while** kulcsszó után meg kell adni egy feltételt (**boolean** típusú kifejezést), majd a **do** kulcsszó után azokat az utasításokat, amelyeket végre kell hajtani, amíg a feltétel teljesül.
+After the **while** keyword a condition (an expression of type **boolean**) must be defined followed by the **do** keyword and the statements, which should be executed as long as the condition is true.
 
-Példa:
+Example:
 
 ```
 element nextButton = button "next"
@@ -217,15 +217,15 @@ end
 click finishButton
 ```
 
-### operáció meghívása
+### calling an operation
 
-Egy operáció meghívásához hivatkozni kell az operáció nevére, majd a **using** kulcsszó után meg kell adni az operációnak átadandó argumentumokat, pontosan annyit, ahány paramétere van az operációnak. Ha az operációnak nincsenek paraméterei, a **using** kulcsszót el kell hagyni. Az argumentumként beadott vesszővel elválasztott értékek a paraméterek definiálási sorrendjében kerülnek átadásra:
+When calling an operation, we have to refer to the name of the target operation followed by the **using** keyword and the same number of arguments (expressions) as many parameters the target operation has. If the operation has no parameters, the **using** keyword must be omitted. The arguments are separated by commas, and they are assigned to the parameters in the order the parameters are defined:
 
 ```
 <operation name> using <value>...
 ```
 
-Példák:
+Examples:
 
 ```
 operation login(string username, string password)
@@ -242,17 +242,17 @@ login using "alice", "secret"
 logout
 ```
 
-A fenti példában az "alice" érték a username, a "secret" érték a password paraméternek kerül átadásra.
+In the example above, the value *"alice"* is assigned to the *username*, the value *"secret"* is assigned to the *password* parameter.
 
 ### open
 
-Az **open** utasítás egy **string** típusú URL-t vár, ezt nyitja meg a böngészőben:
+The **open** statement expects a **string**-typed URL, and opens it in the browser:
 
 ```
 open <url:string>
 ```
 
-Példák:
+Examples:
 
 ```
 open "https://www.google.com"
@@ -263,15 +263,15 @@ open github
 
 ### fill ... with ...
 
-A **fill** utasítás begépel egy karakterláncot a hivatkozott HTML elembe:
+The **fill** statement types a string of characters into the referenced HTML element:
 
 ```
 fill <elem:element> with <text:string>
 ```
 
-A **fill** utasítás egy **element** típusú elemet (&lt;elem>), valamint egy **string** típusú értéket vár (&lt;text>).
+The **fill** statement expects an element (&lt;elem>) of type **element**, and a string of characters (&lt;text>) of type **string**.
 
-Példák:
+Examples:
 
 ```
 fill input "username" with "alice"
@@ -283,13 +283,13 @@ fill password with secret
 
 ### click ...
 
-A **click** utasítás rákattint a hivatkozott HTML elemre:
+The **click** statement clicks the referenced element with the left mouse button:
 
 ```
 click <elem:element>
 ```
 
-Példák:
+Examples:
 ```
 click button "Sign in"
 
@@ -299,7 +299,7 @@ click logout
 
 ### context ... as ... end
 
-A **context as** utasítás úgy tekinti, hogy a böngészőben megnyitott oldal, vagy a hivatkozott HTML elem tartalma megfelel a hivatkozott weboldal modellnek:
+The **context as** statement considers the whole web page or the contents of the referenced HTML element in the web page to match the referenced page object model:
 
 ```
 context <elem:element> as <page>
@@ -307,13 +307,13 @@ context <elem:element> as <page>
 end
 ```
 
-A megadott &lt;elem> azt jelenti, hogy a **context as** törzsében történő további elemek keresése ezen &lt;elem> HTML elemen belül, vagyis ennek kontextusában értendő. Az &lt;elem> hivatkozás opcionális: amennyiben nincs jelen, akkor az aktuálisan megnyitott teljes weboldalt tekintjük kontextusnak.
+If the &lt;elem> is present, the elements referenced inside the body of the **context as** statement are searched in the context of this &lt;elem> HTML element. The &lt;elem> part itself is optional: if it is not present, we take the whole web page as the context.
 
-A megadott &lt;page> azt jelenti, hogy a **context as** törzsében szereplő utasítások hivatkozhatnak a &lt;page> által definiált weboldal modell elemeire. A &lt;page> által definiált modell elemeit is az &lt;elem> által hivatkozott HTML elem alatt kell keresni. Az **as** &lt;page> hivatkozás is opcionális.
+If the &lt;page> is present, the statements inside the body of the **context as** statement can refer to the HTML elements defined as variables inside the &lt;page>. The search is performed in the context of the &lt;elem> HTML element. The **as** &lt;page> reference is optional.
 
-Habár mind az &lt;elem>, mind pedig az **as** &lt;page> hivatkozás opcionális, legalább egyiknek jelen kell lennie.
+Although both the &lt;elem> and the **as** &lt;page> are optional, at least one of them must be present.
 
-Példa a teljes oldal modellezésére:
+Example of a whole web page object model:
 
 ```
 page Calculator
@@ -348,7 +348,7 @@ context as Calculator
 end
 ```
 
-Példa egy HTML elem modellezésére, ahol a törlés hatására egy megerősítő dialógusablakot dob fel az oldal (a "Yes" és "No" gombok a "popup" azonosítójú `<div>`-en belül keresendők):
+Example of an HTML element which represents a confirmation dialog (the "Yes" and "No" buttons are looked up inside the `<div>` tag with a "popup" identifier):
 
 ```
 page MessageBox
@@ -362,7 +362,7 @@ context div "popup" as MessageBox
 end
 ```
 
-Ugzanez a példa egy modell nélküli kontextussal:
+The same example without a page object model:
 
 ```
 click button "Delete"
@@ -373,17 +373,17 @@ end
 
 ### print
 
-A **print** utasítás a paramétereinek értékét kiírja az alkalmazás logjába:
+The **print** statement writes its parameters concatenated into a single line to the application log:
 
 ```
 print <value>...
 ```
 
-Az értékeket vesszővel elválasztva kell megadni.
+The arguments are separated by commas and they can be expressions of any type.
 
-A **print** utasítás segíthet a teszt folyamatának követésében, de segítséget adhat akár felhasználói útmutató automatikus előállításában is.
+The **print** statement can help following the execution of the test, and may even help in creating user manuals.
 
-Példák:
+Examples:
 
 ```
 print "Page opened"
@@ -396,15 +396,15 @@ print "Logged in as ", alice
 
 ### assert ...
 
-A **assert** kulcsszó a tesztelést segíti, ellenőrzi, hogy a megadott feltétel teljesül-e:
+The **assert** statement chechs whether the given condition is true:
 
 ```
 assert <condition:boolean>
 ```
 
-Amennyiben a feltétel nem teljesül, a JUnit tesztnek Failure-ként kell végződnie.
+If the condition is false, the JUnit test must result in a Failure.
 
-Példa:
+Example:
 
 ```
 test login
@@ -418,33 +418,33 @@ end
 
 ### wait
 
-A **wait** utasítás olyan esetekben lehet hasznos, amikor a HTML oldal betöltése sok időt vehet igénybe, vagy valamilyen műveletnek az eredményét szeretnénk megvárni.
+The **wait** statement can be useful when the loading of a page takes a lot of time, or we want to wait for the results of some task.
 
-A **wait ... seconds** utasítás a megadott másodpercig várakozik:
+The **wait ... seconds** statement waits for the given number of seconds:
 
 ```
 wait <time:integer> seconds
 ```
 
-A **wait until ...** utasítás addig vár, amíg a megadott feltétel nem teljesül:
+The **wait until ...** statement waits until the condition becomes true:
 
 ```
 wait until <condition:boolean>
 ```
 
-Illetve a kettő kombinálható is, ha timeout-tal szeretnénk várni a feltétel teljesülésére:
+The two can be combined if we want to wait for the condition to become true, but we want to wait with a timeout:
 
 ```
 wait <time:integer> seconds until <condition:boolean>
 ```
 
-Példa 10 másodperces várakozásra:
+Example for waiting for 10 seconds:
 
 ```
 wait 10 seconds
 ```
 
-A következő példában a login művelet meghívása után megvárjuk, míg a "Sign out" feliratú gomb megjelenik az oldalon, de maximum 5 másodpercig várunk:
+In the following example, after logging in to a web page, we wait for the appearance of the "Sign out" button for at most 5 seconds:
 
 ```
 integer timeout = 5
@@ -453,21 +453,21 @@ login using "alice","secret"
 wait timeout seconds until signout exists
 ```
 
-## Kifejezések
+## Expressions
 
-Változók értékadásakor illetve különböző utasítások argumentumaként átadhatók kifejezések. Ez a szakasz a WebTest nyelvben használható kifejezéseket foglalja össze.
+Expressions are used to define the values of variables, and also expressions are the arguments of the various statements. This section lists the possible expressions in the WebTest language.
 
 ### ... is ...
 
-Az **is** kifejezés ellenőrzi, hogy az adott HTML elem értéke megegyezik-e a jobb oldali értékkel:
+The **is** expression checks whether the contents of the given HTML element is the same as the given value:
 
 ```
 <elem:element> is <value:string>
 ```
 
-Az **is** kifejezés eredményének típusa **boolean**.
+The type of the **is** expression is **boolean**.
 
-Az alábbi példa azt ellenőrzi, hogy a bejelentkezés után a weboldal kiírja-e a bejelentkezett felhasználó nevét a megfelelő &lt;div> HTML elembe:
+The following example checks whether the user name appears on the web page after logging in:
 
 ```
 login using "alice", "secret"
@@ -477,15 +477,15 @@ assert loggedIn is "Logged in as: alice"
 
 ### ... contains ...
 
-Az **contains** kifejezés ellenőrzi, hogy az adott HTML elem értéke tartalmazza-e a jobb oldali értéket:
+The **contains** expression checks whether the contents of the given HTML element contains the the given value:
 
 ```
 <elem:element> contains <value:string>
 ```
 
-A **contains** kifejezés eredményének típusa **boolean**.
+The type of the **contains** expression is **boolean**.
 
-Az alábbi példa azt ellenőrzi, hogy a bejelentkezés után a weboldal kiírja-e a bejelentkezett felhasználó nevét a megfelelő &lt;div> HTML elembe:
+The following example checks whether the user name appears on the web page after logging in:
 
 ```
 login using "alice","secret"
@@ -495,15 +495,15 @@ assert loggedIn contains "alice"
 
 ### ... exists
 
-Az **exists** kifejezés ellenőrzi, hogy az adott HTML elem létezik-e:
+The **exists** expression checks whether the given HTML element exists:
 
 ```
 <elem:element> exists
 ```
 
-Az **exists** kifejezés eredményének típusa **boolean**.
+The type of the **exists** expression is **boolean**.
 
-Az alábbi példa azt ellenőrzi, hogy a bejelentkezés után a weboldal megjeleníti-e a kijelentkezés gombot:
+The following example checks whether the "Sign out" button appears on the web page after logging in:
 
 ```
 login using "alice","secret"
@@ -513,15 +513,15 @@ assert logout exists
 
 ### not ...
 
-Az **not** kifejezés tagadja az utána következő boolean kifejezés értékét:
+The **not** expression returns the logical negation of the given value:
 
 ```
 not <value:boolean>
 ```
 
-A **not** kifejezés eredményének típusa **boolean**.
+The type of the **not** expression is **boolean**.
 
-Példa:
+Example:
 
 ```
 login using "alice","secret"
@@ -532,16 +532,16 @@ if not logout exists then
 end
 ```
 
-### konstans kifejezések
+### constant expressions
 
-Konstans kifejezésként az alábbiak használhatók:
+Constant expressions are the following:
 
-* karakterlánc (típusa **string**): idézőjelek között a szokásos Java szintaxissal (pl. "Hello World!"), de idéző jelek helyett aposztrófok is használhatók (pl. 'Hello World!')
-* egész szám (típusa **integer**): a szokásos Java szintaxissal (pl. 10)
-* logikai érték (típusa **boolean**): **true** vagy **false**
-* HTML elem (típusa **element**): `<tag> <label>`
+* character strings (of type **string**): between quotation marks with the conventional Java syntax (e.g., "Hello World!"), but we can also use ampersands instead of quotation marks (e.g., 'Hello World!')
+* integer number (of type **integer**): using the conventional Java syntax (e.g., 10)
+* logical value (of type **boolean**): **true** or **false**
+* HTML element (of type **element**): `<tag> <label>`
 
-HTML elem esetén tag (`<tag>`) és címke (`<label>`) segít az elem egyértelmű beazonosításában. A Selenium sokféle [stratégiát](https://www.selenium.dev/documentation/webdriver/elements/locators/) ad egy elem megkeresésére (pl. id attribútum alapján, name attribútum alapján, css osztály alapján, xpath alapján). A WebTest nyelvben ezeket a lehetőségeket elfedjük úgy, hogy a &lt;tag>-&lt;label> értékeket többféle keresési stratégia során is kipróbáljuk, és amelyik stratégia először ad egyértelmű találatot, azt választjuk az adott elem kiválasztására. A kipróbálandó stratégiák és a kipróbálás sorrendje a következő:
+In case of an HTML element, the tag (`<tag>`) and the label (`<label>`) help to identify the element unambiguously. The Selenium library provides a lot of [strategies](https://www.selenium.dev/documentation/webdriver/elements/locators/) to identify elements (e.g., based on the id attribute, the name attribute, the css class, or xpath). In the WebTest language we hide all these options by trying the &lt;tag>-&lt;label> values along with multiple strategies, and the strategy returning in the first unambiguous result is applied to select the HTML element. The potential strategies and their order of evaluation is the following:
 
 * xpath: `.//<tag>[@id='<label>']`
 * xpath: `.//<tag>[@name='<label>']`
@@ -556,9 +556,9 @@ HTML elem esetén tag (`<tag>`) és címke (`<label>`) segít az elem egyértelm
 * xpath: `.//<tag>[contains(text(),'<label>')]`
 * xpath: `.//<tag>[contains(@class,'<label>')]`
 
-Ha egyik stratégia sem ad egyértelmű találatot, akkor úgy tekintjük, hogy az elem nem létezik az oldalon.
+If none of the strategies finds an unambiguous result, we take the element as non-existent on the page.
 
-Példák konstans kifejezésekre:
+Examples for constant expressions:
 
 ```
 string hello = "Hello World!"

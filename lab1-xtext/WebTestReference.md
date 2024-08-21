@@ -362,7 +362,7 @@ context div "popup" as MessageBox
 end
 ```
 
-Ugzanez a példa egy modell nélküli kontextussal:
+Ugyanez a példa egy modell nélküli kontextussal:
 
 ```
 click button "Delete"
