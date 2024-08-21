@@ -1,8 +1,8 @@
-# Példa: Google keresés
+# Example: Google search
 
-A WebTest nyelv különböző utasításokat tartalmaz. Az utasítások segítségével lehet leírni a tesztek forgatókönyveit.
+The WebTest language contains various statements that can be used to describe the execution of test cases.
 
-Példa egy egyszerű Google keresésre a WebTest nyelven:
+An example for a simple Google search in the WebTest language:
 ```
 webtest example.Google
 
@@ -12,17 +12,17 @@ click button "Search"
 wait 5 seconds
 ```
 
-A **webtest** kulcsszó egy Java osztályt definiál, ahová a keletkező JUnit teszt fog kerülni, jelen esetben ez az *example.Google* osztály.
+The **webtest** keyword defines a Java class that contains the JUnit test. In this case it will be the *example.Google* class.
 
-Az **open** kulcsszóval lehet megnyitni a *https://www.google.com* URL-t.
+The **open** keyword opens the URL *https://www.google.com*.
 
-A **fill** kulcsszó a *q* azonosítójú szövegdobozba begépeli a *jwst* szöveget.
+The **fill** keyword types *jwst* into the text field identified by *q*.
 
-A **click** kulcsszó megnyomja *Search* feliratú gombot.
+The **click** keyword presses the *Search* button.
 
-A **wait** kulcsszó várakozik 5 másodpercig, hogy meg tudjuk nézni a keresési eredményeket.
+The **wait** keyword waits for 5 seconds so that we can look at the search results.
 
-A fenti példa az alábbi módon fordítható le Java alapú Selenium kódra, amely a Chrome böngészőn keresztül hajtja végre az utasításokat:
+The example above could be translated into Java code that uses Selenium to control a Chrome browser to perform the appropriate statements:
 
 ```Java
 var driver = new ChromeDriver();
@@ -51,11 +51,11 @@ Thread.wait(5000);
 driver.quit();
 ```
 
-A Selenium kód megnyitja a Chrome böngészőt és kiteszi teljes képernyőre. Mivel egy weboldal betöltése sok időt vehet igénybe, nem lehet azonnal elkezdeni kiadni az utasításokat. Meg kell várni, amíg megjelennek a weboldal egyes elemei. Ehhez a *FluentWait* osztály ad segítséget: beállítjuk, hogy maximum 10 másodpercig várjon, és másodpercenként ellenőrizze a feltételek teljesülését. Ezután megnyitjuk a *https://www.google.com* weboldalt, majd megvátjuk, amíg a keresési szövegdoboz megjelenik. Ezután begépeljük a szövegdobozba a *jwst* szöveget, majd megnyomjuk a *Search* feliratú gombot. Végül 5 másodpercet várunk, hogy a keresési találatokat megnézhessük, majd bezárjuk a böngészőt.
+The Selenium code opens a Chrome browser and makes it full screen. Since the loading of a web page may take some time, we may have to wait for some elements to appear. The *FluentWait* class helps with this: we set the maximum wait time to 10 seconds and that the conditions should be checked in every second. Then we open the page *https://www.google.com*, and wait for the search field to be displayed. Then we type *jwst* into the search field, push the *Search* button and wait for 5 seconds to see the search results.
 
-Egy weboldal elemeit (gombok, szövegdobozok, stb.) a *WebDriver* segítségével érhetjük el a *findElement* függvényen keresztül. A függvénynek meg kell adni egy keresési feltételt, amelyet a *By* osztály ír le. A keresési feltétel sokfajta lehet. A részleteket a [Selenium](https://www.selenium.dev/documentation/webdriver/elements/locators/) dokumentációjában megtalálhatjuk.
+The elements of a web page (buttons, input fields, etc.) can be accessed using the *findElement* function of the *WebDriver* class. The function needs a search condition which can be specified using the *By* class. There are many possible search criteria. Details can be found in the [Selenium](https://www.selenium.dev/documentation/webdriver/elements/locators/) documentation.
 
-Megjegyzés: sajnos a fenti kód nem teljesen működik a tényleges Google keresőoldalon, mert a keresés előtt még a cookie-k használtatát is jóvá kellene hagyni, ami a könnyebb érthetőség kedvéért kimaradt a fenti példából. Mindenesetre a lényeg kiolvasható: jól látható, hogy a WebTest nyelv egy kényelmes absztrakciót biztosít a Selenium API felett. Egy teljes működő megoldás itt látható:
+Note: unfortunately, the code above does not work with the real Google page, since we have to accept cookies before we can use the search functionality. The goal of the WebTest language is clear, however: it provides a simple high level abstraction above Selenium. The complete working WebTest code would be the following:
 
 ```
 webtest example.Google

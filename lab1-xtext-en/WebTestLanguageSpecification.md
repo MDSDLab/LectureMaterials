@@ -1,17 +1,17 @@
-# WebTest nyelv specifikáció
+# WebTest language specification
 
-A WebTest nyelv célja, hogy leegyszerűsítse weboldalak felhasználói felületének tesztelését.
+The goal of the WebTest language is to simplify the testing of web pages.
 
-A nyelv segítségével különböző forgatókönyvek írhatók le, amelyek a felhasználók által is gyakran végzett műveletekből állnak (pl. nyissunk meg a böngészőben egy adott URL-t, gépeljünk be egy adott szövegdobozba valamilyen szöveget, kattintsunk egy adott gombra).
+Using the language we can describe various scenarios at a high abstrafction level based on commonly used steps (e.g., open a given URL, type something to an input field, click a button).
 
-A magas szintű WebTest nyelvi leírásból a fordító [JUnit 5](https://junit.org/junit5/docs/current/user-guide/) teszteket készít, amelyek a [Selenium](https://www.selenium.dev/documentation/) könyvtár segítségével hajtják végre a WebTest nyelven leírt forgatókönyveket.
+From the high abstraction level description the WebTest compiler automatically generates [JUnit 5](https://junit.org/junit5/docs/current/user-guide/) tests which build on the [Selenium](https://www.selenium.dev/documentation/) library to control a Chrome browser to perform the steps written in the WebTest language.
 
-A WebTest nyelv megismeréséhez az alábbi oldalak adnak segítséget:
+The following pages provide more details about the WebTest language:
 
-* [Példa: Google keresés](WebTestExampleGoogle.md)
-* [Példa: számológép](WebTestExampleCalculator.md)
-* [Példa: varázsló](WebTestExampleWizard.md)
-* [Példa: dialógus ablakok](WebTestExampleDialog.md)
-* [WebTest nyelv referencia](WebTestReference.md)
-* [WebTest nyelv bővítmények](WebTestReferenceExtra.md)
-* [WebTest nyelv további ötletek](WebTestReferenceIdeas.md)
+* [Example: Google search](WebTestExampleGoogle.md)
+* [Example: calculator](WebTestExampleCalculator.md)
+* [Example: wizard](WebTestExampleWizard.md)
+* [Example: dialog boxes](WebTestExampleDialog.md)
+* [WebTest language reference](WebTestReference.md)
+* [WebTest language extensions](WebTestReferenceExtra.md)
+* [WebTest language further ideas](WebTestReferenceIdeas.md)

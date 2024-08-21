@@ -1,6 +1,6 @@
-# Példa: dialógus ablakok
+# Example: dialog boxes
 
-Az alábbi példa dialógus ablakok használatát mutatja be:
+The following example shows how dialog boxes can be represented in the WebTest language:
 
 ```
 webtest example.DialogTest
@@ -26,6 +26,6 @@ test smallModalTest
 end
 ```
 
-A fenti példában a *ModalDialog* reprezentál egy dialógus ablakot, amely a jobb felső sarkában egy bezáró (*close*) gombbal rendelkezik.
+In the example above the *ModalDialog* page model represents a modal dialog that has a *close* button.
 
-Attól függően, hogy a *Large modal* vagy a *Small modal* feliratú gombra kattintunk, más-más dialógus ablak jelenik meg, de mindkettő rendelkezik bezáró gombbal. A **context ... as** használatával kiválaszthatjuk azt a *div* elemet, amely a megfelelő dialógus ablakot reprezentálja, és a kiválasztott kontextusban alkalmazható a *ModalDialog* objektummodell.
+Depending on whether we click on the *Large modal* or the *Small modal* button, a different dialog will appear, however, both of them has a close button. Using the **context ... as** construct we can select the *div* that represents the appropriate dialog, and in this context the *ModalDialog* object model can be used to click the close button.

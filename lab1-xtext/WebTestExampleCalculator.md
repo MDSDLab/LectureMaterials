@@ -4,7 +4,7 @@ Mivel egy weboldal elemeinek megkeresése komplex Selenium kifejezésekből áll
 
 A hagyományos Selenium tesztelésnél ezt az objektummodellt elkészíthetjük Java nyelven. A WebTest nyelv azonban a weboldal objektummodelljének elkészítését is megkönnyíti a **page** kulcsszó segítségével.
 
-Példaként tekintsük az alábbi számológépet működtető weboldalt: [CalculatorSoup](https://www.calculatorsoup.com/calculators/math/basic.php)
+Példaként tekintsük az alábbi számológépet működtető weboldalt: [The Online Calculator](https://www.theonlinecalculator.com/)
 
 A WebTest nyelven az alábbi modellt készíthetjük hozzá:
 

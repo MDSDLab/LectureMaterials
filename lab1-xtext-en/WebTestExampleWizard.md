@@ -1,6 +1,6 @@
-# Példa: varázsló
+# Example: wizard
 
-Az alábbi példa egy olyan weboldalt működtet, amely egy varázsló segítségével kéri be az adatokat:
+The example below operates a web page that uses a wizard to enter data:
 
 ```
 webtest example.WizardTest
@@ -70,5 +70,5 @@ context as LoginInfo
 end
 ```
 
-A varázsló minden egyes oldala önálló modellt kap: *Name*, *ContactInfo*, *Birthday* és *LoginInfo*. A megfelelő oldalon kitöltjük a megfelelő mezőket, és a *Next* illetve a *Previous* feliratú gombokkal lépkedhetünk a varázsló oldalai között. Végül a *Submit* feliratú gombbal küldhetjük be a végleges adatokat.
+Each page of the wizard gets its own object model: *Name*, *ContactInfo*, *Birthday* and *LoginInfo*. We fill the appropriate fields on the appropriate pages and we navigate between pages using the *Next* and *Previous* buttons. Finally, we press *Submit* to upload the supplied data.
 

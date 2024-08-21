@@ -1,12 +1,12 @@
-# Példa: számológép
+# Example: calculator
 
-Mivel egy weboldal elemeinek megkeresése komplex Selenium kifejezésekből áll, és egy elemre többször is szükség lehet a futtatás során, a Selenium fejlesztői azt javasolják, hogy építsünk egy objektummodellt, amely a vezérelni kívánt weboldalt reprezentálja, és elrejti az egyes elemek megtalálásának részleteit. Ennek köszönhetően a teszteket egy magasabb absztrakciós szinten, a weboldal fogalmainak segítségével írhatjuk le.
+Since finding the elements of a web page requires complex Selenium expressions, and we may need an element multiple times, the developers of Selenium suggest that we build an object model of a page and hides the details of finding the elements of the page. Using this page model we can write our tests at a higher abstraction level using the concepts of the web page itself.
 
-A hagyományos Selenium tesztelésnél ezt az objektummodellt elkészíthetjük Java nyelven. A WebTest nyelv azonban a weboldal objektummodelljének elkészítését is megkönnyíti a **page** kulcsszó segítségével.
+For a conventional Selenium test we can write this page model in Java. The WebTest language makes creating a page model easy using the **page** keyword.
 
-Példaként tekintsük az alábbi számológépet működtető weboldalt: [CalculatorSoup](https://www.calculatorsoup.com/calculators/math/basic.php)
+Let's take the following web page as an example: [The Online Calculator](https://www.theonlinecalculator.com/)
 
-A WebTest nyelven az alábbi modellt készíthetjük hozzá:
+We can create the following object model for the web page:
 
 ```
 page Calculator
@@ -32,27 +32,27 @@ page Calculator
 end
 ```
 
-A fenti példában a **page** kulcsszóval egy *Calculator* nevű oldalt írunk le, amelybe felvesszük a számunkra szükséges elemeket reprezentáló változókat:
+In the example above the **page** keyword defines a web page named *Calculator*, in which we define the variables representing the HTML elements useful for us:
 
-* display: a számológép kijelzője, ebbe lehet begépelni egy számot
-* clear: a kijelzőt törlő gomb
-* add: az összeadás művelet gombja
-* subtract: a kivonás művelet gombja
-* multiply: a szorzás művelet gombja
-* divide: az osztás művelet gombja
-* compute: a végeredmény számítását végző gomb
+* display: the display of the calculator
+* clear: the button that clears the display
+* add: the addition operation
+* subtract: the subtraction operation
+* multiply: the multiplication operation
+* divide: the division operation
+* compute: the button that computes the result
 
-Ezután az **operation** kulcsszóval definiálunk egy *binaryOperation* általános bináris műveletet, amely három paraméterrel rendelkezik:
+After this we define a general binary operation called *binaryOperation* using the **operation** keyword with three parameters:
 
-* left: a bal oldali operandus értéke
-* op: a végrehajtandó művelet gombja
-* right: a jobb oldali operandus értéke
+* left: the value of the left operand
+* op: the operation to be performed between the operands
+* right: the value of the right operand
 
-A *binaryOperation* művelet először megnyomja az *AC* feliratú gombot, hogy törölje a kijelző értékét, majd beírja a *left* paraméter értékét a kijelzőbe, megnyomja az *op* által reprezentált gombot, beírja a *right* paraméter értékét a kijelzőbe, és végül megnyomja a kiértékelés gombot.
+The *binaryOperation* presses the *AC* button to clear the display. Then types the value of *left* into the display, presses the button represented by *op*, types the value of *right* into the display, and finally it pushes the *compute* button.
 
-A *binaryOperation* segítségével egy másik műveletet is definiálunk *multiply* néven, amely a *left* és a *right* paraméter értékét összeszorozza úgy, hogy a *binaryOperation* művelet *op* paramétereként a szorzás gombot adja át.
+We also defined another operation called *multiply* that does a multiplication with the help of the *binaryOperation* operation.
 
-A fenti modellt a következőképpen használhatjuk a WebTest nyelvben:
+In the WebTest language we can use the page model defined above as follows:
 
 ```
 open "https://www.theonlinecalculator.com/"
@@ -64,4 +64,4 @@ context as Calculator
 end
 ```
 
-Ez a kód az **open** kulcsszóval megnyitja a weboldalt, majd a **context as** segítségével úgy tekinti, hogy az oldal megfelel a fent definiált *Calculator* objektummodellnek, vagyis feltételezi, hogy a kijelző és a gombok mind megtalálhatók rajta. A **wait** parancs addig várakozik, amíg a *display* elem meg nem jelenik. A **print** kulcsszó kiírja az alkalmazás logba, hogy *Page opened*, vagyis hogy az oldal betöltődött. Majd a *multiply* művelet meghívása következik *23* és *6* értékekkel. Az **assert** kulcsszó ellenőrzi, hogy az eredmény a kijelzőn az elvárt *138* értéket tartalmazza-e.
+This code opens the web page using the **open** keyword, then using the **context as** it assumes the web page conforms to the *Calculator* object model, i.e., the display and all the required buttons exist. The **wait** command waits until the *display* is visible. The **print** writes *Page opened* to the application log. Then the *multiply* operation is called with arguments *23* and *6*. The **assert** keyword checks whether the display contains the expected result *138*.
