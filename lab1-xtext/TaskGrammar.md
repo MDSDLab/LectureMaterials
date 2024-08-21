@@ -39,12 +39,12 @@ A többi szabály elkészítése a laborfeladat része. A WebTest nyelv közös 
 A szabályok kialakításánál az alábbiakra célszerű ügyelni:
 
 * Egy nyelvtani szabály neve meg kell egyezzen az Xcore metamodellben szereplő neki megfelelő osztály nevével. Ha a név nem egyezik, akkor a `returns` kulcsszóval lehet specifikálni, hogy az adott nyelvtani szabály melyik Xcore osztályból készítsen példányt.
-* Egy szabály csak egy Xcore osztályt tud példányosítani, és egy objektum példányosítása nem darabolható fel több nyelvtani szabályra.
+* Egy szabály csak egy Xcore objektumot tud példányosítani, és egy objektum példányosítása nem darabolható fel több nyelvtani szabályra.
 * Ha egy szabályból nem feltétlenül készülne Xcore objektum (pl. mert egyetlen property sem kap értéket), de mégis mindenképpen szeretnénk ilyen objektumot létrehozni, akkor kapcsos zárójelek között (`{...}`) kell megadni a megfelelő Xcore osztály nevét.
 * Egy Xcore osztály tulajdonságainak (property-jeinek) az `=`, `+=` és `?=` operátorokkal adhatunk értéket. A nyelvtanban szereplő property nevek meg kell egyezzenek az Xcore osztályban szereplő property-k neveivel.
 * Opcionális elemek jelenléte a `?=` értékadással értékelhető ki.
 * Lista property-khez a `+=` értékadással lehet elemeket hozzáadni.
-* Hivatkozhatunk más objektumokra a `[...]` szintaxissal. A szögletes zárójelek között meg kell adni a hivatkozott objektum típusát. A hivatkozásokat az Xtext a hivatkozott objektum neve alapján oldja fel. Ha az Xtext alapértelmezett feloldási stratégiája nem megfelelő, akkor azt később felüldefiniálhatjuk (ld. később: scoping)
+* Hivatkozhatunk más objektumokra a `[...]` szintaxissal. A szögletes zárójelek között meg kell adni a hivatkozott objektum típusát. A hivatkozásokat az Xtext a hivatkozott objektum neve alapján oldja fel. Ha az Xtext alapértelmezett feloldási stratégiája nem megfelelő, akkor azt később felüldefiniálhatjuk (ld. később: scoping a névelemzés során)
 * Ahhoz, hogy valamire lehessen kereszthivatkozással mutatni, az adott objektumnak kell hogy legyen `name` property-je, amin keresztül a hivatkozás megtörténik. Az Xcore metamodell már eleve így lett kialakítva, hogy ennek a feltételnek megfeleljen.
 
 Miután elkészültetek a nyelvtani szabályokkal, illetve ha bármikor a későbbiekben változtattok rajtuk, le kell futtatnotok a **webtest.dsl** projekten belül az **src** könyvtár alatt a **webtest.dsl** csomagban található **GenerateWebTestDsl.mwe2** generátort. Ehhez kattintsatok jobb gombbal a generátoron és válasszátok a **Run as > MWE2 Workflow** menüpontot!
