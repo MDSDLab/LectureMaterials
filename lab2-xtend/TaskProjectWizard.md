@@ -25,9 +25,9 @@ Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy oly
 
 A fenti fájlok tartalmát a **webtest.generator** projekten belül az **webtest.generator.WebTestProjectGenerator** osztály állítja elő Xtend sablonok segítségével.
 
-A **webtest** könyvtárban lévő **.wt** kierjesztésű fájlokból generált JUnit tesztek az **src-gen/test/java** könyvtába fognak kerülni, de ezt a lépést nem ez a projekt varázsló, hanem a [következő részfeladatban](TaskCodeGeneration.md) elkészített generátor fogja elvégezni.
+A **webtest** könyvtárban lévő **.wt** kierjesztésű fájlokból generált JUnit tesztek az **src-gen/test/java** könyvtába fognak kerülni, de ezt a lépést nem ez a projekt varázsló végzi, hanem a [következő részfeladatban](TaskCodeGeneration.md) elkészített generátorban nektek kell ezt megtenni.
 
-A varázslóhoz és az ahhoz kapcsolódó fájlokhoz ne nyúljatok hozzá, ne írjátok át őket! (Kivéve esetleg a **DEFAULT_CHROME_DRIVER_LOCATION** konstans értékét a generált **SeleniumTest.java** osztályban, ha szükséges.) Ez a részfeladat csak előkészítette a következő részfeladat megoldását.
+A varázslóhoz és az ahhoz kapcsolódó fájlokhoz ne nyúljatok hozzá, ne írjátok át őket! (Kivéve esetleg a **DEFAULT_CHROME_DRIVER_LOCATION** konstans értékét a generált **SeleniumTest.java** osztályban, ha szükséges.)
 
 ## Feltöltendő
 

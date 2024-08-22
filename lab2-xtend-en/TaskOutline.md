@@ -58,7 +58,7 @@ You can check your solution using the **webtest.dsl.ui.tests** project, by runni
 
 ## To be uploaded
 
-During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw2** of your own git repo:
+During the solution of the task, take screenshots taken from the following parts, and upload them into the folder **homeworks/hw2** of your own git repo:
 
 * The test summary window in **Eclipse** for the **webtest.dsl.ui.tests** project, which shows that all the tests in **OutlineTests** are executed successfully.
 * The outline view and the code of a WebTest file of at least 20 lines long opened in **Runtime Eclipse** which contains every relevant element in the outline.

@@ -25,7 +25,7 @@ The **MetaModelTests** class and its contents must be preserved intact.
 
 ## To be uploaded
 
-During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
+During the solution of the task, take screenshots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
 
 * The Xcore representation of the **IfStatement**.
 * The Xcore representation of the extensions assigned to you.

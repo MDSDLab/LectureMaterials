@@ -211,6 +211,6 @@ You can check your name analysis implementation using the **webtest.dsl.tests** 
 
 ## To be uploaded
 
-During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
+During the solution of the task, take screenshots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
 
 * The test summary window in **Eclipse** for the **webtest.model.tests** project, which shows that all the tests in **NameAnalysisTests** and **NameAnalysisExtensionsTests** are executed successfully. (For the success of the test **NameAnalysisTests.testLocalVariableErrors()** test the solution of type analysis task may be necessary.)

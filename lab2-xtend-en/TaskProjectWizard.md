@@ -1,34 +1,34 @@
-# Projekt varázsló (project wizard)
+# Project wizard
 
-Ebben a részfeladatban nincs semmi teendőtök, csak olvassátok el az alábbi leírást!
+In this task you don't have to do anything, just read the text below.
 
-Ahhoz, hogy a WebTest fájlokból előálló JUnit tesztek végrehajthatók legyenek, a WebTest fájlokat egy megfelelő szerkezetű projektbe kell beágyazni (ld. **webtest.example** projekt).
+To be able to execute the JUnit tests generated from the WebTest files, they have to be embedded in a proper project (see the **webtest.example** project).
 
-Segítségképpen a **webtest.dsl.ui** projektben már elkészítettünk egy olyan varázslót (**src/webtest/dsl/ui/wizard/WebTestProject.java**), ami Selenium alapú JUnit tesztek futtatására alkalmas projektet állít elő az alábbi könyvtárak és fájlok létrehozásával:
+To help you, we have added a wizard (**src/webtest/dsl/ui/wizard/WebTestProject.java**) to the **webtest.dsl.ui** project which constructs the required Maven-based Eclipse project for you:
 
-* **src/main/java**: egy Maven projekt esetén ez tartalmazza a Java forrásfájlokat
-  * **.gitignore**: a Git verziókezelő konfigurációs fájlja (üres, mert csak arra szolgál, hogy az **src/main/java** könyvtár megmaradjon verziókezelés alatt)
-* **src/main/resources**: egy Maven projekt esetén ez tartalmazza a konfigurációs fájlokat
-  * **logback.xml**: az slf4j naplózó rendszer konfigurációs fájlja
-* **src/test/java**: egy Maven projekt esetén ez tartalmazza a teszt Java forrásfájlokat
-  * **.gitignore**: a Git verziókezelő konfigurációs fájlja (üres, mert csak arra szolgál, hogy az **src/test/java** könyvtár megmaradjon verziókezelés alatt)
-* **src/test/resources**: egy Maven projekt esetén ez tartalmazza a teszt konfigurációs fájlokat
-  * **logback-test.xml**: az slf4j naplózó rendszer konfigurációs fájlja
-* **webtest**: ide kell elhelyezni a **.wt** kiterjesztésű WebTest forrásfájlokat
-  * **HelloWorld.wt**: egy Hello World jellegű példakód WebTest szintaxissal
-* **.classpath**: az Eclipse egyik konfigurációs fájlja, amely a forráskódokat tartalmazó könyvtárakat határozza meg
-* **.gitignore**: a Git verziókezelő konfigurációs fájlja, amely beállítja, hogy a **target** és **output** könyvtárak ne kerüljenek verziókezelés alá
-* **pom.xml**: a Maven konfigurációs fájl, amely tartalmazza a JUnit 5 és a Selenium függőségeket
-* **src/test/java/webtest/selenium/api/Page.java**: egy weboldal modell ősét reprezentáló segédosztály
-* **src/test/java/webtest/selenium/api/PageElement.java**: egy weboldal elemet reprezentáló segédosztály
-* **src/test/java/webtest/selenium/api/SeleniumTest.java**: a Selenium meghívását támogató segédosztály
+* **src/main/java**: this folder contains Java source files in a Maven project
+  * **.gitignore**: configuration file for git (it's empty, it's goal is to preserve the **src/main/java** folder under version control)
+* **src/main/resources**: this folder contains configuration files in a Maven project
+  * **logback.xml**: configuration file for the slf4j logging system
+* **src/test/java**: this folder contains test Java source files in a Maven project
+  * **.gitignore**: configuration file for git (it's empty, it's goal is to preserve the **src/test/java** folder under version control)
+* **src/test/resources**: this folder contains test configuration files in a Maven project
+  * **logback-test.xml**: configuration file for the slf4j logging system
+* **webtest**: the WebTest files with **.wt** extension must be placed in here
+  * **HelloWorld.wt**: a Hello World sample code with WebTest syntax
+* **.classpath**: configuration file for Eclipse that determines the source folders
+* **.gitignore**: configuration file for git (omits the **target** and **output** folders from version control)
+* **pom.xml**: configuration file for Maven, which contains the JUnit 5 and Selenium dependencies
+* **src/test/java/webtest/selenium/api/Page.java**: base class for web page object models
+* **src/test/java/webtest/selenium/api/PageElement.java**: represents an element on a web page
+* **src/test/java/webtest/selenium/api/SeleniumTest.java**: base class for JUnit tests using Selenium with a lot of utility methods
 
-A fenti fájlok tartalmát a **webtest.generator** projekten belül az **webtest.generator.WebTestProjectGenerator** osztály állítja elő Xtend sablonok segítségével.
+The contents of the files above are produced by the **webtest.generator.WebTestProjectGenerator** class in the **webtest.generator** project using Xtend templates.
 
-A **webtest** könyvtárban lévő **.wt** kierjesztésű fájlokból generált JUnit tesztek az **src-gen/test/java** könyvtába fognak kerülni, de ezt a lépést nem ez a projekt varázsló, hanem a [következő részfeladatban](TaskCodeGeneration.md) elkészített generátor fogja elvégezni.
+The JUnit tests generated from the WebTest files found in the **webtest** folder are put into the **src-gen/test/java** folder. This step is however not performed by the wizard, it must be performed in the [next task](TaskCodeGeneration.md) by your generator.
 
-A varázslóhoz és az ahhoz kapcsolódó fájlokhoz ne nyúljatok hozzá, ne írjátok át őket! (Kivéve esetleg a **DEFAULT_CHROME_DRIVER_LOCATION** konstans értékét a generált **SeleniumTest.java** osztályban, ha szükséges.) Ez a részfeladat csak előkészítette a következő részfeladat megoldását.
+Don't modify the wizard or any of the related files! (Except maybe the value of the **DEFAULT_CHROME_DRIVER_LOCATION** constant in the generated **SeleniumTest.java** class, if necessary.)
 
-## Feltöltendő
+## To be uploaded
 
-Mivel ebben a részfeladatban nincs semmi teendő, itt nem kell képernyőképet feltölteni.
+Since there is nothing to do in this task, you don't have to upload any screenshots.

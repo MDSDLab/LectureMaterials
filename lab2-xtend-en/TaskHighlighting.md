@@ -249,6 +249,6 @@ The result should look like this in the **Runtime Eclipse**:
 
 ## To be uploaded
 
-During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw2** of your own git repo:
+During the solution of the task, take screenshots taken from the following parts, and upload them into the folder **homeworks/hw2** of your own git repo:
 
 * The syntax highlighted code of a WebTest file of at least 20 lines long opened in **Runtime Eclipse** which contains at least one of every relevant element from the language.

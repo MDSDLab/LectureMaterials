@@ -2,27 +2,21 @@
 
 A kódgenerálás során a feldolgozott és leellenőrzött WebTest kódokból JUnit teszteket kell automatizáltan előállítani. Lényegében a WebTest kódokat Java kódra kell lefordítani.
 
-A generált Java kódóknak a [projekt varázslóban](TaskProjectWizard.md) létrehozott projektstruktúrába kell illeszkednie, és azon belül kell működőképesnek lennie.
+A generált Java kódoknak a [projekt varázslóban](TaskProjectWizard.md) létrehozott projektstruktúrába kell illeszkednie, és azon belül kell működőképesnek lennie.
 
 A kódgenerálás megvalósítására legcélravezetőbb az [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html) nyelv és az abban található [sablonok](https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates) használata, így ebben a részfeladatban célszerű **xtend** kiterjesztésű fájlokat készíteni.
 
 ## A generálás előkészítése
 
-Mielőtt nekilátnátok a generálásnak, célszerű manuálisan megírni azt a kódot, amit szerenétek automatizáltan előállítani. Ha egyből a generátort írjátok, akkor nagyon nagy az overhead-je a kipróbálásnak: *generátor módosítása -> Runtime Eclipse indítása -> WebTest fájl szerkesztése -> generált Java kód futtatása JUnit tesztként, feltéve, hogy egyáltalán lefordul*. Javasolt tehát először kézzel megírni egy teljes projektet, amely minden olyan elemet tartalmaz, amit generálni szeretnétek, majd az ebben lévő elemeket érdemes általánosítani és beépíteni egy generátorba.
+Mielőtt nekilátunk egy kódgenerátor írásának, először célszerű manuálisan megírni azokat a kódokat, amiket szerenétek automatizáltan előállítani. Ezek példaként szolgálhatnak a generátor sablonjainak elkészítéséhez. 
 
-Szerencsére nektek már nem kell manuálisan megírni ezeket a kódokat, mert ezt már megtettük helyettetek a **webtest.example** projektben, amelyben mind a WebTest kódok, mind a belőlük előállítandó Java kódok megtalálhatók. Célszerű, de nem szükséges pontosan ugyanezeket a Java kódokat előállítani. Elegendő, ha viselkedésben megegyezik az általatok generált Java kód a példaként megadott kódokkal.
+Szerencsére ezeket a példakódokat megírtuk helyettetek a **webtest.example** projektben, amelyben mind a WebTest kódok, mind a belőlük előállítandó Java kódok megtalálhatók. Célszerű, de nem szükséges pontosan ugyanezeket a Java kódokat előállítani. Elegendő, ha viselkedésben megegyezik az általatok generált Java kód a példaként megadott kódokkal.
 
-Célszerű segédosztályokat is készíteni, amelyekre a generált kódok építhetnek. Ezekben a segédosztályokban elrejthetitek a Selenium használatának egyéb kényelmetlenségeit, például:
+Vizsgáljátok meg a **webtest.example** projektben található WebTest kódokat, a belőlük előálló JUnit teszteket, és a tesztek alapját biztosító segédosztályokat (**Page**, **PageElement**, **SeleniumTest**)!
 
-* A HTML elemek [dinamikus azonosítását](../lab1-xtext/WebTestReference.md#konstans-kifejez%C3%A9sek).
-* A **click()** függvény nem mindig működik egy **WebElement** objektumon. Ilyenkor célszerű JavaScript kódból elvégezni a kattintást, lásd: **GoogleTest** példa a **webtest.example** projektben.
-* Annak eldöntése, hogy egy HTML elem létezik-e (egyértelműen azonosítható-e) és látható-e (**isDisplayed**), lásd: **WizardTest** példa a **webtest.example** projektben.
-* Egy `input` mező tartalmának törlése a szöveg begépelése előtt.
-* Egy `input` mező tartalma a `value` attribútumában van, de más HTML elemeknél a **getText()** hívással kérhető el a belső tartalom.
+A [projekt varázslóban](TaskProjectWizard.md) már elkészítettük nektek a projekt struktúráját, és beépítettük a segédosztályok (**Page**, **PageElement**, **SeleniumTest**) generálását is. Ezekhez ne nyúljatok hozzá, ezeken ne módosítsatok! (Kivéve esetleg a **DEFAULT_CHROME_DRIVER_LOCATION** konstans értékén a generált **SeleniumTest.java** osztályban, ha szükséges.)
 
-Ezeket a segédosztályokat a [projekt varázslóba](TaskProjectWizard.md) már beépítettük nektek (**Page**, **PageElement**, **SeleniumTest**), így nektek már csak meg kell hívnotok őket az általatok generált kódból.
-
-Ebben a részfeladatban csak a WebTest kódokból előálló JUnit teszteket kell generálnotok, amelyeknek a projekt varázsló által létrehozott projekten belül kell működőképesnek lenniük.
+Ebben a részfeladatban csak annyi a dolgotok, hogy minden egyes WebTest fájlból pontosan egy Java fájlt hozzatok létre, amely a WebTest fájlnak megfelelő JUnit tesztet reprezentálja.
 
 ## A generátor váza
 
@@ -50,8 +44,12 @@ class UnitTestGenerator {
         import org.openqa.selenium.WebElement;
         import org.slf4j.Logger;
         import org.slf4j.LoggerFactory;
-        
-        public class «testClassName» {
+
+		import webtest.selenium.api.Page;
+		import webtest.selenium.api.PageElement;
+		import webtest.selenium.api.SeleniumTest;
+
+        public class «testClassName» extends SeleniumTest {
             private static Logger logger = LoggerFactory.getLogger(«testClassName».class);
 
             «FOR tc: main.declarations.filter(TestCase)»
@@ -105,7 +103,7 @@ class UnitTestGenerator {
         if (type == Type.INTEGER) return "int"
         if (type == Type.STRING) return "String"
         if (type == Type.BOOLEAN) return "boolean"
-        if (type == Type.ELEMENT) return "WebElement"
+        if (type == Type.ELEMENT) return "PageElement"
         return "error";
     }
     
@@ -161,6 +159,8 @@ Módosítsátok a **UnitTestGenerator** osztályt, hogy teljesen működő JUnit
 A megvalósítandó 2 bővítmény támogatását se felejtsétek el beépíteni a generátorba!
 
 ***TIPP:** Az Xtend nyelv [dispatch](https://eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html#polymorphic-dispatch) függvénydeklarációja hasznos lehet az utasítások és kifejezések generálása során, amelyet meghívva futásidőben a dinamikus típus alapján dől el, hogy melyik overload változat hívódik meg, így nem kell **instanceof**-ot használni.*
+
+***TIPP:** Ha a **Runtime Eclipse**-et Debug módban indítjátok, és nem végeztek komoly változtatást a generátor kódjában, akkor a változások automatikusan végrehajtódnak, és nem kell folyton újraindítanotok a **Runtime Eclipse**-et. Elegendő a WebTest kódban egy apró módosítást végezni, és azt elmenteni, hogy a generátor újra lefusson. Az Eclipse szólni fog, ha a generátorban történt változás olyan mértékű, amely újraindítást igényel.*
 
 ## Ellenőrzés
 

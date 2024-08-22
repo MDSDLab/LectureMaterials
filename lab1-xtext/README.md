@@ -8,7 +8,7 @@
 * [Maven](https://maven.apache.org/download.cgi). Adjátok hozzá a Maven `bin` könyvtárát a `PATH` környezeti változóhoz.
 * JDK 21 (pl. [Adoptium](https://adoptium.net/)). A `JAVA_HOME` környezeti változó a telepített JDK főkönyvtárára mutasson.
 
-1. Csináljátok végig az [Xcore Wiki](https://wiki.eclipse.org/Xcore) és az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) oldalakon található tutorialokat!
+1. Csináljátok végig az [Xcore Wiki](https://wiki.eclipse.org/Xcore) és az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) oldalakon található tutorialokat! Olvassátok el még egyszer a tavalyi [Xtext gyakorlat](images/GY3-Xtext-Utmutato.pdf) anyagát!
 2. Az [mdsd-2024-lab1-xtext](https://github.com/MDSDLab/mdsd-2024-lab1-xtext) repóból másoljátok át a **webtest.dsl.parent** könyvtárat közvetlenül a saját repótok gyökerébe!
 3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a [számotokra kiosztott bővítményeket](ExtrasTable2024.md)!
 4. Beadás előtt ellenőrizzétek, hogy a **webtest.dsl.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia.

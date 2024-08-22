@@ -1,32 +1,26 @@
-# Kódgenerálás (code generation)
+# Code generation
 
-A kódgenerálás során a feldolgozott és leellenőrzött WebTest kódokból JUnit teszteket kell automatizáltan előállítani. Lényegében a WebTest kódokat Java kódra kell lefordítani.
+After the Xtext compiler processed and checked the WebTest codes, we have to generate JUnit tests from them automatically. In essence, we have to compile WebTest codes to Java codes.
 
-A generált Java kódóknak a [projekt varázslóban](TaskProjectWizard.md) létrehozott projektstruktúrába kell illeszkednie, és azon belül kell működőképesnek lennie.
+The generated Java codes must be embedded into the project structure created by the [project wizard](TaskProjectWizard.md), and they must be able to be compiled and executed within this project.
 
-A kódgenerálás megvalósítására legcélravezetőbb az [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html) nyelv és az abban található [sablonok](https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates) használata, így ebben a részfeladatban célszerű **xtend** kiterjesztésű fájlokat készíteni.
+The recommended way of writing the code generator is by using the [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html) language and it's [templates](https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates). So in this task it is recommended to write files with **xtend** extension.
 
-## A generálás előkészítése
+## Preparing the code generation
 
-Mielőtt nekilátnátok a generálásnak, célszerű manuálisan megírni azt a kódot, amit szerenétek automatizáltan előállítani. Ha egyből a generátort írjátok, akkor nagyon nagy az overhead-je a kipróbálásnak: *generátor módosítása -> Runtime Eclipse indítása -> WebTest fájl szerkesztése -> generált Java kód futtatása JUnit tesztként, feltéve, hogy egyáltalán lefordul*. Javasolt tehát először kézzel megírni egy teljes projektet, amely minden olyan elemet tartalmaz, amit generálni szeretnétek, majd az ebben lévő elemeket érdemes általánosítani és beépíteni egy generátorba.
+Before we start writing a code generator, it is recommended to write the codes manually, which we would like to produce automatically. These manually written codes can serve as examples for writing the templates of the generator.
 
-Szerencsére nektek már nem kell manuálisan megírni ezeket a kódokat, mert ezt már megtettük helyettetek a **webtest.example** projektben, amelyben mind a WebTest kódok, mind a belőlük előállítandó Java kódok megtalálhatók. Célszerű, de nem szükséges pontosan ugyanezeket a Java kódokat előállítani. Elegendő, ha viselkedésben megegyezik az általatok generált Java kód a példaként megadott kódokkal.
+Fortunately, we have already written these example codes in the **webtest.example** project for you. This project contains both WebTest codes and the Java codes which should be produced from them. It is recommended, although not necessary, to produce exactly these Java codes from your own generator. However, it is enough, if the behavior of the Java code you produce is the same as the behavior of the example code.
 
-Célszerű segédosztályokat is készíteni, amelyekre a generált kódok építhetnek. Ezekben a segédosztályokban elrejthetitek a Selenium használatának egyéb kényelmetlenségeit, például:
+Take some time to examine the **webtest.example** project and its contents: the WebTest codes, the JUnit tests produced from them, and the utility classes (**Page**, **PageElement**, **SeleniumTest**) for these tests!
 
-* A HTML elemek [dinamikus azonosítását](../lab1-xtext/WebTestReference.md#konstans-kifejez%C3%A9sek).
-* A **click()** függvény nem mindig működik egy **WebElement** objektumon. Ilyenkor célszerű JavaScript kódból elvégezni a kattintást, lásd: **GoogleTest** példa a **webtest.example** projektben.
-* Annak eldöntése, hogy egy HTML elem létezik-e (egyértelműen azonosítható-e) és látható-e (**isDisplayed**), lásd: **WizardTest** példa a **webtest.example** projektben.
-* Egy `input` mező tartalmának törlése a szöveg begépelése előtt.
-* Egy `input` mező tartalma a `value` attribútumában van, de más HTML elemeknél a **getText()** hívással kérhető el a belső tartalom.
+In the [project wizard](TaskProjectWizard.md) we have already prepared the project structure for you, and we have also built in the generation of the utility classes (**Page**, **PageElement**, **SeleniumTest**). Don't touch the project structure and the utility classes! (Except maybe the value of the **DEFAULT_CHROME_DRIVER_LOCATION** constant in the generated **SeleniumTest.java** class, if necessary.)
 
-Ezeket a segédosztályokat a [projekt varázslóba](TaskProjectWizard.md) már beépítettük nektek (**Page**, **PageElement**, **SeleniumTest**), így nektek már csak meg kell hívnotok őket az általatok generált kódból.
+In this task you only have to produce a single Java file from each WebTest file. Each Java file represents a JUnit test that corresponds to the WebTest file.
 
-Ebben a részfeladatban csak a WebTest kódokból előálló JUnit teszteket kell generálnotok, amelyeknek a projekt varázsló által létrehozott projekten belül kell működőképesnek lenniük.
+## The skeleton of the generator
 
-## A generátor váza
-
-Segítségképpen megadjuk a generátor vázát, amiből könnyebben ki lehet indulni a feladat megoldása során. Hozzatok létre a **webtest.generator** projekten belül az **src** könyvtár alatt a **webtest.generator** csomagban egy **UnitTestGenerator.xtend** fájlt az alábbi tartalommal:
+To help you get started, we provide the skeleton of the generator for you. Inside the **webtest.generator** project under the **src** folder in the package **webtest.generator** create a **UnitTestGenerator.xtend** file with the following content:
 
 ```Java
 package webtest.generator
@@ -50,8 +44,12 @@ class UnitTestGenerator {
         import org.openqa.selenium.WebElement;
         import org.slf4j.Logger;
         import org.slf4j.LoggerFactory;
-        
-        public class «testClassName» {
+
+		import webtest.selenium.api.Page;
+		import webtest.selenium.api.PageElement;
+		import webtest.selenium.api.SeleniumTest;
+
+        public class «testClassName» extends SeleniumTest {
             private static Logger logger = LoggerFactory.getLogger(«testClassName».class);
 
             «FOR tc: main.declarations.filter(TestCase)»
@@ -105,16 +103,16 @@ class UnitTestGenerator {
         if (type == Type.INTEGER) return "int"
         if (type == Type.STRING) return "String"
         if (type == Type.BOOLEAN) return "boolean"
-        if (type == Type.ELEMENT) return "WebElement"
+        if (type == Type.ELEMENT) return "PageElement"
         return "error";
     }
     
 }
 ```
 
-Ez egy minimális JUnit tesztvázat tud generálni, amelyben az egyes függvények törzse még nincs kitöltve. A *TODO* helyekre írhatjátok a saját kódotokat, de nyugodtan hozzányúlhattok a fenti kód többi részéhez is, ha úgy látjátok célszerűnek. Sőt, egyes bővítmények esetén hozzá is kell nyúlni. A fenti példa célja mindössze az, hogy demonstrálja az Xtend nyelv képességeit, és ötleteket adjon az elinduláshoz.
+This generator can produce a minimal JUnit test, in which the bodies of the methods are empty. You can write your own code at the *TODO* lines, but feel free to modify other parts of the generator, if necessary. In fact, for some extensions, it will be necessary. The only goal of the example above is to demonstrate the capabilities of Xtend and to help you get started.
 
-Ahhoz, hogy az Xtext figyelembe vegye a generátorotokat, meg kell hívni a generátort a **webtest.dsl** projekten belül található **webtest.dsl.generator.WebTestDslGenerator** osztályból. Módosítsátok az osztályt az alábbi módon:
+We also need to make Xtext call our generator. Inside the **webtest.dsl** modify the **webtest.dsl.generator.WebTestDslGenerator** class as follows:
 
 ```Java
 package webtest.dsl.generator;
@@ -152,30 +150,33 @@ public class WebTestDslGenerator extends AbstractGenerator {
 }
 ```
 
-Ez a generátor a **resource** paraméterből előbányássza a WebTest modellünk **Main** gyökerét, átadja a generátorotoknak, majd az eredményként előálló Java kódot az **src-gen/test/java** könyvtárban helyezi el.
+This code retrieves the **Main** root of our WebTest model from the **resource** parameter, passes it to your generator, and saves the generated Java code into the **src-gen/test/java** folder.
 
-## Feladat
+## Writing the generator
 
-Módosítsátok a **UnitTestGenerator** osztályt, hogy teljesen működő JUnit teszteket állítson elő!
+Modify the **UnitTestGenerator** class we have created in the previous section so that it produces a working JUnit test that follows the behavior defined in the WebTest code!
 
-A megvalósítandó 2 bővítmény támogatását se felejtsétek el beépíteni a generátorba!
+Don't forget to incorporate the two extensions into your generator!
 
-***TIPP:** Az Xtend nyelv [dispatch](https://eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html#polymorphic-dispatch) függvénydeklarációja hasznos lehet az utasítások és kifejezések generálása során, amelyet meghívva futásidőben a dinamikus típus alapján dől el, hogy melyik overload változat hívódik meg, így nem kell **instanceof**-ot használni.*
+***HINT:** The [dispatch](https://eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html#polymorphic-dispatch) method declaration of Xtend can be useful when you are generating statements and expressions. Dispatch methods are called at runtime based on the dynamic type of the arguments, so dispatch methods can be useful to avoid the heavy use of **instanceof**.*
 
-## Ellenőrzés
+***HINT:** If you start the **Runtime Eclipse** in Debug mode, and you make only minor changes in the generator, the changes will be automatically applied, and you don't have to restart the **Runtime Eclipse** all the time. You only need to make a slight modification in the WebTest code and save it to run the generator again. Eclipse will tell you if the modification in the generator was major, and you need to restart the **Runtime Eclipse**.*
 
-Az alábbi módon lehet ellenőrizni a generátor helyes működését:
+## Check the solution
 
-1. Indítsuk el a **Runtime Eclipse**-et!
-2. Készítsünk egy új **WebTest projektet** a varázsló segítségével!
-3. A projekt **webtest** könyvtárában készítsünk egy új **.wt** kiterjesztésű fált a megfelelő tartalommal!
-4. Mentsük el a **.wt** kiterjesztésű fájlt! Ekkor automatikusan előáll a neki megfelelő JUnit tesztet tartalmazó Java kód.
-5. Kattintsunk jobb gombbal a projekten, és válasszuk a **Run As > JUnit Test** menüpontot. Ennek hatására a JUnit teszt egy Selenium által vezérelt böngészőn keresztül végrehajtja a WebTest nyelven leírt utasításainkat.
+You can check the correct behavior of the generator with the following steps:
 
-## Feltöltendő
+1. Start the **Runtime Eclipse**
+2. Create a new **WebTest project** using the wizard
+3. Add a new WebTest file with a **.wt** extension to the **webtest** folder
+4. Write some tests inside the newly created file using the WebTest syntax, while enjoying the IDE support for the language: syntax highlighting, outline, validation, etc.
+5. Save the WebTest file. The corresponding JUnit test must be generated automatically.
+6. Right click on the project, and select **Run As > JUnit Test**. The JUnit test should execute successfully while controlling a browser through the Selenium library and performing the steps written in the WebTest file.
 
-Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
+## To be uploaded
 
-* A **Runtime Eclipse**-ben a projekt varázsló által előállított projekt teljes mappaszerkezete kibontva úgy, hogy a varázsló által előállított összes fájl látható legyen.
-* A **Runtime Eclipse**-ben a varázsló által készített projekt **webtest** mappájában elkészített legalább 20 soros **.wt** kiterjesztésű fájl, amely mindkét megvalósítandó bővítményre tartalmaz példát.
-* A **.wt** fájlból generált Java kód a **Runtime Eclipse**-ben megnyitva.
+During the solution of the task, take screenshots taken from the following parts, and upload them into the folder **homeworks/hw2** of your own git repo:
+
+* The project structure of a project created by the project wizard in **Runtime Eclipse**. Open the folders so that all the generated files are visible.
+* An opened **.wt** file of at least 20 lines in the project's **webtest** folder, which contains examples for your two extensions.
+* The generated Java code from this **.wt** opened in **Runtime Eclipse**.

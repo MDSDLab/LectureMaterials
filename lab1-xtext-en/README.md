@@ -8,7 +8,7 @@
   * [Maven](https://maven.apache.org/download.cgi). Add the `bin` folder of Maven to the `PATH` environment variable.
   * JDK 21 (e.g., [Adoptium](https://adoptium.net/)). Make sure that the `JAVA_HOME` environment variable points to the main folder of the installed JDK.
 
-1. Solve the tutorials for [Xcore](https://wiki.eclipse.org/Xcore) and [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html)!
+1. Solve the tutorials for [Xcore](https://wiki.eclipse.org/Xcore) and [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html)! Read the [Xtext practice guidelines](../lab1-xtext/images/PR3-Xtext-Guideline.pdf) from the previous semester.
 2. From the [mdsd-2024-lab1-xtext](https://github.com/MDSDLab/mdsd-2024-lab1-xtext) repository copy the folder **webtest.dsl.parent** to the root of your own repository!
 3. Solve the tasks listed below, while also taking the [extensions assigned to you](ExtrasTable2024.md) into account!
 4. Before submission, check whether the `compile.bat` command in **webtest.dsl.parent** runs successfully. All projects must compile without any errors.

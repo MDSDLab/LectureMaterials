@@ -59,7 +59,7 @@ You can check your grammar using the **webtest.dsl.tests** project, by running i
 
 ## To be uploaded
 
-During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
+During the solution of the task, take screenshots taken from the following parts, and upload them into the folder **homeworks/hw1** of your own git repo:
 
 * A **.wt** file of at least 20 lines long opened in **Runtime Eclipse**. The file should contain examples to at least 5 common language elements and the 2 extensions assigned to you.
 * The **WebTest.xtext** file opened in **Eclipse** showing the grammar rules for the 2 extensions assigned to you.
