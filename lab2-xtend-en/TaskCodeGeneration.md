@@ -45,9 +45,9 @@ class UnitTestGenerator {
         import org.slf4j.Logger;
         import org.slf4j.LoggerFactory;
 
-		import webtest.selenium.api.Page;
-		import webtest.selenium.api.PageElement;
-		import webtest.selenium.api.SeleniumTest;
+        import webtest.selenium.api.Page;
+        import webtest.selenium.api.PageElement;
+        import webtest.selenium.api.SeleniumTest;
 
         public class «testClassName» extends SeleniumTest {
             private static Logger logger = LoggerFactory.getLogger(«testClassName».class);
