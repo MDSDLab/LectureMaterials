@@ -1,64 +1,64 @@
-# Kódvázlat (outline view, label provider)
+# Outline view
 
-Az outline (vázlat) nézet segítségével a kód szerkezetéről kapunk áttekintő képet. Az Xtext által generált alapértelmezett outline nézet így néz ki a **Runtime Eclipse**-ben:
+The outline view shows and overview about the structure of the code. The default outline view created by Xtext looks like in **Runtime Eclipse** as follows:
 
-![Outline-Initial](images/Outline-Initial.png)
+![Outline-Initial](../lab1-xtext/images/Outline-Initial.png)
 
-Az alapértelmezett nézetben minden modellbeli elem látható, de sok elemnek nincs érdemben használható nézete.
+By default, every element in the model is visible, but many of them are not really useful.
 
-Ebben a részfeladatban a cél az, hogy csak azokra a modellelemekre szorítkozzunk az outline nézetben, amelyeknek érdemi információtartalma van, és a nézet a neveken túl további hasznos részletekkel is szolgáljon.
+In this task, the goal is to provide a more meaningful outline.
 
-Az outline nézet struktúráját az [OutlineTreeProvider](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#outline) segítségével, a megjelenő elemek részleteit a [LabelProvider](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#label-provider) segítségével lehet testre szabni.
+The structure of the outline view can be customized using the [OutlineTreeProvider](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#outline), and the details of the visible elements can be customized using the [LabelProvider](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#label-provider).
 
-## Outline struktúrája
+## Outline structure
 
-A **webtest.dsl.ui** projekten belül a **webtest.dsl.ui.outline** csomagban található a **WebTestDslOutlineTreeProvider** osztály. Ebben kell megvalósítanotok a nézet kívánt struktúráját.
+Inside the **webtest.dsl.ui** project in the **webtest.dsl.ui.outline** package the **WebTestDslOutlineTreeProvider** class can be used to customize the structure of the outline.
 
-Módosítsátok úgy a **WebTestDslOutlineTreeProvider** osztályt, hogy csak az alábbi modellelemek jelenjenek meg a struktúrában:
+Modify the **WebTestDslOutlineTreeProvider** class so that only the following elements become visible in the structure:
 
-* legfelső szinten csak a **Page**, **TestCase** és **Operation** objektumok
-* ha a **Manual** bővítményt meg kell valósítanunk, akkor a **Manual** objektumok is jelenjenek meg a legfelső szinten
-* a **Page** alatt az oldal változói (**variables**) és operációi (**operations**)
+* at the topmost level the **Page**, **TestCase** and **Operation** objects
+* if you have to implement the **Manual** extension, then the **Manual** objects must also appear at the topmost level
+* member properties (**variables**) and operations (**operations**) of the **Page** objects
 
-A többi modellelem ne látszódjon az outline nézetben.
+Other model elements must not be visible.
 
-***TIPP:** Hozzátok létre a megfelelő **_createChildren** és **_isLeaf** függvényeket, ahogy az [Xtext](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#outline) dokumentáció előírja.*
+***HINT:** Create the appropriate **_createChildren** and **_isLeaf** methods as described in the [Xtext](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#outline) documentation.*
 
-## Címkék
+## Labels
 
-A **webtest.dsl.ui** projekten belül a **webtest.dsl.ui.labeling** csomagban található a **WebTestDslLabelProvider** osztály. Ebben kell megvalósítanotok a címkék megfelelő feliratát és ikonját. Az ikonokat a **webtest.dsl.ui** projekt **icons** könyvtára tartalmazza.
+Inside the **webtest.dsl.ui** project in the **webtest.dsl.ui.labeling** package the **WebTestDslLabelProvider** class can be used to customize the labels and icons of the model elements displayed in the outline view. The icons can be found in the **webtest.dsl.ui** project under the **icons** folder.
 
-Módosítsátok úgy a **WebTestDslLabelProvider** osztályt, hogy az egyes elemeknél az alábbiak legyenek láthatók:
+Modify the **WebTestDslLabelProvider** class so that the following information is displayed for each outline element:
 
 * **Page**:
-  * szöveg: Az oldal neve. Pl. `Google`
-  * ikon: `page.png`
+  * text: Name of the page. e.g., `Google`
+  * icon: `page.png`
 * **TestCase**:
-  * szöveg: A teszteset neve. Ha a **TestParams** bővítményt meg kell valósítanotok, a teszteset neve után zárójelben vesszőkkel elválasztva fel kell sorolni a teszteset paramétereit. Ha a tesztesetnek nincsenek paraméterei, akkor a zárójelek sem kellenek. A paraméterek úgy jelennek meg, mint a változók: a paraméter nevét követően egy kettőspont és egy szóköz, majd a paraméter típusa. Pl. `TestLogin(username: STRING, password: STRING)` vagy `TestWithoutParameters`
-  * ikon: `test.png`
+  * text: Name of the test case. If you have to implement the **TestParams** extension, list the parameters of the test after the name of the test. The parameters should be separated by commas and enclosed in parenthesis. For each parameter the name of the parameter should be followed by a colon and a space character, and then the type of the parameter should be displayed. If a test case does not have parameters, then the parenthesis should not be displayed, either. e.g., `TestLogin(username: STRING, password: STRING)` or `TestWithoutParameters`
+  * icon: `test.png`
 * **Manual**:
-  * szöveg: A kézikönyv neve. Pl. `Search`
-  * ikon: `manual.png`
+  * text: Name of the manual. e.g., `Search`
+  * icon: `manual.png`
 * **Variable**:
-  * szöveg: A változó neve, majd egy kettőspont és egy szóköz után a változó típusa. Pl. `name: STRING`
-  * ikon: `attribute.png`
+  * text: Name of the variable followed by a colon, a space and the type of the variable. e.g., `name: STRING`
+  * icon: `attribute.png`
 * **Operation**:
-  * szöveg: Az operáció neve, majd zárójelben az operáció paraméterei vesszőkkel elválasztva. A zárójelek akkor is kellenek, ha nincsenek paraméterei az operációnak. A paraméterek úgy jelennek meg, mint a változók: a paraméter nevét követően egy kettőspont és egy szóköz, majd a paraméter típusa. Pl. `login(username: STRING, password: STRING)` vagy `logout()`
-  * ikon: `operation.png`
+  * text: Name of the operation followed by the comma separated list of parameters enclosed in parenthesis. The parenthesis is required even if there are no parameters. For each parameter the name of the parameter should be followed by a colon and a space character, and then the type of the parameter should be displayed. e.g., `login(username: STRING, password: STRING)` or `logout()`
+  * icon: `operation.png`
 
-***TIPP:** Hozzátok létre a megfelelő **text** és **image** függvényeket, ahogy az [Xtext](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#label-provider) dokumentáció előírja.*
+***HINT:** Create the appropriate **text** and **image** methods as described by the [Xtext](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#label-provider) documentation.*
 
-## Ellenőrzés
+## Check the solution
 
-Ha mindent megfelelően implementáltatok, a végeredmény a következő lesz:
+If you have implemented everything correctly, the final result in the **Runtime Eclipse** should look like:
 
-![Outline-Final](images/Outline-Final.png)
+![Outline-Final](../lab1-xtext/images/Outline-Final.png)
 
-Az outline és a címkék helyes működését a **webtest.dsl.ui.tests** projekt JUnit tesztként való futtatásával (**Run as > JUnit Plug-in Test**) is ellenőrizhetitek a **OutlineTests** tesztelő osztály segítségével.
+You can check your solution using the **webtest.dsl.ui.tests** project, by running it as a JUnit test (**Run as > JUnit Plug-in Test**). The **OutlineTests** class checks the correctness of the outline view.
 
-## Feltöltendő
+## To be uploaded
 
-Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
+During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw2** of your own git repo:
 
-* Az **OutlineTests** összes tesztjének sikeres lefutása
-* A **Runtime Eclipse**-ben megnyitott legalább 20 soros **.wt** kiterjesztésű fájl és annak outline nézete teljesen kibontva, amely minden releváns elemet tartalmaz az outline nézetből.
+* The test summary window in **Eclipse** for the **webtest.dsl.ui.tests** project, which shows that all the tests in **OutlineTests** are executed successfully.
+* The outline view and the code of a WebTest file of at least 20 lines long opened in **Runtime Eclipse** that contains every relevant element in the outline.

@@ -22,10 +22,10 @@ IMPORTANT: Within the same project, files with extension **xtend** see files wit
 
 Solve the following tasks:
 
-1. [Kódvázlat (outline view, label provider)](TaskOutline.md) (5 pont)
-2. [Kódszínezés (syntax coloring, highlighting)](TaskHighlighting.md) (5 pont)
-3. [Projekt varázsló (project wizard)](TaskProjectWizard.md)
-4. [Kódgenerálás (code generation)](TaskCodeGeneration.md) (15 pont)
+1. [Outline view](TaskOutline.md) (5 points)
+2. [Syntax highligthing](TaskHighlighting.md) (5 points)
+3. [Project wizard](TaskProjectWizard.md)
+4. [Code generation](TaskCodeGeneration.md) (15 points)
 
 ## Check the solution
 
