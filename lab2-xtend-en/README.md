@@ -1,51 +1,52 @@
-# 2. labor - IDE támogatás és Xtend kódgenerátor
+# Laboratory 2 - IDE support and Xtend generator
 
-## A laborfeladat elvégzésének lépései
+## Steps to solve the lab
 
-0. Ezen a laboron az első laboron megoldott feladatot kell majd tovább folytatni.
-1. Csináljátok végig az [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorialt!
-2. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott bővítményeket!
-3. Beadás előtt ellenőrizzétek, hogy a **webtest.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia.
-4. Készítsetek egy **hw2** nevű git tag-et az utolsó commitra!
+0. In this lab you have to develop the application from the previous lab further.
+1. Solve the [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorial!
+2. Solve the tasks listed below, while also taking the extensions assigned to you into account!
+4. Before submission, check whether the `compile.bat` command in **webtest.dsl.parent** runs successfully. All projects must compile without any errors.
+5. Add the **hw2** git tag to your last commit!
 
-## Feladat célja
+## Goal of the lab
 
-A laborfeladat célja Xtext segítségével Eclipse IDE támogatás, valamint Xtend segítségével kódgenerátor készítése a WebTest nyelvhez. Az IDE támogatás célja, hogy leegyszerűsítse a WebTest fájlok szerkesztését. A kódgenerátor pedig a WebTest fájlokból JUnit teszteket állít elő úgy, hogy azokat közvetlenül futtatni lehessen.
+The goal of this lab is to add a more advanced Eclipse IDE support to the WebTest language, and to develop a code generator that translates the WebTest code into JUnit tests, so that they can be executed.
 
-A WebTest nyelv közös részét mindenkinek meg kell valósítania. A bővítmények közül csak a kiosztott 2 darab bővítményt kell kötelezően támogatni, a többi bővítmény támogatása opcionális.
+The common part of the language must be realized by everyone. From the extensions, you only have to implement the two extensions assigned to you. Of course, you can implement the other extensions, too, if you want to.
 
-## Feladat leírása
+## List of the tasks
 
-Az előző (**lab1-xtext**) labor eredményét kell továbbfejleszteni. Nyissátok meg a **webtest.parent** könyvtár alatt található projekteket Eclipse alatt!
+In this lab you have to develop the application from the previous lab further. In Eclipse, open the projects under the folder **webtest.dsl.parent**.
 
-FONTOS: Az **xtend** kiterjesztésű fájlok csak az Eclipse IDE-ben dolgozva látják az azonos projektben lévő **java** kiterjesztésű fájlokat, a Maven fordítás során nem! Emiatt célszerű csak a kódgenerálás során használni az **xtend** kiterjesztésű fájlokat. Mindenképpen győződjetek meg róla, hogy a Maven fordítás is működőképes-e!
+IMPORTANT: Within the same project, files with extension **xtend** see files with extension **java** only inside the Eclipse IDE, but not during the Maven build! Therefore, it is recommended to use **xtend** files only in the **webtest.generator** project. Always make sure that the Maven build is successfull, too!
 
-Oldjátok meg az alábbi feladatokat:
+Solve the following tasks:
 
 1. [Kódvázlat (outline view, label provider)](TaskOutline.md) (5 pont)
 2. [Kódszínezés (syntax coloring, highlighting)](TaskHighlighting.md) (5 pont)
 3. [Projekt varázsló (project wizard)](TaskProjectWizard.md)
 4. [Kódgenerálás (code generation)](TaskCodeGeneration.md) (15 pont)
 
-## Megoldás ellenőrzése
+## Check the solution
 
-A **webtest.dsl.ui.tests** projekt azt teszteli, hogy az elkészített Xtext IDE támogatás megfelel-e a laborfeladat követelményeinek.
+The **webtest.dsl.ui.tests** project tests whether the Xtext IDE support is correct.
 
-A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni, és a generátor is megfelelően működik. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülhetnek a leadás után!
+The solution of the lab tasks can be regarded as complete, if all the relevant tests run successfully, and the Maven compilation is also successful using the `compile.bat` command. However, during the evaluation of your solution, we may execute further tests, too.
 
-Ha az összes részfeladattal végeztetek, az alábbi működés az elvárt:
+When you are finished with all the tasks, the following behavior is expected:
 
-1. Indítsuk el a **Runtime Eclipse**-et
-2. Készítsünk egy új **WebTest projektet** a varázsló segítségével
-3. A projekt **webtest** könyvtárában készítsünk egy új **.wt** kiterjesztésű fált
-4. Írjunk WebTest nyelven teszteket a **.wt** kiterjesztésű fájlba, és közben élvezzük a saját Xtext alapú IDE támogatásunk előnyeit: kódszínezés, outline nézet, validációk, stb.
-5. Mentsük el a **.wt** kiterjesztésű fájlt. Ekkor automatikusan előáll a neki megfelelő JUnit tesztet tartalmazó Java kód.
-6. Kattintsunk jobb gombbal a projekten, és válasszuk a **Run As > JUnit Test** menüpontot. Ennek hatására a JUnit teszt egy Selenium által vezérelt böngészőn keresztül végrehajtja a WebTest nyelven leírt utasításainkat.
+1. Start the **Runtime Eclipse**
+2. Create a new **WebTest project** using the wizard
+3. Add a new WebTest file with a **.wt** extension to the **webtest** folder
+4. Write some tests inside the newly created file using the WebTest syntax, while enjoying the IDE support for the language: syntax highlighting, outline, validation, etc.
+5. Save the WebTest file. The corresponding JUnit test must be generated automatically.
+6. Right click on the project, and select **Run As > JUnit Test**. The JUnit test should execute successfully while controlling a browser through the Selenium library and performing the steps written in the WebTest file.
 
-## Referenciák
+## References
 
-Hasznos linkek a feladat megoldásához:
+Useful links to solve the tasks:
 
-* Az előző féléves Xtext-Xtend gyakorlat [útmutatója](../lab1-xtext/images/GY3-Xtext-Utmutato.pdf)
 * [Xtext](https://eclipse.dev/Xtext/documentation/index.html)
 * [Xtend](https://eclipse.dev/Xtext/xtend/documentation/index.html)
+* [Guidelines](../lab1-xtext/images/PR3-Xtext-Guideline.pdf) from the previous semester's Xtext practice
+
