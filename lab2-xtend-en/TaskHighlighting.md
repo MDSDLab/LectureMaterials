@@ -1,16 +1,16 @@
-# Kódszínezés (syntax coloring, highlighting)
+# Syntax highligthing
 
-A kódszínezés a kód olvashatóságát javítja. A kódszínezés két fázisban történhet: lexikai és szemantikai. A lexikai fázisban a lexer által előállított elemeket színezzük, pl. kulcsszavak, kommentek, stb. A szemantikai fázisban a fordító által értelmezett modell alapján végzünk színezést, pl. statikus és tagváltozók megkülönböztetése, tagváltozók és lokális változók megkülönböztetése, stb. Mindkét fázisban nagyon gyorsan ki kell számolni az eredményt, hiszen billentyűleütésre újra kell számolni a színeket, bár az Xtext amit csak lehet, cache-el.
+Syntax highligting improves the readability of the code. It can happen in two phases: lexical or semantic. In the lexical phase the elements created by the lexer are colored (e.g., keywords, comments). In the semantic phase the elements are colored based on the model created by the compiler (e.g. distinction between static and instance members). The results should be computed really fast, since the code should be recolored at each keystroke. Fortunately, Xtext caches everything it can.
 
-Ebben a részfeladatban a WebTest fájl szerkezetét alkotó deklarációk kulcsszavait kell megkülönböztetni az utasítások kulcsszavaitól, valamint a **context as ... end** kontextusban a hivatkozott weboldalmodellből feloldott változókat és operációkat kell megkülönböztetni a lokális változóktól. Az egyszerűség kedvéért csak szemantikus kódszínezést fogunk használni.
+In this task the keywords belonging to the declarations of the main structure of the code must be distinguished from the keywords of the statements. In addition, the page properties and operations referenced inside the **context as ... end** construct must be distinguished from the local variables and other operations. For simplicity, we will use semantic highlighting only.
 
-A kódszínezéssel kapcsolatos legfontosabb információkat [itt találhatjuk](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#highlighting).
+The most important information about syntax highlighting can be found in the [Xtext](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#highlighting) documentation.
 
-## Kódszínezés előkészítése
+## Preparing the syntax highlighting
 
-Először meg kell határozni azokat a kategóriákat, amelyek önálló színeket kaphatnak. Ezek a kategóriák az Eclipse beállításoknál (**Window > Preferences > Xtext Languages > WebTestDsl > Syntax Coloring**) szerkeszthetővé is válnak, így a felhasználók saját maguk konfigurálhatják az általuk preferált színeket.
+First, we have to define the categories of syntax elements which can have their own colors. These categories are also listed in the Eclipse preferences window (**Window > Preferences > Xtext Languages > WebTestDsl > Syntax Coloring**) so programmers can customize the elements themselves.
 
-A **webtest.dsl.ui** projektben hozzatok létre egy **webtest.dsl.ui.highlighting** csomagot, benne pedig egy **HighlightingConfiguration.java** fájlt a következő tartalommal:
+Inside the **webtest.dsl.ui** project create a **webtest.dsl.ui.highlighting** package, then create a **HighlightingConfiguration.java** file inside the package with the following content:
 
 ```Java
 package webtest.dsl.ui.highlighting;
@@ -108,9 +108,9 @@ public class HighlightingConfiguration implements IHighlightingConfiguration {
 }
 ```
 
-Az Xtext beépített konfigurációin felül a **DECLARATION_ID** a WebTest kód vázát alkotó deklarációk színezését, a **PAGE_MEMBER_ID** pedig a kontextuson belül feloldott tagok színezését reprezentálja. A többi stílus az Xtext beépített stílusa.
+In addition to the common Xtext styles, we define **DECLARATION_ID** for the declaration keywords, and **PAGE_MEMBER_ID** for page members.
 
-Hozzatok létre egy **WebTestDslHighlighter.java** fájlt a **webtest.dsl.ui.highlighting** csomagban a következő tartalommal:
+Create a **WebTestDslHighlighter.java** file inside the **webtest.dsl.ui.highlighting** package with the following content:
 
 ```Java
 package webtest.dsl.ui.highlighting;
@@ -170,9 +170,9 @@ public class WebTestDslHighlighter extends DefaultSemanticHighlightingCalculator
 }
 ```
 
-A fenti kód kiszínezi a **webtest** kulcsszót a fájl elején.
+The code above colors the **webtest** keyword at the beginning of the WebTest file with the **DECLARATION_ID** style.
 
-Ahhoz, hogy a fenti két osztály meghívásra kerüljön, be kell őket regisztrálni a **webtest.dsl.ui** csomagban lévő **WebTestDslUiModule** osztályba:
+We must register the two classes we have created into the **WebTestDslUiModule** class in package **webtest.dsl.ui** so that Xtext can take them into account:
 
 ```Java
 /*
@@ -212,43 +212,43 @@ public class WebTestDslUiModule extends AbstractWebTestDslUiModule {
 }
 ```
 
-Indítsátok el a **Runtime Eclipse**-et, és vizsgáljátok meg a fenti kódrészletek hatását:
+Start the **Runtime Eclipse** and check the result of adding the classes above:
 
-![HighlightPage](images/Highlight-Main.png)
+![HighlightPage](../lab2-xtend/images/Highlight-Main.png)
 
-## Kódszínezés megvalósítása
+## Implementing syntax highlighting
 
-Módosítsátok a **WebTestDslHighlighter** osztályt, hogy az alábbi elemeket is kiszínezze **DECLARATION_ID** stílusúra:
+Modify the **WebTestDslHighlighter** class so that it colors the following elements using the **DECLARATION_ID** style:
 
-* Egy **Page** esetén a nyitó **page** és a záró **end** kulcsszót
-* Egy **Operation** esetén a nyitó **operation** és a záró **end** kulcsszót
-* Egy **TestCase** esetén a nyitó **test** és a záró **end** kulcsszót
-* Ha a **TestParams** bővítményt meg kell valósítanotok, akkor a **TestCaseInstance**-hoz tartózó **with** kulcsszót
-* Ha a **Manual** bővítményt meg kell valósítanotok, akkor a nyitó **manual** és a záró **end** kulcsszót
+* For a **Page**: the opening **page** and the closing **end** keyword
+* For an **Operation**: the opening **operation** and the closing **end** keyword
+* For a **TestCase**: the opening **test** and the closing **end** keyword
+* If you have to implement the **TestParams** extension, then for each **TestCaseInstance**: the **with** with keyword
+* If you have to implement the **Manual** extension, then the opening **manual** and the closing **end** keyword
 
-Módosítsátok a **WebTestDslHighlighter** osztályt, hogy az alábbi elemeket is kiszínezze **PAGE_MEMBER_ID** stílusúra (ezek nehéz feladatok):
+Modify the **WebTestDslHighlighter** class so that it colors the following elements using the **PAGE_MEMBER_ID** style (these tasks are hard):
 
-* Egy **Page**-en belül az oldal változóinak és operációinak nevét
-* Egy **VariableExpression**-ön belül a változó nevét, ha az egy **Page** saját változója
-* Egy **CallStatement**-en belül az operáció nevét, ha az egy **Page** saját operációja
+* Inside a **Page**: member variable and operation names
+* Inside a **VariableExpression**: the name of the variable if it is a **Page** member variable
+* Inside a **CallStatement**: the name of the operation if it is a **Page** member operation
 
-***TIPP:** A következő elemek segíthetnek a megvalósításban:*
+***HINT:** The following elements may help you to implement this task:*
 
-* *Egy **INode** szintaxiscsúcs **grammarElement** attribútuma arra a nyelvtani szabályra mutat, amelyből az adottszintaxiscsúcs keletkezett.*
-* *Egy **INode** szintaxiscsúcs **semanticElement** attribútuma arra az Xcore modellelemre mutat, amely az adott szintaxiscsúcs alapján jött létre.*
-* *A **grammarElement** típusa vizsgálható az **instanceof** operátorral. A **RuleCall** típusú elemből az alkalmazott nyelvtani szabály kinyerhető és összehasonlítható a **WebTestDslGrammarAccess**-ben elérhető szabályokkal.*
-* *A **semanticElement** típusa vizsgálható az **instanceof** operátorral és egy megfelelő Xcore-ban definiált típussal.*
-* *Hasznosak lehetnek még a **NodeModelUtils** osztályban elérhető függvények.*
-* *Egy modellbeli objektumtól az **eContainer** attribútummal elkérhető az őt tartalmazó objektum, így könnyű megvizsgálni, hogy egy változó vagy operáció **Page**-ben van-e definiálva.*
+* *An **INode** syntax node's **getGrammarElement()** method returns the grammar rule from which this syntax node was created.*
+* *An **INode** syntax node's **getSemanticElement()** method returns the Xcore object that was created from this syntax node.*
+* *The type of the grammar element can be checked using the **instanceof** operator. From a **RuleCall** grammar element the grammar rule can be retrieved, and it can be compared to the grammar rules listed in **WebTestDslGrammarAccess**.*
+* *The type of the semantic element can be checked using the **instanceof** operator and can be compared to an Xcore type.*
+* *Methods defined in the **NodeModelUtils** class can be useful.*
+* *From an Xcore object, the **eContainer()** method can be used to get the container object. This can help to determine whether a variable or operation is a **Page**-member.*
 
-## Ellenőrzés
+## Check the solution
 
-A végeredménynek a következőképpen kell kinéznie:
+The result should look like this in the **Runtime Eclipse**:
 
-![HighlightPage](images/Highlight-Result.png)
+![HighlightPage](../lab2-xtend/images/Highlight-Result.png)
 
-## Feltöltendő
+## To be uploaded
 
-Ha ezt a részfeladatot sikerült megoldani, készítsetek screenshot-okat és töltsétek fel a képeket a saját repótokon belül a **homeworks/hw2** mappába az alábbiakról:
+During the solution of the task, take screen shots taken from the following parts, and upload them into the folder **homeworks/hw2** of your own git repo:
 
-* A **Runtime Eclipse**-ben megnyitott legalább 20 soros **.wt** kiterjesztésű fájl szépen kiszínezve, amely minden releváns WebTest nyelvi elemből legalább egyet tartalmaz.
+* The syntax highlighted code of a WebTest file of at least 20 lines long opened in **Runtime Eclipse** which contains at least one of every relevant element from the language.

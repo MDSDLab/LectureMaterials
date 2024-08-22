@@ -228,18 +228,18 @@ Módosítsátok a **WebTestDslHighlighter** osztályt, hogy az alábbi elemeket 
 
 Módosítsátok a **WebTestDslHighlighter** osztályt, hogy az alábbi elemeket is kiszínezze **PAGE_MEMBER_ID** stílusúra (ezek nehéz feladatok):
 
-* Egy **Page**-en belül az oldal változóinak és operációinak nevét
-* Egy **VariableExpression**-ön belül a változó nevét, ha az egy **Page** saját változója
-* Egy **CallStatement**-en belül az operáció nevét, ha az egy **Page** saját operációja
+* Egy **Page**-en belül az oldal tagváltozóinak és tagoperációinak nevét
+* Egy **VariableExpression**-ön belül a változó nevét, ha az egy **Page** tagváltozója
+* Egy **CallStatement**-en belül az operáció nevét, ha az egy **Page** tagoperációja
 
 ***TIPP:** A következő elemek segíthetnek a megvalósításban:*
 
-* *Egy **INode** szintaxiscsúcs **grammarElement** attribútuma arra a nyelvtani szabályra mutat, amelyből az adottszintaxiscsúcs keletkezett.*
-* *Egy **INode** szintaxiscsúcs **semanticElement** attribútuma arra az Xcore modellelemre mutat, amely az adott szintaxiscsúcs alapján jött létre.*
-* *A **grammarElement** típusa vizsgálható az **instanceof** operátorral. A **RuleCall** típusú elemből az alkalmazott nyelvtani szabály kinyerhető és összehasonlítható a **WebTestDslGrammarAccess**-ben elérhető szabályokkal.*
-* *A **semanticElement** típusa vizsgálható az **instanceof** operátorral és egy megfelelő Xcore-ban definiált típussal.*
+* *Egy **INode** szintaxiscsúcs **getGrammarElement()** függvénye azzal a nyelvtani szabállyal tér vissza, amelyből az adottszintaxiscsúcs keletkezett.*
+* *Egy **INode** szintaxiscsúcs **getSemanticElement()** függvénye azzal az Xcore objektummal tér vissza, amely az adott szintaxiscsúcs alapján jött létre.*
+* *A grammar element típusa vizsgálható az **instanceof** operátorral. A **RuleCall** típusú elemből az alkalmazott nyelvtani szabály kinyerhető és összehasonlítható a **WebTestDslGrammarAccess**-ben elérhető szabályokkal.*
+* *A semantic element típusa vizsgálható az **instanceof** operátorral és egy megfelelő Xcore-ban definiált típussal.*
 * *Hasznosak lehetnek még a **NodeModelUtils** osztályban elérhető függvények.*
-* *Egy modellbeli objektumtól az **eContainer** attribútummal elkérhető az őt tartalmazó objektum, így könnyű megvizsgálni, hogy egy változó vagy operáció **Page**-ben van-e definiálva.*
+* *Egy modellbeli objektumtól az **eContainer()** függvénnyel elkérhető az őt tartalmazó objektum, így könnyű megvizsgálni, hogy egy változó vagy operáció egy **Page** tagjaként van-e definiálva.*
 
 ## Ellenőrzés
 
