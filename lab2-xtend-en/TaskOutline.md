@@ -32,19 +32,19 @@ Modify the **WebTestDslLabelProvider** class so that the following information i
 
 * **Page**:
   * text: Name of the page. e.g., `Google`
-  * icon: `page.png`
+  * icon: `page.gif`
 * **TestCase**:
   * text: Name of the test case. If you have to implement the **TestParams** extension, list the parameters of the test after the name of the test. The parameters should be separated by commas and enclosed in parenthesis. For each parameter the name of the parameter should be followed by a colon and a space character, and then the type of the parameter should be displayed. If a test case does not have parameters, then the parenthesis should not be displayed, either. e.g., `TestLogin(username: STRING, password: STRING)` or `TestWithoutParameters`
-  * icon: `test.png`
+  * icon: `test.gif`
 * **Manual**:
   * text: Name of the manual. e.g., `Search`
-  * icon: `manual.png`
+  * icon: `manual.gif`
 * **Variable**:
   * text: Name of the variable followed by a colon, a space and the type of the variable. e.g., `name: STRING`
-  * icon: `attribute.png`
+  * icon: `attribute.gif`
 * **Operation**:
   * text: Name of the operation followed by the comma separated list of parameters enclosed in parenthesis. The parenthesis is required even if there are no parameters. For each parameter the name of the parameter should be followed by a colon and a space character, and then the type of the parameter should be displayed. e.g., `login(username: STRING, password: STRING)` or `logout()`
-  * icon: `operation.png`
+  * icon: `operation.gif`
 
 ***HINT:** Create the appropriate **text** and **image** methods as described by the [Xtext](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#label-provider) documentation.*
 

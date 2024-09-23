@@ -32,19 +32,19 @@ Módosítsátok úgy a **WebTestDslLabelProvider** osztályt, hogy az egyes elem
 
 * **Page**:
   * szöveg: Az oldal neve. Pl. `Google`
-  * ikon: `page.png`
+  * ikon: `page.gif`
 * **TestCase**:
   * szöveg: A teszteset neve. Ha a **TestParams** bővítményt meg kell valósítanotok, a teszteset neve után zárójelben vesszőkkel elválasztva fel kell sorolni a teszteset paramétereit. Ha a tesztesetnek nincsenek paraméterei, akkor a zárójelek sem kellenek. A paraméterek úgy jelennek meg, mint a változók: a paraméter nevét követően egy kettőspont és egy szóköz, majd a paraméter típusa. Pl. `TestLogin(username: STRING, password: STRING)` vagy `TestWithoutParameters`
-  * ikon: `test.png`
+  * ikon: `test.gif`
 * **Manual**:
   * szöveg: A kézikönyv neve. Pl. `Search`
-  * ikon: `manual.png`
+  * ikon: `manual.gif`
 * **Variable**:
   * szöveg: A változó neve, majd egy kettőspont és egy szóköz után a változó típusa. Pl. `name: STRING`
-  * ikon: `attribute.png`
+  * ikon: `attribute.gif`
 * **Operation**:
   * szöveg: Az operáció neve, majd zárójelben az operáció paraméterei vesszőkkel elválasztva. A zárójelek akkor is kellenek, ha nincsenek paraméterei az operációnak. A paraméterek úgy jelennek meg, mint a változók: a paraméter nevét követően egy kettőspont és egy szóköz, majd a paraméter típusa. Pl. `login(username: STRING, password: STRING)` vagy `logout()`
-  * ikon: `operation.png`
+  * ikon: `operation.gif`
 
 ***TIPP:** Hozzátok létre a megfelelő **text** és **image** függvényeket, ahogy az [Xtext](https://eclipse.dev/Xtext/documentation/310_eclipse_support.html#label-provider) dokumentáció előírja.*
 
