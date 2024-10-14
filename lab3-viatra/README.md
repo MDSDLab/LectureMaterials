@@ -2,8 +2,9 @@
 
 ## A laborfeladat elvégzésének lépései
 
+0. Telepítsék a VIATRA-t az Eclipse-be (Help -> Eclipse Marketplace... -> Find: Viatra -> VIATRA 2.9.1 -> Install)
 1. Csinálja végig a [VIATRA](https://github.com/ftsrg-edu/lecture-notes/wiki/2020_vql) és [Modelltranszformáció](https://github.com/ftsrg-edu/lecture-notes/wiki/2021_m2m) tutorialokat, vagy a [hivatalos VIATRA](https://eclipse.dev/viatra/documentation/tutorial.html) tutorialt!
-2. Az [mdsd-2023-lab3-viatra](https://github.com/MDSDLab/mdsd-2023-lab3-viatra) repóból másolják át a **webtest.transformation** projektet közvetlenül a saját repójuk gyökerébe a már meglévő **webtest** névvel kezdődő projektek mellé!
+2. Az [mdsd-2024-lab3-viatra](https://github.com/MDSDLab/mdsd-2024-lab3-viatra) repóból másolják át a **webtest.transformation** projektet a saját repójukba a már meglévő **webtest** névvel kezdődő projektek mellé!
 3. Oldják meg az alábbiakban leírt feladatokat!
 4. Készítsenek egy **hw3** nevű **tag**-et az utolsó commitra!
 
