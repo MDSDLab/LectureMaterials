@@ -1,4 +1,4 @@
-# A VAITRA lekérdezések elkészítése
+# A VIATRA lekérdezések elkészítése
 Modellekérdezésre több okból is szükségünk lehet. A WebTest nyelv metamodellje nem kényszeríti ki a hibamentes modellek készítését, ezért jólformáltsági kényszerek szükségesek. Ezen kényszerek ellenőrzéséhez meg kell adnunk hibamintákat, melyek jelzik a hibás modelleket. A hibaminták felírására szolgál a VIATRA lekérdezések nyelve. Ezekből a lekérdezésekből későbbiekben könnyen lehet validációs szabályokat származtatni ([lásd](https://static.incquerylabs.com/projects/viatra/viatra-docs/ViatraDocs.html#_validation)), amelytől most a házi feladat során eltekintünk.
 
 Szintén használható a VIATRA a WebTest nyelv modelljeinek vizsgálatára, számunkra érdekes modellek és modell részletek megtalálására, melyeket aztán fel tudunk használni a programunkban (például kódgenerátorokban).
