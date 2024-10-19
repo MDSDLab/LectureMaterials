@@ -8,48 +8,58 @@ A nyelv célja, hogy működő weboldalakat lehessen előállítani programozói
 
 ### Alapvető építőelemek (Basic blocks)
 * **WebPage**
-  * A nyelv mindig pontosan egy weboldal (WebPage) definícióját tartalmazza (szerepel a kiadott [példában](init_example.md))
+  * A nyelv mindig pontosan egy weboldal (WebPage) definícióját tartalmazza (maga a Webpage szerepel a kiadott [példában](init_example.md))
+  * A szerkesztési térben alapból jelenjen meg (ne kelljen manuálisan hozzáadni)!
   * Attribútumok:
     * Title (szöveges): a HTML weboldal title eleme
   * Gyermekelemek:
-    * Style: a weboldalra (body-ra) érvényesítendő CSS class neve (érték alapú kapcsolat!)
     * Elements: a tartalmazott HTML elemek (az oldal tartalma)
-* **List**
-  * HTML lista megadására szolgáló elem
-  * Attribútumok:
-    * Type (legördülő, vagy boolean): ordered (&lt;ol&gt;), unordered (&lt;ul&gt;)
+* **Table**
+  * Táblázat megadására szolgáló elem
   * Gyermekelemek:
-    * Children: a tartalmazott HTML elemek
-* **ListItem**
-  * A listaelemek megadására szolgáló elem, az elemből egy listaelem (&lt;li&gt;) készül
+    * Rows: a táblázat sorai 
+* **Row**
+  * A táblázat egy sorát adja meg
   *  Gyermekelemek:
-      * Children: a tartalmazott HTML elemek
- * **TextBlock**
-   * Egy szövegblokk (alapból &lt;p&gt;)megadására szolgáló elem.
+	  * Height: a sor magasságát adja meg (érték alapú kapcsolat)
+      * Cell: a sorban található cellák
+* **Cell**
+  * A táblázat egy celláját adja meg
+  *  Gyermekelemek:
+	  * Width: a cella szélességét adja meg (érték alapú kapcsolat)
+	  * Children: a cella tartalmát képző HTML elemek	  
+* **Text**
+    * Egy szövegblokk (&lt;p&gt;)megadására szolgáló elem.
+    * Attribútumok:
+      * Text (szöveges): a megjelenítendő szöveg  
+ * **HeaderText**
+   * Egy címszöveg (pl. &lt;h&gt;) megadására szolgáló elem.
    * Attribútumok:
-      * Type (legördülő): normal/h1/h2/bold/deleted (&lt;del&gt;) stílust lehet megadni a tartalmazott elemeknek
-   * Gyermekelemek:
-     * Children: a blokk tartalmát képző HTML elemek, amikre a megadott formázás érvényesül
-  * **Link**
-    * Egy link megadására szolgáló elem
+      * Type (legördülő): h1/h2/h3/h4 stílust lehet megadni a tartalmazott elemeknek
+	  * Text (szöveges): a megjelenítendő szöveg  
+  * **Image**
+    * Egy kép beszurására szolgáló elem
     * Attribútumok:
-      * Text (szöveges): a weboldalon megjelenő szöveg (amire rá lehet kattintani)
-      * Href (szöveges): a weboldal, amire a link mutat (ahova a link vezet)
-  * **Text**
-    * Szöveg megadására szolgáló elem
-    * Attribútumok:
-      * Text (szöveges): a megjelenítendő szöveg
+      * Href (szöveges): a weboldal, ahol a kép megtalálható
+	* Gyermekelemek:
+		* Width: a kép szélessége (érték alapú kapcsolat!)
+		* Height: a kép magassága (érték alapú kapcsolat!)
   * **Div**
     * HTML blokkot (&lt;div&gt;) megadó elem
      * Gyermekelemek:
-        * Style: a blokk stílusa (érték alapú kapcsolat!)
+		* Width: a blokk szélessége (érték alapú kapcsolat!)
+		* Height: a blokk magassága (érték alapú kapcsolat!)
+        * Padding: a blokk belső margója (egységes minden irányban) (érték alapú kapcsolat!)
         * Children: a blokk tartalmát képző HTML elemek, amikre a megadott formázás érvényesül        
- * **CSS**
-    * Egy CSS class-t reprezentáló elem (hivatkozás egy meglévő CSS osztályra)
-    * Attribútumok:
-      * Name (szöveges): a Css osztály neve
+  * **Size**
+     * Megad egy hosszúság, vagy szélesség értéket (pl. 25px)
+	 * Attribútumok:
+	    * Amount (szöveges): a konkrét érték (pl. 25)
+	    * Type (legördülő): px (képpont), vagy % (százalék)
+
 
 ### Bevitel (Input)
+
 * **Form**
   * Beviteli mezőket összefogó űrlap (Form)
   * Attribútumok:
@@ -65,19 +75,17 @@ A nyelv célja, hogy működő weboldalakat lehessen előállítani programozói
    * Gyermekelemek:
      * Validator: a mezőhöz kapcsolt validátor (érték alapú kapcsolat)
  * **Button**
-   * Gomb megadására szolgáló elem
+   * Az űrlap beküldésére szolgáló elem
    * Attribútumok:
-     * ID (szöveges): a gomb azonosítója
      * Label (szöveges): a gomb felirata
-     * Action (szöveges): a gombra kattintáskor lefutó függvény (a függvény minden esetben paraméterek nélküli). Ha üres a mező, akkor submit gombként működik az elem.
         
 ### Validáció (Validation)
 * **Required**
     * Megadja, hogy a kapcsolt elem kötelező
-* **MinLength**
-    * Megadja a kapcsolt elem minimum hosszát
+* **MaxLength**
+    * Megadja a kapcsolt elem maximum hosszát
     * Attribútumok:
-      * Value (szám): a minimum hossz (0..255 közt adható meg)
+      * Value (szám): a maximum hossz (100..1000 közt adható meg)
 * **Pattern**
     * Megadja a kapcsolt elemtől elvárt mintát
     * Attribútumok:
@@ -93,9 +101,9 @@ A nyelv célja, hogy működő weboldalakat lehessen előállítani programozói
 ### Megkötések
    
    A szerkesztőben a következő megkötéseket kell megadni:
-   * A Style mezőkhöz csak CSS típusú elem köthető be
-   * A List elemeken belül kezvetlenül csak ListItem elemek lehetnek (de azokon belül bármi, természetesen)
+   * A Width/Height/Padding mezőkbe csak Size típusú elem köthető be
+   * A Table elemeken belül követlenül csak Row elemek lehetnek, a Row-kon belül csak Cell-ek (tehát pl. Input nem)
    * A ValidatorMsg elem Validator mezőjébe csak Validator típusú elem (Required, MinLength, Pattern) köthető be
    * Az Input elem Validator mezőjébe csak Validator típusú elem, vagy ValidatorMsg köthető be
 
-A feladatok megoldásában segíthet néhány [tipp](hints.md), ha elakadnátok
+A feladatok megoldásában segíthet néhány [tipp](hints.md), ha elakadna valaki.

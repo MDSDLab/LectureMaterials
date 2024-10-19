@@ -1,45 +1,31 @@
 # Bővítmények leírása
 
-A feladathoz 4 bővítmény tartozik, melyek közül minden [csapat](ExtensionsTable.md) egy darabot kap. A másik két bővítmény opcionálisan megoldható, de pluszpont nem jár érte. 
+A feladathoz 3 bővítmény tartozik, melyek közül minden [csapat](ExtensionsTable.md) egy darabot kap. A másik két bővítmény opcionálisan megoldható, de pluszpont nem jár érte. 
 
-## Input validator 
+## Validator 
 
 Az alap feladat szerint bármely validátor alkalmazható bármely input esetén, ami azonban nem mindig eredményezne érvényes kombinációkat. Egészítsük ki a szerkesztőt, hogy figyelmeztetéssel jelezze az érvénytelen kombinációkat:
 
- * CheckBox esetén nem alkalmazható MinLength, ill. Pattern
- * Number esetén nem alkalmazható MinLength, ill. Pattern
+ * CheckBox, ill. Number esetén nem alkalmazható MaxLength, ill. Pattern
+ * Vezessen be egy új validátort, ami csak Password típusú elemeknél alkalmazható és amivel megadható azok minimum hossza!
 
- Vezessen be továbbá egy új validátort, ami csak Number típusú elemeknél alkalmazható és amivel megadható azok minimum és maximum értéke!
+A beviteli mezők esetén is ellenőrizni kell bizonyos szabályokat:
 
+ * A Text és HeaderText elemek szöveg mezőjében csak alfanumerikus karaktereket engedélyezzük, a többit automatikusan vegyük ki a mezőből a szerkesztés végén (pl. &lt;br&gt; --> br)!
+ 
 ## Parent elements
 
 Az egyes elemek bizonyos megkötések mentén tetszőlegesen ágyazhatóak egymásba. A következő esetekben viszont ez hibás működéshez vezethet, ezért a szerkesztőt ki kell egészíteni:
 
 * A beviteli mezőknél elvárható, hogy azok mindig egy Form-on belül legyenek! Vezessen be egy figyelmeztetést az Input mezőnél, ami ellenőrzi, hogy a mezőt direkt, vagy indirekt módon tartalmazza-e egy Form (tehát nem elegendő a közvetlen tartalmazót megvizsgálni)!
-* Ellenőrizze, hogy a ListItem elemek egy List elemen belül vannak-e! (szintén lehetséges, hogy közvetett a tartalmazás)
-* TextBlock esetén adjon figyelmeztetést, ha nincs benne egyetlen elem sem! (a Children üres)
+* Ne engedje meg, hogy Cell elem Row-n kívül, ill. Row elem Table-ön kívül szerepeljen! (azaz pl. közvetlenül egy Formban)
+* Div esetén adjon figyelmeztetést, ha nincs benne egyetlen elem sem és a magasság/szélesség sincs beállítva! (azaz nem placeholderként használjuk)
 
-## CSS style
+## Table formatter
 
-Jelenleg lehetőség van hivatkozni CSS osztályra bizonyos pontokon az elemekhez, hogy azok kinézetét testreszabjuk. 
-Hozzon létre egy új elemet CssStyle néven és alakítsa át a CSS elemet, hogy tartalmazhasson ilyen CssStyle típusú elemeket (CHILDREN)!
+A táblázatok esetében vizuálisan zavaró, ha az egy oszlopba tartozó cellák szélessége eltér egymástól az egyes sorokban. Tehát pl. a harmadik oszlop celláitól elvárható, hogy azonos szélességűek legyenek függetlenül attól, hogy hányadik sorról van szó.
 
-A CssStyle elem speciális: legördülő listából (TYPE) választhassuk ki, hogy mit szeretnénk testreszabni, majd a választástól függően legyen lehetőség megadni az adott tulajdonság értékét (VALUE)! 
-Tehát egy olyan elemre van szükség, ahol a legördülő menüből történő érték választástól függően más és más beviteli mező jelenik meg az adott elemen. 
+* Táblázat esetén adjon figyelmeztetést, ha eltérő cellaszélesség van megadva az egyes sorokban a cellákhoz!
+* Tegye lehetővé, hogy az oszlopoknál meg lehessen adni azok szélességét. Ha meg van adva, akkor a celláknál ne legyen mód ennek a felülírására! (Elrejtheti, vagy letilthatja az opciót, mindkét megoldás megfelelő, de csak ha meg van adva az oszlopnál a szélesség!)
 
- * Font: szöveges formába megadható a font neve (pl. Times)
- * Background-color: színként megadható a háttér szín
- * Padding: megadható a margó mérete egyetlen szám formájában
- * Font-Size: számként megadható a betűméret
- 
-A CssStyle elemben megadott definíciók lokálisan írják felül a CSS osztályban definiált értékeket, tehát pl. ha megadjuk a font-ot CssStyle-ban, akkor az adott elemnél az érvényesüljön függetlenül attól, hogy a CSS osztályban mi volt megadva. Nem kell figyelni rá, hogy ne legyenek egymásnak ellentmondó stílusok (pl. két különböző font megadva) és a fontot sem kell ellenőrizni, hogy létezik-e.
-
-## Safe input
-
-Bár egy ilyen környezet kialakításakor a biztonsági aspektusok ritkán kerülnek előtérbe, néhány támadási mechanizmust mégis érdemes már ezen a szinten kivédeni. Egészítsük ki a szerkesztőt a következő mechanizmusokkal:
-
- * A szerkesztési térben alapesetben jelenjen meg egy WebPage, amit ne lehessen se mozgati se letörölni!
- * A Text elem szöveg mezőjében csak alfanumerikus karaktereket engedélyezzük, a többit automatikusan vegyük ki a mezőből a szerkesztés végén (pl. &lt;br&gt; --> br)!
- * A Link esetén ellenőrizze a JavaScriptes URL osztály segítségével, hogy tényleg weboldalt adtak-e meg (és törölje a megadott értéket, ha az nem weboldal)!
-
-Ha a mozgatás letiltása nem működik, érdemes megnézni a [linket](https://groups.google.com/g/blockly/c/K97NfUNLx-A).
+Egészítse ki továbbá a táblázat elemet, hogy megadható legyen a keret szélessége (Size-ként) és színe (a szín legyen vizuálisan kiválasztható, ne kóddal kelljen megadni)!

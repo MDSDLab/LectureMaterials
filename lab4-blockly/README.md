@@ -3,7 +3,7 @@
 ## A laborfeladat elvégzésének lépései
 
 1. Olvassátok el és lehetőség szerint csináljátok végig a Blockly [Tutorial](materials/blockly_tutorial.pdf) feladatot! A leírásban szereplő feladatok nem kapcsolódnak a laborfeladathoz, de segítenek megtenni az első lépéseket a Blockly világában. A feladatok elvégezhetőek a kiadott Blockly verzióban.
-2. Az [mdsd-2023-lab4-blockly](https://github.com/MDSDLab/mdsd-2023-lab4-blockly) repóból másoljátok át a **Blockly** mappát közvetlenül a saját repótok gyökerébe!
+2. Az [mdsd-2024-lab4-blockly](https://github.com/MDSDLab/mdsd-2024-lab4-blockly) repóból másoljátok át a **Blockly** mappát közvetlenül a saját repótok gyökerébe!
 3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott [bővítményeket](extensions.md)!
 4. Készítsetek egy **hw4-blockly** nevű **tag**-et az utolsó commitra!
 
@@ -21,13 +21,15 @@ A laborfeladat elvégzéséhez nyissátok meg a kiadott kezdőprojektet (az *ind
 
 A laborfeladat megoldása akkor tekinthető késznek, ha az összes felsorolt HTML elem ([alap elemek](controls.md) és a kijelölt [bővítmény](extensions.md)) lemodellezhető (tartalmazza a nyelv és az editorban fel lehet használni) és helyes (működő, szemantikailag megfelelő) HTML kód generálódik belőlük. A Blockly természete miatt automatikus teszteseteket ennél a feladatnál nem adunk közre, de manuálisan ellenőrizhető, hogy a megoldás kielégíti-e a követelményeket. 
 
+*A feladat csak akkor elfogadható, ha legalább minimális mértékben érvényesíti az ergonomíai alapeleveket, azaz pl. az egyes blokktípusoknak van neve (ami a szerkesztőben látszik is), ill. eltérő színeket használnak az egyes típusok.*
+
 ### Pontozás
 
 A 4. labor két különálló feladatból áll; az **[ANTLR](https://github.com/MDSDLab/LectureMaterials/blob/main/lab4-antlr/README.md) feladatra 15 pontot**, a **Blockly feladatra 10 pontot** lehet maximum szerezni. A Blockly feladat pontozása a következőképpen oszlik el:
 
-| Közös részek | Kódgenerálás | Bővítmény |
-| :-: | :-: | :-: |
-| 3 pont | 4 pont | 3 pont |
+| Közös részek | Ergonómia | Kódgenerálás | Bővítmény |
+| :-: | :-: | :-: | :-: |
+| 2 pont | 1 pont | 4 pont | 3 pont |
 
 ## Referenciák
 
@@ -42,10 +44,3 @@ Hasznos linkek a feladat megoldásához:
 * Blockly field demo [link](https://google.github.io/blockly-samples/)
 * Input validation [link](http://bekawestberg.me/blog/types-1/)
 * Custom validation [link](https://blocklycodelabs.dev/codelabs/validation-and-warnings/index.html#0)
-
-## Változások, kiegészítések
-
-* 2023. Nov. 16.
-	* Szövegblokk: a Type attribútum értékei közé bekerült a Normal + kódgenerálási [tipp](hints.md) 
-	* CSS Style bővítmény: magyarázat kiegészítve
-	* Safe Input bővítmény: tipp hozzáadva a leíráshoz 
