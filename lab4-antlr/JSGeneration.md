@@ -16,8 +16,6 @@ A kódgenerálás során bármilyen technológia használható; a kiinduló proj
 
 ---
 
-A kódgenerálás során érdemes a példát követni: .
-
 Néhány tipp a kódgenerátor elkészítéséhez (elsősorban StringTemplate használata esetén):
 - tanulmányozzuk a **WebtestInputCodeGenerator** osztályt
     - a generált kód a *generatedCode* tagváltozóba kerül, a **WebtestInputRunner** ezt használja, ezen nem kell változtatnunk
