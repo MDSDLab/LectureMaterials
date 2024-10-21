@@ -7,7 +7,7 @@ Az input mezők adatainak tárolására a **data.WebtestInput** osztály haszná
 Mivel erre a lépésre a későbbi feladatok erősen építenek, a megoldás lépéseit vázlatosan is megadjuk:
 - a **WebtestInput** osztály kiegészítése a megfelelő tagváltozókkal
     - gondoljuk meg, hogy mit szeretnénk az *input* elemekről tárolni, valamint, hogy hogyan kezeljük a *group* elemeket
-    - **TIPP**: az inputon belül szereplő validációknak nem kell saját segédstruktúrát készíteni, tárolni sem kell őket
+    - **FONTOS**: az *input* elemeken belüli validációknak nem kell segédstruktúrát készíteni, tárolni sem kell őket; ez jelentősen leegyszerűsíti a feladatot!
 - a **WebtestInputTable** osztály kiegészítése, hogy képes legyen **WebtestInput**-okat tárolni
     - *lookup* és *insert* műveletekre biztosan szükség lesz, de egyéb műveleteket is tehetünk bele
 - a **WebtestInputTableBuilder** osztály kiegészítése a megfelelő *visit* metódusokkal, melyek felépítik a táblát (**WebtestInputTable** tagváltozót)

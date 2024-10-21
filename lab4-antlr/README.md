@@ -2,7 +2,7 @@
 
 ## A laborfeladat elvégzésének lépései
 
-1. Az [mdsd-2023-lab4-antlr](https://github.com/MDSDLab/mdsd-2023-lab4-antlr) repó tartalmát másoljátok be a saját repótokba, egy újonnan létrehozott **webtest-input-validation** mappába!
+1. Az [mdsd-2024-lab4-antlr](https://github.com/MDSDLab/mdsd-2024-lab4-antlr) repó tartalmát másoljátok be a saját repótokba, egy újonnan létrehozott **webtest-input-validation** mappába!
 2. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott bővítményt!
 3. Készítsetek egy **hw4-antlr** nevű **tag**-et az utolsó commitra!
 
@@ -41,9 +41,9 @@ Bővítmények:
 
 ## Értékelés
 
-A kiinduló projektben (**examples** package) található egy bemeneti [példakód](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/PersonForm.wtiv), melyben a WebestInputValidation nyelv minden nyelvi eleme megtalálható. Szintén itt (**examples.generated** package) találhatók meg a példakódból generált [HTML](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/generated/PersonForm.html) és [JavaScript](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/generated/validation.js) fájlok is. A nyelvtan elkészítése és a kódgenerálás akkor tekinthető teljes értékűnek, ha a bemeneti fájlt sikerül teljesen beolvasni és értelmezni, valamint ha a fentiekkel funkcionálisan ekvivalens kódot sikerül belőle generálni. A szemantikai elemzés akkor tekinthető teljes értékűnek, ha minden, a feladatkiírásban leírt esetnél keletkezik egy megfelelő hiba.
+A kiinduló projektben (**examples** package) található egy bemeneti [példakód](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/PersonForm.wtiv), melyben a WebestInputValidation nyelv minden nyelvi eleme megtalálható. Szintén itt (**examples.generated** package) találhatók meg a példakódból generált [HTML](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/generated/PersonForm.html) és [JavaScript](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/generated/validation.js) fájlok is. A nyelvtan elkészítése és a kódgenerálás akkor tekinthető teljes értékűnek, ha a bemeneti fájlt sikerül teljesen beolvasni és értelmezni, valamint ha a fentiekkel funkcionálisan ekvivalens kódot sikerül belőle generálni. A szemantikai elemzés akkor tekinthető teljes értékűnek, ha minden, a feladatkiírásban leírt esetnél keletkezik egy megfelelő hiba.
 
-A megoldást akár a szintén az **examples** package-ben található, WebTest nyelven írt [példához](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/FormTest.wt) hasonló, automatikusan generált Selenium tesztekkel is ellenőrizhetjük.
+A megoldást akár a szintén az **examples** package-ben található, WebTest nyelven írt [példához](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/FormTest.wt) hasonló, automatikusan generált Selenium tesztekkel is ellenőrizhetjük.
 
 ### Pontozás
 
@@ -57,10 +57,10 @@ A 4. labor két különálló feladatból áll; az **ANTLR feladatra 15 pontot**
 
 ## Referenciák
 
-Hasznos linkek a gyakorlat elvégzéséhez:
+Hasznos linkek a feladat elvégzéséhez:
 
-* Az előző féléves ANTLR gyakorlat [anyagai](https://github.com/bmeaut/ModellalapuSzoftverfejlesztes/tree/master/practice/practice_03)
-    * IntelliJ és ANTLR beüzemelésével együtt
+* Az előző féléves ANTLR gyakorlatok anyagai - lexikai / szintaktikai elemzés [gyakorlat](https://github.com/bmeaut/ModellalapuSzoftverfejlesztes/tree/master/practice/practice_02) + szemantikai elemzés / kódgenerálás [gyakorlat](https://github.com/bmeaut/ModellalapuSzoftverfejlesztes/tree/master/practice/practice_04)
+    * IntelliJ és ANTLR beüzemelési útmutatót is tartalmaz
 * [ANTLR](https://www.antlr.org/) ([Dokumentáció](https://github.com/antlr/antlr4/blob/master/doc/index.md))
 * [ANTLR példa nyelvtanok](https://github.com/antlr/grammars-v4)
 * [StringTemplate](https://www.stringtemplate.org/) ([Dokumentáció](https://github.com/antlr/stringtemplate4/blob/master/doc/index.md))

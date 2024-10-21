@@ -28,4 +28,4 @@ Néhány tipp a kódgenerátor elkészítéséhez (elsősorban StringTemplate ha
     - pl. egy HTML attribútum validációs template fejléce: ```htmlAttributeValidityCheck(id, errorDisplay, validityAttribute)```
 - a **WebtestJsCodeGenerator** osztályban visit függvényeket kell felüldefiniálni, a korábbiakhoz hasonló módon
     - itt használjuk az elkészített template-eket is, a **WebtestInputCodeGenerator** osztályban látottakhoz hasonlóan (további részletekért ld. a StringTemplate dokumentációt)
-- a kódgenerálás során érdemes a kiadott mintapéldát követni: [példakód](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/PersonForm.wtiv) --> [generált JavaScript](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/generated/validation.js)
+- a kódgenerálás során érdemes a kiadott mintapéldát követni: [példakód](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/PersonForm.wtiv) --> [generált JavaScript](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/generated/validation.js)

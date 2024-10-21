@@ -1,6 +1,6 @@
 # WebTestInputValidation nyelv specifikáció
 
-Az alábbiakban a nyelv céljának ismertetése után a nyelvi elemei kerülnek felsorolásra és rövid bemutatásra. A felsorolás a [bővítményeket](Extensions.md) nem, csak a közös, minden csapat által megvalósítandó nyelvi elemeket tartalmazza. Példák az itt található nyelvi elemekre a bemeneti [példakódban](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/PersonForm.wtiv) találhatók.
+Az alábbiakban a nyelv céljának ismertetése után a nyelvi elemei kerülnek felsorolásra és rövid bemutatásra. A felsorolás a [bővítményeket](Extensions.md) nem, csak a közös, minden csapat által megvalósítandó nyelvi elemeket tartalmazza. Példák az itt található nyelvi elemekre a bemeneti [példakódban](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/PersonForm.wtiv) találhatók.
 
 ## Áttekintés
 A nyelv célja, hogy a WebTest nyelv számára szolgáltasson bemeneti fájlként HTML és JavaScript fájlokat, melyek kizárólag HTML **formok** validációját írják le. A nyelv HTML **input** tageket ír le, a struktúra mellett megadva az elemek validációját is. A struktúra leírásból HTML-t, a validációs kódból pedig JavaScript kódot tudunk generálni. A validáció során lehetőségünk van beépített HTML validációt használni, más **input** elemek értéke alapján validálni, vagy azok láthatóságát szabályozni.

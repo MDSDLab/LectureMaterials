@@ -24,6 +24,7 @@ Néhány tipp a kódgenerátor elkészítéséhez (elsősorban StringTemplate ha
     - később ezt a template-et ki kell egészíteni paraméterekkel is
 - érdemes több template-et is definiálni a **HtmlGen** fájlban
     - pl. egy input generáló template fejléce: ```input(type, id, name, attributes, isHidden)```
+- mivel a tag nyitó karakter (`<`) StringTemplate-ben is használt, HTML tag generálásánál escapelnünk kell: `\<`
 - a **WebtestHtmlCodeGenerator** osztályban visit függvényeket kell felüldefiniálni, a korábbiakhoz hasonló módon
     - itt használjuk az elkészített template-eket is, a **WebtestInputCodeGenerator** osztályban látottakhoz hasonlóan (további részletekért ld. a StringTemplate dokumentációt)
-- a kódgenerálás során érdemes a kiadott mintapéldát követni: [példakód](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/PersonForm.wtiv) --> [generált HTML](https://github.com/MDSDLab/mdsd-2023-lab4-antlr/blob/main/src/examples/generated/PersonForm.html)
+- a kódgenerálás során érdemes a kiadott mintapéldát követni: [példakód](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/PersonForm.wtiv) --> [generált HTML](https://github.com/MDSDLab/mdsd-2024-lab4-antlr/blob/main/src/examples/generated/PersonForm.html)-
