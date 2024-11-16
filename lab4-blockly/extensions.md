@@ -26,6 +26,6 @@ Az egyes elemek bizonyos megkötések mentén tetszőlegesen ágyazhatóak egym�
 A táblázatok esetében vizuálisan zavaró, ha az egy oszlopba tartozó cellák szélessége eltér egymástól az egyes sorokban. Tehát pl. a harmadik oszlop celláitól elvárható, hogy azonos szélességűek legyenek függetlenül attól, hogy hányadik sorról van szó.
 
 * Táblázat esetén adjon figyelmeztetést, ha eltérő cellaszélesség van megadva az egyes sorokban a cellákhoz!
-* Tegye lehetővé, hogy az oszlopoknál meg lehessen adni azok szélességét. Ha meg van adva, akkor a celláknál ne legyen mód ennek a felülírására! (Elrejtheti, vagy letilthatja az opciót, mindkét megoldás megfelelő, de csak ha meg van adva az oszlopnál a szélesség!)
+* Vezessen be egy új, oszlop elemet, amit a táblázatba lehet belerakni! Tegye lehetővé, hogy az oszlopoknál meg lehessen adni azok szélességét. Ha meg van adva, akkor a celláknál ne legyen mód ennek a felülírására! (Elrejtheti, vagy letilthatja az opciót, mindkét megoldás megfelelő, de csak ha meg van adva az oszlopnál a szélesség!)
 
 Egészítse ki továbbá a táblázat elemet, hogy megadható legyen a keret szélessége (Size-ként) és színe (a szín legyen vizuálisan kiválasztható, ne kóddal kelljen megadni)!
