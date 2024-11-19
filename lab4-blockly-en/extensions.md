@@ -1,6 +1,6 @@
 # Extensions
 
-This task involves only one extension.
+This task involves the following extension:
 
 ## Validator 
 
