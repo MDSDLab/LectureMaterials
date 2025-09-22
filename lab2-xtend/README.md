@@ -5,7 +5,7 @@
 0. Ezen a laboron az első laboron megoldott feladatot kell majd tovább folytatni.
 1. Csináljátok végig az [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorialt!
 2. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott bővítményeket!
-3. Beadás előtt ellenőrizzétek, hogy a **webtest.dsl.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia.
+3. Beadás előtt ellenőrizzétek, hogy minden projekt hiba nélkül fordul-e a repóbol tisztán kiszedve is.
 4. Készítsetek egy **hw2** nevű git tag-et az utolsó commitra!
 
 ## Feladat célja
@@ -16,9 +16,7 @@ A WebTest nyelv közös részét mindenkinek meg kell valósítania. A bővítm�
 
 ## Feladat leírása
 
-Az előző (**lab1-xtext**) labor eredményét kell továbbfejleszteni. Nyissátok meg a **webtest.dsl.parent** könyvtár alatt található projekteket Eclipse alatt!
-
-FONTOS: Az **xtend** kiterjesztésű fájlok csak az Eclipse IDE-ben dolgozva látják az azonos projektben lévő **java** kiterjesztésű fájlokat, a Maven fordítás során nem! Emiatt célszerű az **xtend** kiterjesztésű fájlokat csak a **webtest.generator** projekten belül használni. Mindenképpen győződjetek meg róla, hogy a Maven fordítás is működőképes-e!
+Az előző (**lab1-xtext**) labor eredményét kell továbbfejleszteni. Nyissátok meg a **webtest-xtext-xtend** könyvtár alatt található projekteket Eclipse alatt!
 
 Oldjátok meg az alábbi feladatokat:
 

@@ -2,16 +2,11 @@
 
 ## A laborfeladat elvégzésének lépései
 
-0. Töltsétek le, és telepítsétek az alábbi szoftvereket:
-
-* [Eclipse IDE for Java and DSL Developers 2024-06 R](https://www.eclipse.org/downloads/packages/release/2024-06/r/eclipse-ide-java-and-dsl-developers). FONTOS: pontosan ezt a változatot és ezt a verziót használjátok, mert a projektek csak ezzel fordulnak helyesen!
-* [Maven](https://maven.apache.org/download.cgi). Adjátok hozzá a Maven `bin` könyvtárát a `PATH` környezeti változóhoz.
-* JDK 21 (pl. [Adoptium](https://adoptium.net/)). A `JAVA_HOME` környezeti változó a telepített JDK főkönyvtárára mutasson.
-
+0. Töltsétek le, és telepítsétek az [Eclipse IDE for Java and DSL Developers 2025-09 R](https://www.eclipse.org/downloads/packages/release/2025-09/r/eclipse-ide-java-and-dsl-developers) környezetet. FONTOS: pontosan ezt a változatot és ezt a verziót használjátok, mert a projektek csak ezzel fordulnak helyesen!
 1. Csináljátok végig az [Xcore Wiki](https://wiki.eclipse.org/Xcore) és az [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html) oldalakon található tutorialokat! Olvassátok el még egyszer a tavalyi [Xtext gyakorlat](images/GY3-Xtext-Utmutato.pdf) anyagát!
-2. Az [mdsd-2024-lab1-xtext](https://github.com/MDSDLab/mdsd-2024-lab1-xtext) repóból másoljátok át a **webtest.dsl.parent** könyvtárat közvetlenül a saját repótok gyökerébe!
-3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a [számotokra kiosztott bővítményeket](ExtrasTable2024.md)!
-4. Beadás előtt ellenőrizzétek, hogy a **webtest.dsl.parent** könyvtárból a `compile.bat` parancs sikeresen lefut-e. Minden projektnek hiba nélkül le kell fordulnia.
+2. Az [mdsd-2025-lab1-xtext](https://github.com/MDSDLab/mdsd-2025-lab1-xtext) repóból másoljátok át a **webtest-xtext-xtend** könyvtárat közvetlenül a saját repótok gyökerébe!
+3. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a [számotokra kiosztott bővítményeket](ExtrasTable2025.md)!
+4. Beadás előtt ellenőrizzétek, hogy minden projekt hiba nélkül fordul-e a repóbol tisztán kiszedve is.
 5. Készítsetek egy **hw1** nevű git tag-et az utolsó commitra!
 
 ## Feladat célja
@@ -22,11 +17,9 @@ A WebTest nyelv [közös részét](WebTestReference.md) mindenkinek meg kell val
 
 ## Feladat leírása
 
-Nyissátok meg a **webtest.dsl.parent** könyvtár alatt található projekteket Eclipse alatt: **File > Import... / General > Existing Projects into Workspace** (nem Maven > Existing Maven Projects!), és **root directory**-nak a **webtest.dsl.parent**-et válasszátok! A megnyitás után előfordulhatnak fordítási hibák a **webtest.dsl.tests** és a **webtest.model.tests** projektekben. Ezek a hibák azért jelennek meg, mert a laborfeladat során kiegészítendő fájlok tartalma még nem teljes. A hibáknak el kell tűnnie a laborfeladat megoldásának végére. A többi projektnek hiba nélkül kell betöltődnie.
+Nyissátok meg a **webtest-xtext-xtend** könyvtár alatt található projekteket Eclipse alatt: **File > Import... / General > Existing Projects into Workspace**, és **root directory**-nak a **webtest-xtext-xtend**-et válasszátok! A megnyitás után előfordulhatnak fordítási hibák a **webtest.dsl.tests** és a **webtest.model.tests** projektekben. Ezek a hibák azért jelennek meg, mert a laborfeladat során kiegészítendő fájlok tartalma még nem teljes. A hibáknak el kell tűnnie a laborfeladat megoldásának végére. A többi projektnek hiba nélkül kell betöltődnie.
 
 A **webtest.dsl** projektben az **src** könyvtár alatt a **webtest.dsl** csomagban szereplő **WebTestExtensions** osztályban állítsátok **false**-ra az azon bővítményekhez tartozó értékeket, amelyeket nem kell megvalósítanotok. Így csak olyan tesztek lesznek engedélyezve, amelyek számotokra relevánsak.
-
-FONTOS: Az **xtend** kiterjesztésű fájlok csak az Eclipse IDE-ben dolgozva látják az azonos projektben lévő **java** kiterjesztésű fájlokat, a Maven fordítás során nem! Emiatt célszerű ezen a laboron az **xtend** kiterjesztésű fájlokat mellőzni. Ha mégis használtok ilyen fájlokat, győződjetek meg róla, hogy a Maven fordítás is működőképes-e!
 
 Oldjátok meg az alábbi feladatokat:
 
@@ -42,7 +35,7 @@ A **webtest.model.tests** projekt azt teszteli, hogy az elkészített Xcore meta
 
 A **webtest.dsl.tests** projekt azt teszteli, hogy az elkészített Xtext nyelvtan, valamint a hozzá tartozó név- és típuselemzés megfelel-e a laborfeladat követelményeinek.
 
-A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni, és a Maven fordítás is sikeres a `compile.bat` segítségével. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülhetnek a leadás után!
+A laborfeladat megoldása akkor tekinthető késznek, ha az összes releváns teszt sikeresen le tud futni. Azonban a laborfeladat megoldásának alaposabb kiértékeléséhez a itt szereplő (előre kiadott) teszteken túl további tesztek is futtatásra kerülhetnek a leadás után!
 
 ## Referenciák
 

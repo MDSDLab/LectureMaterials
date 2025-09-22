@@ -35,14 +35,14 @@ end
 Another example:
 
 ```
-webtest example.Google
+webtest example.Search
 
 operation search(string text)
-  fill textarea "q" with text
+  fill input "q" with text
   click button "Search"
 end
 
-open "https://www.google.com"
+open "https://duckduckgo.com/"
 search using "jwst"
 ```
 
@@ -157,7 +157,7 @@ A variable must have a type (&lt;type>), a name (&lt;name>) and a value (&lt;val
 Examples:
 
 ```
-string url = "https://www.google.com"
+string url = "https://duckduckgo.com/"
 integer timeout = 10
 element logout = button "Sign out"
 boolean loggedIn = logout exists
@@ -255,7 +255,7 @@ open <url:string>
 Examples:
 
 ```
-open "https://www.google.com"
+open "https://duckduckgo.com/"
 
 string github = "https://github.com"
 open github

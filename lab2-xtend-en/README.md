@@ -5,7 +5,7 @@
 0. In this lab you have to develop the application from the previous lab further.
 1. Solve the [Xtend](https://eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) tutorial!
 2. Solve the tasks listed below, while also taking the extensions assigned to you into account!
-4. Before submission, check whether the `compile.bat` command in **webtest.dsl.parent** runs successfully. All projects must compile without any errors.
+4. Before submission, check whether all projects compile without any errors, even if you check them out cleanly from the git repo.
 5. Add the **hw2** git tag to your last commit!
 
 ## Goal of the lab
@@ -16,9 +16,7 @@ The common part of the language must be realized by everyone. From the extension
 
 ## List of the tasks
 
-In this lab you have to develop the application from the previous lab further. In Eclipse, open the projects under the folder **webtest.dsl.parent**.
-
-IMPORTANT: Within the same project, files with extension **xtend** see files with extension **java** only inside the Eclipse IDE, but not during the Maven build! Therefore, it is recommended to use **xtend** files only in the **webtest.generator** project. Always make sure that the Maven build is successfull, too!
+In this lab you have to develop the application from the previous lab further. In Eclipse, open the projects under the folder **webtest-xtext-xtend**.
 
 Solve the following tasks:
 
@@ -31,7 +29,7 @@ Solve the following tasks:
 
 The **webtest.dsl.ui.tests** project tests whether the Xtext IDE support is correct.
 
-The solution of the lab tasks can be regarded as complete, if all the relevant tests run successfully, and the Maven compilation is also successful using the `compile.bat` command. However, during the evaluation of your solution, we may execute further tests, too.
+The solution of the lab tasks can be regarded as complete, if all the relevant tests run successfully, and the generator also works as expected. However, during the evaluation of your solution, we may execute further tests, too.
 
 When you are finished with all the tasks, the following behavior is expected:
 

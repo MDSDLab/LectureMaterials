@@ -27,7 +27,7 @@ The contents of the files above are produced by the **webtest.generator.WebTestP
 
 The JUnit tests generated from the WebTest files found in the **webtest** folder are put into the **src-gen/test/java** folder. This step is however not performed by the wizard, it must be performed in the [next task](TaskCodeGeneration.md) by your generator.
 
-Don't modify the wizard or any of the related files! (Except maybe the value of the **DEFAULT_CHROME_DRIVER_LOCATION** constant in the generated **SeleniumTest.java** class, if necessary.)
+Don't modify the wizard or any of the related files!
 
 ## To be uploaded
 

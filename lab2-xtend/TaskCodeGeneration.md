@@ -14,7 +14,7 @@ Szerencsére ezeket a példakódokat megírtuk helyettetek a **webtest.example**
 
 Vizsgáljátok meg a **webtest.example** projektben található WebTest kódokat, a belőlük előálló JUnit teszteket, és a tesztek alapját biztosító segédosztályokat (**Page**, **PageElement**, **SeleniumTest**)!
 
-A [projekt varázslóban](TaskProjectWizard.md) már elkészítettük nektek a projekt struktúráját, és beépítettük a segédosztályok (**Page**, **PageElement**, **SeleniumTest**) generálását is. Ezekhez ne nyúljatok hozzá, ezeken ne módosítsatok! (Kivéve esetleg a **DEFAULT_CHROME_DRIVER_LOCATION** konstans értékén a generált **SeleniumTest.java** osztályban, ha szükséges.)
+A [projekt varázslóban](TaskProjectWizard.md) már elkészítettük nektek a projekt struktúráját, és beépítettük a segédosztályok (**Page**, **PageElement**, **SeleniumTest**) generálását is. Ezekhez ne nyúljatok hozzá, ezeken ne módosítsatok!
 
 Ebben a részfeladatban csak annyi a dolgotok, hogy minden egyes WebTest fájlból pontosan egy Java fájlt hozzatok létre, amely a WebTest fájlnak megfelelő JUnit tesztet reprezentálja.
 
@@ -171,6 +171,8 @@ Az alábbi módon lehet ellenőrizni a generátor helyes működését:
 3. A projekt **webtest** könyvtárában készítsünk egy új **.wt** kiterjesztésű fált a megfelelő tartalommal!
 4. Mentsük el a **.wt** kiterjesztésű fájlt! Ekkor automatikusan előáll a neki megfelelő JUnit tesztet tartalmazó Java kód.
 5. Kattintsunk jobb gombbal a projekten, és válasszuk a **Run As > JUnit Test** menüpontot. Ennek hatására a JUnit teszt egy Selenium által vezérelt böngészőn keresztül végrehajtja a WebTest nyelven leírt utasításainkat.
+
+**Fontos:** Ha nem keletkezik **.java** kód a **.wt** fájlokból, vagy az nem fordul, akkor erre a feladatrészre nem jár pont!
 
 ## Feltöltendő
 

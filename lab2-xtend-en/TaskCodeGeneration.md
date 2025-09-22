@@ -14,7 +14,7 @@ Fortunately, we have already written these example codes in the **webtest.exampl
 
 Take some time to examine the **webtest.example** project and its contents: the WebTest codes, the JUnit tests produced from them, and the utility classes (**Page**, **PageElement**, **SeleniumTest**) for these tests!
 
-In the [project wizard](TaskProjectWizard.md) we have already prepared the project structure for you, and we have also built in the generation of the utility classes (**Page**, **PageElement**, **SeleniumTest**). Don't touch the project structure and the utility classes! (Except maybe the value of the **DEFAULT_CHROME_DRIVER_LOCATION** constant in the generated **SeleniumTest.java** class, if necessary.)
+In the [project wizard](TaskProjectWizard.md) we have already prepared the project structure for you, and we have also built in the generation of the utility classes (**Page**, **PageElement**, **SeleniumTest**). Don't touch the project structure and the utility classes!
 
 In this task you only have to produce a single Java file from each WebTest file. Each Java file represents a JUnit test that corresponds to the WebTest file.
 

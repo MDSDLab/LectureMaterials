@@ -1,0 +1,29 @@
+Az alábbi táblázat megadja, hogy melyik csapatnak melyik bővítményt kell megvalósítania:
+
+| Csapatnév | Extra1 | Extra2 |
+| --------- | ------ | ------ |
+| KHI | ForEach | JavaScript |
+| modelminds | JavaScript | TestParams |
+| agepeklazadasa | JavaScript | TestParams |
+| Lowkey | Capture | Manual |
+| kszi2 | ForEach | TestParams |
+| Kacsip | JavaScript | TestParams |
+| MDSD2 | ForEach | TestParams |
+| MetaModellers | Capture | Manual |
+| SchyntaxError | ForEach | TestParams |
+| palacsinta | ForEach | TestParams |
+| Berci | Capture | TestParams |
+| macskasfadisz2025 | ForEach | JavaScript |
+| csapatnev | JavaScript | TestParams |
+| Arbeitslosenversicherung | ForEach | JavaScript |
+| tigrisek | ForEach | TestParams |
+| Passz | ForEach | JavaScript |
+| wearecooked | ForEach | TestParams |
+| TheSeven | Capture | TestParams |
+| kalapkabat | ForEach | TestParams |
+| BESt | Capture | TestParams |
+| SmackSoft | Capture | ForEach |
+| NullPointerException | Capture | Manual |
+| BigBassBonanza | Capture | ForEach |
+| Keverton | Capture | TestParams |
+| NoName | Capture | Manual |

@@ -8,7 +8,7 @@ From the high abstraction level description the WebTest compiler automatically g
 
 The following pages provide more details about the WebTest language:
 
-* [Example: Google search](WebTestExampleGoogle.md)
+* [Example: search](WebTestExampleSearch.md)
 * [Example: calculator](WebTestExampleCalculator.md)
 * [Example: wizard](WebTestExampleWizard.md)
 * [Example: dialog boxes](WebTestExampleDialog.md)

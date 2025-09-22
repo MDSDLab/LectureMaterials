@@ -8,7 +8,7 @@ A magas szintű WebTest nyelvi leírásból a fordító [JUnit 5](https://junit.
 
 A WebTest nyelv megismeréséhez az alábbi oldalak adnak segítséget:
 
-* [Példa: Google keresés](WebTestExampleGoogle.md)
+* [Példa: keresés](WebTestExampleSearch.md)
 * [Példa: számológép](WebTestExampleCalculator.md)
 * [Példa: varázsló](WebTestExampleWizard.md)
 * [Példa: dialógus ablakok](WebTestExampleDialog.md)

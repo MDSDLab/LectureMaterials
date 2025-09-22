@@ -35,14 +35,14 @@ end
 Másik példa egy ilyen fájlszerkezetre:
 
 ```
-webtest example.Google
+webtest example.Search
 
 operation search(string text)
-  fill textarea "q" with text
+  fill input "q" with text
   click button "Search"
 end
 
-open "https://www.google.com"
+open "https://duckduckgo.com/"
 search using "jwst"
 ```
 
@@ -157,7 +157,7 @@ Egy változónak meg kell adni a típusát (&lt;type>), a nevét (&lt;name>) és
 Példák:
 
 ```
-string url = "https://www.google.com"
+string url = "https://duckduckgo.com/"
 integer timeout = 10
 element logout = button "Sign out"
 boolean loggedIn = logout exists
@@ -255,7 +255,7 @@ open <url:string>
 Példák:
 
 ```
-open "https://www.google.com"
+open "https://duckduckgo.com/"
 
 string github = "https://github.com"
 open github
