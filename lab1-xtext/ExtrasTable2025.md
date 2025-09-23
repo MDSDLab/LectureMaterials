@@ -27,3 +27,8 @@ Az alábbi táblázat megadja, hogy melyik csapatnak melyik bővítményt kell m
 | BigBassBonanza | Capture | ForEach |
 | Keverton | Capture | TestParams |
 | NoName | Capture | Manual |
+| DJG | ForEach | Manual |
+| RKM | JavaScript | Manual |
+| LB | Capture | JavaScript |
+| EBD | JavaScript | TestParams |
+| ZAB | Capture | Manual |
