@@ -20,11 +20,11 @@ A [2. laborfeladat](lab2-xtend/README.md) célja Eclipse IDE támogatás, valami
 
 Határidő: Október 20. hétfő 23:59.
 
-# 3. labor - Viatra lekérdezés és modelltranszformáció
+# 3. labor - Refinery, modelllekérdezés és modellgenerálás
 
-A [3. laborfeladat](lab3-viatra/README.md) célja Viatra lekérdezések és modelltranszformációk készítése a [WebTest nyelvhez](lab1-xtext/WebTestLanguageSpecification.md) validáció és mutációs tesztelés céljából.
+A [3. laborfeladat](lab3-refinery/README.md) célja Refinery modelllekérdezések készítése és modellgenerálás a [WebTest nyelvhez](lab1-xtext/WebTestLanguageSpecification.md) validáció és tesztgenerálás céljából.
 
-Határidő: Október 28. hétfő 23:59.
+Határidő: November 5. szerda 8:00.
 
 # 4. labor - ANTLR és Blockly
 
