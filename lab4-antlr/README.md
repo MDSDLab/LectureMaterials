@@ -2,7 +2,7 @@
 
 ## A laborfeladat elvégzésének lépései
 
-1. Az [mdsd-2024-lab4-antlr](https://github.com/MDSDLab/mdsd-2024-lab4-antlr) repó tartalmát másoljátok be a saját repótokba, egy újonnan létrehozott **webtest-input-validation** mappába!
+1. Az [mdsd-2025-lab4-antlr](https://github.com/MDSDLab/mdsd-2025-lab4-antlr) repó tartalmát másoljátok be a saját repótokba, egy újonnan létrehozott **webtest-input-validation** mappába!
 2. Oldjátok meg az alábbiakban leírt feladatokat, figyelembe véve a számotokra kiosztott bővítményt!
 3. Készítsetek egy **hw4-antlr** nevű **tag**-et az utolsó commitra!
 
