@@ -2,7 +2,7 @@
 
 ## Steps to solve the lab
 
-1. Copy the contents of the [mdsd-2024-lab4-antlr](https://github.com/MDSDLab/mdsd-2024-lab4-antlr) repo into your own repository, into a newly created **webtest-input-validation** folder!
+1. Copy the contents of the [mdsd-2025-lab4-antlr](https://github.com/MDSDLab/mdsd-2025-lab4-antlr) repo into your own repository, into a newly created **webtest-input-validation** folder!
 2. Solve the tasks described below, taking into account the extension assigned to you!
 3. Create a **hw4-antlr** **tag** on the last commit!
 
