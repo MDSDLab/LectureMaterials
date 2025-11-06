@@ -2,33 +2,33 @@
 
 | Csapatnév | Bővítmény |
 | ------- | ----- |
-| 1815 | Parent elements |
-| Bohocok | Validator |
-| BoomParty | Table formatter |
-| ByteSquad | Parent elements |
-| Coglica | Parent elements |
-| ContentsMayDiffer | Table formatter |
-| csakgorbuljon | Validator |
-| Debug_Harmas | Table formatter |
-| FAM | Parent elements |
-| HanOcsFer | Validator |
-| Horcsogok | Validator |
-| makosguba | Parent elements |
-| MDArcok | Table formatter |
-| meow | Table formatter |
-| mirejo | Parent elements |
-| Modellmaffia | Validator |
-| monkesoft-3 | Table formatter |
-| nazsa | Validator |
-| NORcsapat | Parent elements |
-| omnitech | Parent elements |
-| peszter | Table formatter |
-| Sentinels | Validator |
-| service-unavailable | Validator |
-| Team14 | Table formatter |
-| team_qgli3 | Table formatter |
-| the-boys | Validator |
-| titanifomuhely | Validator |
-| tubi | Parent elements |
-| v2 | Table formatter |
-| whatthecommit | Validator |
+| KHI | Parent elements |
+| modelminds | Table formatter |
+| agepeklazadasa | Validator |
+| Lowkey | Parent elements |
+| kszi2 | Parent elements |
+| Kacsip | Validator |
+| MDSD2 | Validator |
+| MetaModellers | Parent elements |
+| SchyntaxError | Table formatter |
+| palacsinta | Parent elements |
+| Berci | Validator |
+| macskasfadisz2025 | Table formatter |
+| csapatnev | Parent elements |
+| Arbeitslosenversicherung | Table formatter |
+| tigrisek | Validator |
+| Passz | Table formatter |
+| wearecooked | Parent elements |
+| TheSeven | Validator |
+| kalapkabat | Table formatter |
+| BESt | Parent elements |
+| SmackSoft | Validator |
+| NullPointerException | Parent elements |
+| BigBassBonanza | Table formatter |
+| Keverton | Validator |
+| NoName | Parent elements |
+| DJG | Table formatter |
+| RKM | Parent elements |
+| LB | Parent elements |
+| EBD | Table formatter |
+| ZAB | Validator |
