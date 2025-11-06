@@ -1,5 +1,6 @@
 # Extension Assignments
 
-| Csapatnév | Bővítmény |
+| Team | Extension |
 | ------- | ----- |
-| TODO | TODO |
+| devs | String Concatenation |
+| StackUnderFlow | JavaScript Support |
