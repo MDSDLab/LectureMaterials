@@ -5,7 +5,7 @@
 0. Download and install [Eclipse IDE for Java and DSL Developers 2025-09 R](https://www.eclipse.org/downloads/packages/release/2025-09/r/eclipse-ide-java-and-dsl-developers). IMPORTANT: use exactly this version and this edition of Eclipse, since the projects only compile with this!
 1. Solve the tutorials for [Xcore](https://wiki.eclipse.org/Xcore) and [Xtext](https://eclipse.dev/Xtext/documentation/102_domainmodelwalkthrough.html)! Read the [Xtext practice guidelines](../lab1-xtext/images/PR3-Xtext-Guideline.pdf) from the previous semester.
 2. From the [mdsd-2025-lab1-xtext](https://github.com/MDSDLab/mdsd-2025-lab1-xtext) repository copy the folder **webtest-xtext-xtend** to the root of your own repository!
-3. Solve the tasks listed below, while also taking the [extensions assigned to you](ExtrasTable2025.md) into account!
+3. Solve the tasks listed below, while also taking the [extensions assigned to you](ExtrasTable2026.md) into account!
 4. Before submission, check whether all projects compile without any errors, even if you check them out cleanly from the git repo.
 5. Add the **hw1** git tag to your last commit!
 
