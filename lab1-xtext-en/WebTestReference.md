@@ -95,7 +95,7 @@ page Calculator
   element divide = button "/"
   element compute = button "="
   
-  operation binaryOperation(text left, element op, text right)
+  operation binaryOperation(string left, element op, string right)
     click clear
     fill display with left
     click op
@@ -103,7 +103,7 @@ page Calculator
     click compute
   end
   
-  operation multiply(text left, text right)
+  operation multiply(string left, string right)
     binaryOperation using left, multiply, right
   end
 
