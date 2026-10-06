@@ -17,5 +17,6 @@ Az alábbi táblázat megadja, hogy melyik csapatnak melyik bővítményt kell m
 | MrLean | JavaScript | TestParams |
 | passz | ForEach | JavaScript |
 | pizza | ForEach | TestParams |
+| SGG | ForEach | TestParams |
 | telehaz | JavaScript | TestParams |
 | Varangyászok | JavaScript | TestParams |
