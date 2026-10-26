@@ -1,10 +1,10 @@
-# 3. labor – Refinery, modelllekérdezés és modellgenerálás
+# 3. labor – Refinery, modell-lekérdezés és modellgenerálás
 
 ## A laborfeladat elvégzésének lépései
 
 1. Ismerkedjetek meg a Refinery-ben elérhető parciális modellezési nyelvvel: [Refinery language reference](https://refinery.tools/learn/language/)
 2. A labor fejlesztői környezete a Refinery webes szerkesztőjében érhető el: https://refinery.services/
-3. A [mdsd-2025-lab3-refinery](https://github.com/MDSDLab/mdsd-2025-lab3-refinery) repository-ból másoljátok a **webtest-refinery** mappát a saját repository-tok gyökérkönyvtárába.
+3. A [mdsd-2026-lab3-refinery](https://github.com/MDSDLab/mdsd-2026-lab3-refinery) repository-ból másoljátok a **webtest-refinery** mappát a saját repository-tok gyökérkönyvtárába.
 4. Oldjátok meg az alábbi feladatokat.
 5. Készítsetek egy **hw3** git tag-et az utolsó commitra!
 

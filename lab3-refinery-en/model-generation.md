@@ -4,7 +4,7 @@ In the previous exercise, you created graph predicates to check various well-for
 
 ## Source file
 In this task, you will work on the **webtest-refinery/generation.problem** _problem_ file. This file contains an instance model of the WebTest language. You will use this model to generate test cases for the WebTest language using the predicates defined in the previous exercise. The problem file containing the task is made up of different parts:
-- **Metamodel**: this describes the the metamodel of the WebTest language. *This part should not be changed.*
+- **Metamodel**: this describes the metamodel of the WebTest language. *This part should not be changed.*
 - **Predicates**: here, you can define error predicates that can be used to guide the generation of the models. *You can add new predicates here if needed for the generation tasks.*
 - **Instance model**: Here is the definition of the instance model. *You need to modify this part to generate the required test models.*
 
@@ -20,7 +20,7 @@ You need to modify the problem file to generate test models with the following c
 - Each `BlockStatement` shall contain at least one `statement` (implement the `emptyBlockStatement` error predicate).
 - Make sure that any `BlockStatement` that do not contain any `statement` elements in the initial model can be completed by any type of `Statement` or `Expression` by the generator. Allow the generator to create new elements here.
 - Each `IfStatement` shall contain a `then` block (implement the `emptyIfStatement` error predicate).
-- If an `IfStatement` does not contain a `then` block in the initial model, manually create one, and allow the generator to complete it with any type of  `Statement` or `Expression`. Allow the generator to create new elements here.
+- If an `IfStatement` does not contain a `then` block in the initial model, manually create one, and allow the generator to complete it with any type of `Statement` or `Expression`. Allow the generator to create new elements here.
 - The following predicates defined in the previous exercise shall not have any matches in the generated models:
     - waitSecondsNotInteger
     - variableExpressionLoop

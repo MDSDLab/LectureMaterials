@@ -2,9 +2,9 @@
 
 ## Steps to solve the lab
 
-1. Get familiar with the partial modeling language available in Refinery : [Refinery language reference](https://refinery.tools/learn/language/)
+1. Get familiar with the partial modeling language available in Refinery: [Refinery language reference](https://refinery.tools/learn/language/)
 2. The development environment for the lab is available in the online web editor of Refinery: https://refinery.services/
-3. From the [mdsd-2025-lab3-refinery](https://github.com/MDSDLab/mdsd-2025-lab3-refinery) repository, copy the **webtest-refinery** folder to the root of your own repository.
+3. From the [mdsd-2026-lab3-refinery](https://github.com/MDSDLab/mdsd-2026-lab3-refinery) repository, copy the **webtest-refinery** folder to the root of your own repository.
 4. Solve the tasks listed below.
 5. Commit your solution and add the **hw3** git tag to your last commit!
 

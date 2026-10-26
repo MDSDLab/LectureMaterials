@@ -1,4 +1,4 @@
-# Model generation in Refinery
+# Modell-generálás Refinery-ben
 
 Az előző feladatrészben gráfpredikátumokat hoztatok létre a WebTest nyelv modelljeinek különböző jólformáltsági kényszereinek ellenőrzéséhez. Ebben a feladatban ezeket a predikátumokat fogjátok használni új [error predikátumokkal](https://refinery.tools/learn/language/predicates/#error-predicates) együtt a Refinery modellgeneráló funkciójának segítségével a WebTest nyelv tesztmodelljeinek generálásához. Egy [példánymodellt](https://refinery.tools/learn/language/logic/) fogtok módosítani, hogy a generátor kiegészíthesse a modellt, és létrehozhasson érvényes teszteseteket, amelyek megfelelnek a predikátumok által megadott jólformáltsági kényszereknek.
 
@@ -20,7 +20,7 @@ Módosítsátok a problem fájlt, hogy a következő jellemzőkkel rendelkező t
 - Minden `BlockStatement` legalább egy `statement` elemet tartalmaz (az `emptyBlockStatement` error predikátumot kell implementálni).
 - Biztosítsátok, hogy a generátor bármilyen típusú `Statement` vagy `Expression` elemmel kiegészíthesse azon `BlockStatement` elemeket, amelyek a kezdeti modellben nem tartalmaznak `statement` elemeket. Biztosítsátok, hogy a generátor itt új elemeket is létrehozhasson.
 - Minden `IfStatement`-nek tartalmaznia kell egy `then` blokkot (implementáljátok az `emptyIfStatement` error predikátumot).
-- Ha egy `IfStatement` nem tartalmaz `then` blokkot a kezdeti modellben, akkor kézzel hozzatok létre egyet, és engedjétek meg a generátornak, hogy bármilyen típusú  `Statement` vagy `Expression` elemmel kiegészítse. Engedjétek meg a generátornak, hogy itt új elemeket hozzon létre.
+- Ha egy `IfStatement` nem tartalmaz `then` blokkot a kezdeti modellben, akkor kézzel hozzatok létre egyet, és engedjétek meg a generátornak, hogy bármilyen típusú `Statement` vagy `Expression` elemmel kiegészítse. Engedjétek meg a generátornak, hogy itt új elemeket hozzon létre.
 - Az alábbi, az előző feladatban létrehozott predikátumoknak nem lehetnek illeszkedései a generált modellekben:
     - waitSecondsNotInteger
     - variableExpressionLoop
