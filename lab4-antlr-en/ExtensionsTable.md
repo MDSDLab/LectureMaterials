@@ -1,6 +1,8 @@
 # Extension Assignments
 
-| Team | Extension |
-| ------- | ----- |
-| devs | String Concatenation |
-| StackUnderFlow | JavaScript Support |
+| Team name | Extension |
+| --------- | --------- |
+| BaBL7 | String Concatenation |
+| MDSDLteam | JavaScript Support |
+| Metamodelers | String Concatenation |
+| Shalwesha | Error Message |
