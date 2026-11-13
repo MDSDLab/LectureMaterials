@@ -1,34 +1,22 @@
 # Bővítmények kiosztása
 
 | Csapatnév | Bővítmény |
-| ------- | ----- |
-| KHI | Parent elements |
-| modelminds | Table formatter |
-| agepeklazadasa | Validator |
-| Lowkey | Parent elements |
-| kszi2 | Parent elements |
-| Kacsip | Validator |
-| MDSD2 | Validator |
-| MetaModellers | Parent elements |
-| SchyntaxError | Table formatter |
-| palacsinta | Parent elements |
-| Berci | Validator |
-| macskasfadisz2025 | Table formatter |
-| csapatnev | Parent elements |
-| Arbeitslosenversicherung | Table formatter |
-| tigrisek | Validator |
-| Passz | Table formatter |
-| wearecooked | Parent elements |
-| TheSeven | Validator |
-| kalapkabat | Table formatter |
-| BESt | Parent elements |
-| SmackSoft | Validator |
-| NullPointerException | Parent elements |
-| BigBassBonanza | Table formatter |
-| Keverton | Validator |
-| NoName | Parent elements |
-| DJG | Table formatter |
-| RKM | Parent elements |
-| LB | Parent elements |
-| EBD | Table formatter |
-| ZAB | Validator |
+| --------- | ------ |
+| ACA | Table formatter |
+| Adatbazisok | Parent elements |
+| alfanumerikus | Table formatter |
+| Artela | Table formatter |
+| DalmiFanok | Parent elements |
+| DGS | Validator |
+| edgerunners | Validator |
+| GAnG | Table formatter |
+| LaBaddies | Validator |
+| ModelszoftlabTeamTBG | Table formatter |
+| ModL | Validator |
+| monkeystack | Table formatter |
+| MrLean | Parent elements |
+| passz | Parent elements |
+| pizza | Parent elements |
+| SGG | Validator |
+| telehaz | Table formatter |
+| Varangyászok | Validator |
